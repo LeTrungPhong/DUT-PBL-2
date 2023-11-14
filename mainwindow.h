@@ -74,6 +74,8 @@ private slots:
 
     void on_buttonMacDinh_clicked();
 
+    void on_buttonXacNhanDuLieu_clicked();
+
 private:
     Ui::MainWindow *ui;
     QuanLy ql;

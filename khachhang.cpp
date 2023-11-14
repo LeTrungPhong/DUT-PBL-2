@@ -157,7 +157,8 @@ bool KhachHang::KiemTraThongTinNhapVao()
     int currentMonth = currentDate->tm_mon + 1;
     int currentDay = currentDate->tm_mday;
 
-    if (this->Birth.Nam < currentYear - 122 || this->Birth.Nam > currentYear) {
+    if (this->Birth.Nam < currentYear - 122 || this->Birth.Nam > currentYear)
+    {
         return false;
     }
 
@@ -222,14 +223,14 @@ void KhachHang::TinhTienPhong(long long gt)
 {
     this->TongTien = 0;
     long long tiendv = 30000*DichVu[0] + 35000*DichVu[1] + 50000*DichVu[2] + 40000*DichVu[3];
+    int gioden = this->NgayDen.Gio;
     int ngayden = this->NgayDen.Ngay;
     int thangden = this->NgayDen.Thang;
     int namden = this->NgayDen.Nam;
+    int giodi = this->NgayDi.Gio;
     int ngaydi = this->NgayDi.Ngay;
     int thangdi = this->NgayDi.Thang;
     int namdi = this->NgayDi.Nam;   
-    int gioden = this->NgayDen.Gio;
-    int giodi = this->NgayDi.Gio;
     
     // từ 6h sáng -> 18h tối  : giá * 85%
     // từ 18h tối -> 24h -> 0 -> 6h sáng : giá gốc
@@ -251,13 +252,8 @@ void KhachHang::TinhTienPhong(long long gt)
         {
             ngayden = 1;
             thangden++;
-            if(thangden == 13)
-            {
-                thangden = 1;
-                namden++;
-            }
         }
-        if(ngayden == 31 && (thangden == 4 || thangden == 6 || thangden == 9))
+        if(ngayden == 31 && (thangden == 4 || thangden == 6 || thangden == 9 || thangden == 11))
         {
             ngayden = 1;
             thangden++;
@@ -271,6 +267,11 @@ void KhachHang::TinhTienPhong(long long gt)
         {
             ngayden = 1;
             thangden++;
+        }
+        if(thangden == 13)
+        {
+            thangden = 1;
+            namden++;
         }
         long long money = 0;
         if((gioden >= 0 && gioden < 6) || (gioden >= 18 && gioden < 24))

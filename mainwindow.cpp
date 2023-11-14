@@ -16,6 +16,15 @@ MainWindow::MainWindow(QWidget *parent)
     QIntValidator *validator2 = new QIntValidator(this);
     ui->lineEditMax->setValidator(validator2);
 
+    QIntValidator *validatorH = new QIntValidator(this);
+    ui->lineEditGio->setValidator(validatorH);
+    QIntValidator *validatorD = new QIntValidator(this);
+    ui->lineEditNgay->setValidator(validatorD);
+    QIntValidator *validatorM = new QIntValidator(this);
+    ui->lineEditThang->setValidator(validatorM);
+    QIntValidator *validatorY = new QIntValidator(this);
+    ui->lineEditNam->setValidator(validatorY);
+
     ui->stackedWidget->setCurrentIndex(1);
     ui->stackedWidget2->setCurrentIndex(0);
     this->thutu = 0;
@@ -875,3 +884,70 @@ void MainWindow::on_buttonMacDinh_clicked()
     ui->comboBoxLP->setCurrentIndex(0);
     ui->comboBoxTT->setCurrentIndex(0);
 }
+
+void MainWindow::on_buttonXacNhanDuLieu_clicked()
+{
+    string str = ui->lineEditTimKiem5->text().toStdString();
+    if(!((this->tt).KiemTraTenPhong(str)))
+    {
+        QMessageBox::information(this,"Thong bao","Phong khong ton tai");
+        return;
+    }
+    int giodi = ui->lineEditGio->text().toInt();
+    int ngaydi = ui->lineEditNgay->text().toInt();
+    int thangdi = ui->lineEditThang->text().toInt();
+    int namdi = ui->lineEditNam->text().toInt();
+
+    time_t now = time(0);
+    tm* currentDate = localtime(&now);
+    int currentYear = currentDate->tm_year + 1900;
+    int currentMonth = currentDate->tm_mon + 1;
+    int currentDay = currentDate->tm_mday;
+    int currentHour = currentDate->tm_hour;
+
+    bool check = false;
+    if(namdi < currentYear) check = true;
+    if(namdi == currentYear && thangdi < currentMonth) check = true;
+    if(namdi == currentYear && thangdi == currentMonth && ngaydi < currentDay) check = true;
+    if(namdi == currentYear && thangdi == currentMonth && ngaydi == currentDay && giodi < currentHour) check = true;
+    if(giodi > 23 || giodi < 0) check = true;
+    if(thangdi > 12 || thangdi < 1) check = true;
+    if((thangdi == 1 || thangdi == 3 || thangdi == 5 || thangdi == 7 || thangdi == 8 || thangdi == 10 || thangdi == 12) && (ngaydi > 31 || ngaydi < 1)) check = true;
+    if((thangdi == 4 || thangdi == 6 || thangdi == 9 || thangdi == 11) && (ngaydi > 30 || ngaydi < 1)) check = true;
+    if((thangdi == 2) && ((((namdi % 4) == 0 ) && (ngaydi > 29 || ngaydi < 1))||(((namdi % 4) != 0) && (ngaydi > 28 || ngaydi < 1)))) check = true;
+    if(check)
+    {
+        QMessageBox::information(this,"Thong bao","Thoi gian khong hop le");
+        return;
+    }
+    long long giatien = 0;
+    int lp = this->tt.XacDinhLoaiPhong(str);
+    if(lp == 0) return;
+    if(lp == 1)
+    {
+        giatien = (this->tt).LayThongTinPhongCoBan(str).LayGiaTien();
+    }
+    if(lp == 2)
+    {
+        giatien = (this->tt).LayThongTinPhongThuong(str).LayGiaTien();
+    }
+    if(lp == 3)
+    {
+        giatien = (this->tt).LayThongTinPhongThuongGia(str).LayGiaTien();
+    }
+    KhachHang k;
+    k.NhapNgayDatPhong(currentDay,currentMonth,currentYear,currentHour);
+    k.NhapNgayTraPhong(ngaydi,thangdi,namdi,giodi);
+    QMessageBox::information(this,"","");
+    k.TinhTienPhong(giatien);
+    ui->labelThoiGianDen->setText(QString::fromStdString(k.LayNgayDen()));
+    ui->labelThoiGianTra2->setText(QString::fromStdString(k.LayNgayDi()));
+    ui->labelTongTien2->setText(QLocale().toString(k.LayTienPhong()));
+}
+
+
+
+
+
+
+
