@@ -54,7 +54,7 @@ int PhongThuong::LaySoLuongGiuongDoi()
     return this->GiuongDoi;
 }
 
-bool PhongThuong::KiemTraPhongTheoChiDinh(int a, int b, int c, int e)
+bool PhongThuong::KiemTraPhongTheoChiDinh(int a, int b, int e, long long f, long long g)
 {
 
     if(a != 0)
@@ -65,7 +65,6 @@ bool PhongThuong::KiemTraPhongTheoChiDinh(int a, int b, int c, int e)
     {
         if((b-1) != this->GiuongDoi) return false;
     }
-    //    if(c != this->Tang) return false;
     if(e != 0)
     {
         int check;
@@ -84,5 +83,6 @@ bool PhongThuong::KiemTraPhongTheoChiDinh(int a, int b, int c, int e)
         }
         return false;
     }
+    if(!(this->GiaPhong >= f && this->GiaPhong <= g)) return false;
     return true;
 }

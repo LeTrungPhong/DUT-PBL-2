@@ -10,6 +10,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    QIntValidator *validator1 = new QIntValidator(this);
+    ui->lineEditMin->setValidator(validator1);
+    QIntValidator *validator2 = new QIntValidator(this);
+    ui->lineEditMax->setValidator(validator2);
+
     ui->stackedWidget->setCurrentIndex(1);
     ui->stackedWidget2->setCurrentIndex(0);
     this->thutu = 0;
@@ -129,12 +135,24 @@ void MainWindow::on_buttonTimkiem_clicked()
 
     int a = ui->comboBoxGDon->currentIndex();
     int b = ui->comboBoxGDoi->currentIndex();
-    int c = ui->comboBoxTang->currentIndex();
+
     int d = ui->comboBoxLP->currentIndex();
     int e = ui->comboBoxTT->currentIndex();
 
+    long long f = 0;
+    long long g = 1000000;
+
+    if(!(ui->lineEditMin->text() == ""))
+    {
+        f = ui->lineEditMin->text().toInt();
+    }
+
+    if(!(ui->lineEditMax->text() == ""))
+    {
+        g = ui->lineEditMax->text().toInt();
+    }
     this->v.clear();
-    vector<string> temp = MainWindow::LayTenCacPhong(a,b,c,d,e);
+    vector<string> temp = MainWindow::LayTenCacPhong(a,b,d,e,f,g);
 
     this->thutu = 0;
     for(int i = 0; i < temp.size(); i++)
@@ -197,9 +215,9 @@ void MainWindow::on_buttonContinue_clicked()
     }
 }
 
-vector<string> MainWindow::LayTenCacPhong(int a, int b, int c, int d, int e)
+vector<string> MainWindow::LayTenCacPhong(int a, int b, int d, int e, long long f, long long g)
 {
-    return this->tt.LayTenCacPhong(a,b,c,d,e);
+    return this->tt.LayTenCacPhong(a,b,d,e,f,g);
 }
 
 void MainWindow::HienThiPhongRaManHinh(QString tp, QString lp, QString gdon, QString gdoi, bool ktr, QString gt)
@@ -817,4 +835,43 @@ void MainWindow::LuuKhachHangCuVaoFile()
 void MainWindow::LuuKhachHangMoiVaoFile()
 {
     (this->tt).LuuKhachHangMoiVaoFile();
+}
+
+void MainWindow::on_buttonTatCaPhong_clicked()
+{
+    this->v.clear();
+    vector<string> temp = MainWindow::LayTenCacPhong(0,0,0,0,0,1000000);
+
+    this->thutu = 0;
+    for(int i = 0; i < temp.size(); ++i)
+    {
+        this->v.push_back(QString::fromStdString(temp[i]));
+    }
+    int k = temp.size();
+    while((k - 12) >= 0)
+    {
+        k = k - 12;
+    }
+    k = 12 - k;
+    for(int i = 0; i < k; i++)
+    {
+        this->v.push_back("");
+    }
+    MainWindow::XuatPhong();
+}
+
+void MainWindow::on_buttonTienVaThoiGian_clicked()
+{
+    ui->stackedWidget2->setCurrentIndex(4);
+}
+
+void MainWindow::on_buttonMacDinh_clicked()
+{
+    ui->lineEditTimKiem->setText("");
+    ui->lineEditMin->setText("");
+    ui->lineEditMax->setText("");
+    ui->comboBoxGDon->setCurrentIndex(0);
+    ui->comboBoxGDoi->setCurrentIndex(0);
+    ui->comboBoxLP->setCurrentIndex(0);
+    ui->comboBoxTT->setCurrentIndex(0);
 }

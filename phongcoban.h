@@ -28,7 +28,7 @@ public:
     string LayTenPhong();
     int LaySoLuongGiuongDon();
     long long LayGiaTien();
-    bool KiemTraPhongTheoChiDinh(int,int,int,int);
+    bool KiemTraPhongTheoChiDinh(int,int,int,long long,long long);
 };
 
 #endif // PHONGCOBAN_H

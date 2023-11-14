@@ -75,14 +75,13 @@ long long PhongCoBan::LayGiaTien()
     return this->GiaPhong;
 }
 
-bool PhongCoBan::KiemTraPhongTheoChiDinh(int a, int b,int c, int e)
+bool PhongCoBan::KiemTraPhongTheoChiDinh(int a, int b, int e, long long f, long long g)
 {
     if(a != 0)
     {
         if((a-1) != this->GiuongDon) return false;
     }
     if(b != 0) return false;
-//    if(c != this->Tang) return false;
     if(e != 0)
     {
         int check;
@@ -101,7 +100,6 @@ bool PhongCoBan::KiemTraPhongTheoChiDinh(int a, int b,int c, int e)
         }
         return false;
     }
+    if(!(this->GiaPhong >= f && this->GiaPhong <= g)) return false;
     return true;
 }
-
-

@@ -22,7 +22,7 @@ public:
     ~MainWindow();
     void closeEvent(QCloseEvent *event);
     void NhapThongTin(const QuanLy&, const QuanLyKhachHang&, const QuanLyPhong&);
-    vector<string> LayTenCacPhong(int,int,int,int,int);
+    vector<string> LayTenCacPhong(int,int,int,int,long long, long long);
 
     void HienThiPhongCoBan(string);
     void HienThiPhongThuong(string);
@@ -69,6 +69,11 @@ private slots:
     void on_buttonDichVu2_clicked();
     void on_buttonDichVu3_clicked();
     void on_buttonDichVu4_clicked();
+    void on_buttonTatCaPhong_clicked();
+    void on_buttonTienVaThoiGian_clicked();
+
+    void on_buttonMacDinh_clicked();
+
 private:
     Ui::MainWindow *ui;
     QuanLy ql;

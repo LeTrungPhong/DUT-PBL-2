@@ -15,7 +15,7 @@ public:
     const PhongThuong& operator = (const PhongThuong&);
     friend ostream& operator << (ostream&, const PhongThuong&);
     int LaySoLuongGiuongDoi();
-    bool KiemTraPhongTheoChiDinh(int,int,int,int);
+    bool KiemTraPhongTheoChiDinh(int,int,int,long long,long long);
 };
 
 #endif // PHONGTHUONG_H

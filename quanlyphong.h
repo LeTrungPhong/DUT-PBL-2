@@ -35,7 +35,7 @@ public:
 
     const QuanLyPhong& operator = (const QuanLyPhong&);
 
-    vector<string> LayTenCacPhong(int,int,int,int,int);
+    vector<string> LayTenCacPhong(int,int,int,int, long long, long long);
 
     int XacDinhLoaiPhong(string);
     PhongCoBan& LayThongTinPhongCoBan(string);

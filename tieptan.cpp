@@ -121,9 +121,9 @@ const TiepTan& TiepTan::operator = (const TiepTan &tt)
     return *this;
 }
 
-vector<string> TiepTan::LayTenCacPhong(int a, int b, int c, int d, int e)
+vector<string> TiepTan::LayTenCacPhong(int a, int b, int d, int e, long long f, long long g)
 {
-    return qlp.LayTenCacPhong(a,b,c,d,e);
+    return qlp.LayTenCacPhong(a,b,d,e,f,g);
 }
 
 int TiepTan::XacDinhLoaiPhong(string str)

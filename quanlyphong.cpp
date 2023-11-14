@@ -266,7 +266,7 @@ const QuanLyPhong& QuanLyPhong::operator = (const QuanLyPhong& qlp)
     return *this;
 }
 
-vector<string> QuanLyPhong::LayTenCacPhong(int a, int b, int c, int d, int e)
+vector<string> QuanLyPhong::LayTenCacPhong(int a, int b, int d, int e, long long f, long long g)
 {
     vector<string> v;
     // a giường đơn // 0: mặc định / 1:1 / 2:2
@@ -279,7 +279,7 @@ vector<string> QuanLyPhong::LayTenCacPhong(int a, int b, int c, int d, int e)
     {
         for(int i = 0; i < this->size[0]; i++)
         {
-            if(!((pcb + i)->KiemTraPhongTheoChiDinh(a,b,c,e)))
+            if(!((pcb + i)->KiemTraPhongTheoChiDinh(a,b,e,f,g)))
             {
                 continue;
             }
@@ -290,7 +290,7 @@ vector<string> QuanLyPhong::LayTenCacPhong(int a, int b, int c, int d, int e)
     {
         for(int i = 0; i < this->size[1]; i++)
         {
-            if(!((pt + i)->KiemTraPhongTheoChiDinh(a,b,c,e)))
+            if(!((pt + i)->KiemTraPhongTheoChiDinh(a,b,e,f,g)))
             {
                 continue;
             }
@@ -301,7 +301,7 @@ vector<string> QuanLyPhong::LayTenCacPhong(int a, int b, int c, int d, int e)
     {
         for(int i = 0; i < this->size[2]; i++)
         {
-            if(!((ptg + i)->KiemTraPhongTheoChiDinh(a,b,c,e)))
+            if(!((ptg + i)->KiemTraPhongTheoChiDinh(a,b,e,f,g)))
             {
                 continue;
             }
