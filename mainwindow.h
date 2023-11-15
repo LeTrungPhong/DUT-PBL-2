@@ -32,6 +32,7 @@ public:
     void HienThiPhongRaManHinh2(QString,QString,QString,QString,bool, QString);
     void HienThiPhongRaManHinh3(QString,QString,QString,QString, QString);
     void XuatPhong();
+    void XuatPhong2();
 
     void LuuPhongvaoFile();
     void LuuKhachHangCuVaoFile();
@@ -70,11 +71,15 @@ private slots:
     void on_buttonDichVu3_clicked();
     void on_buttonDichVu4_clicked();
     void on_buttonTatCaPhong_clicked();
-    void on_buttonTienVaThoiGian_clicked();
-
     void on_buttonMacDinh_clicked();
 
-    void on_buttonXacNhanDuLieu_clicked();
+    void on_buttonminmaxcontinue_clicked();
+
+    void on_buttonminmaxback_clicked();
+
+    void on_buttonminmax1_clicked();
+
+    void on_buttonminmax2_clicked();
 
 private:
     Ui::MainWindow *ui;

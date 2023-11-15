@@ -126,6 +126,11 @@ vector<string> TiepTan::LayTenCacPhong(int a, int b, int d, int e, long long f, 
     return qlp.LayTenCacPhong(a,b,d,e,f,g);
 }
 
+vector<string> TiepTan::LayTenCacPhong2(KhachHang &k, long long min, long long max)
+{
+    return qlp.LayTenCacPhong2(k,min,max);
+}
+
 int TiepTan::XacDinhLoaiPhong(string str)
 {
     return qlp.XacDinhLoaiPhong(str);

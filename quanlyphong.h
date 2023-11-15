@@ -1,6 +1,7 @@
 #ifndef QUANLYPHONG_H
 #define QUANLYPHONG_H
 #include "phongthuonggia.h"
+#include "khachhang.h"
 
 class QuanLyPhong
 {
@@ -36,6 +37,7 @@ public:
     const QuanLyPhong& operator = (const QuanLyPhong&);
 
     vector<string> LayTenCacPhong(int,int,int,int, long long, long long);
+    vector<string> LayTenCacPhong2(KhachHang&,long long, long long);
 
     int XacDinhLoaiPhong(string);
     PhongCoBan& LayThongTinPhongCoBan(string);
