@@ -16,20 +16,6 @@ MainWindow::MainWindow(QWidget *parent)
     QIntValidator *validator2 = new QIntValidator(this);
     ui->lineEditMax->setValidator(validator2);
 
-    QIntValidator *validatorH = new QIntValidator(this);
-    ui->lineEditGio->setValidator(validatorH);
-    QIntValidator *validatorD = new QIntValidator(this);
-    ui->lineEditNgay->setValidator(validatorD);
-    QIntValidator *validatorM = new QIntValidator(this);
-    ui->lineEditThang->setValidator(validatorM);
-    QIntValidator *validatorY = new QIntValidator(this);
-    ui->lineEditNam->setValidator(validatorY);
-
-    QIntValidator *validatorMin = new QIntValidator(this);
-    ui->lineEditMin2->setValidator(validatorMin);
-    QIntValidator *validatorMax = new QIntValidator(this);
-    ui->lineEditMax2->setValidator(validatorMax);
-
     ui->stackedWidget->setCurrentIndex(1);
     ui->stackedWidget2->setCurrentIndex(0);
     this->thutu = 0;
@@ -521,17 +507,6 @@ void MainWindow::on_buttonTimKiem2_clicked()
         MainWindow::HienThiPhongRaManHinh2(QString::fromStdString(TenPhong),LoaiPhong,gdqt,gdoiqt,ktr,gt);
     }
 
-    if(ui->checkBoxmoney->isChecked() == false && ui->checkBoxtime->isChecked() == false)
-    {
-        return;
-    }
-
-    if(ui->checkBoxmoney->isChecked() == true && ui->checkBoxtime->isChecked() == false)
-    {
-        QMessageBox::warning(this,"Thong bao","Can xac dinh thoi gian");
-        return;
-    }
-
     int giodi = ui->lineEditGio->text().toInt();
     int ngaydi = ui->lineEditNgay->text().toInt();
     int thangdi = ui->lineEditThang->text().toInt();
@@ -565,99 +540,6 @@ void MainWindow::on_buttonTimKiem2_clicked()
     k.NhapNgayDatPhong(currentDay,currentMonth,currentYear,currentHour);
     k.NhapNgayTraPhong(ngaydi,thangdi,namdi,giodi);
     k.TinhTienPhong(giatien);
-
-    if(ui->checkBoxmoney->isChecked() == false && ui->checkBoxtime->isChecked() == true)
-    {
-        ui->labelThoiGianDen->setText(QString::fromStdString(k.LayNgayDen()));
-        ui->labelThoiGianTra2->setText(QString::fromStdString(k.LayNgayDi()));
-        ui->labelTongTien2->setText(QLocale().toString(k.LayTienPhong()));
-    }
-    else
-    {
-        ui->labelThoiGianDen->setText("");
-        ui->labelThoiGianTra2->setText("");
-        ui->labelTongTien2->setText("");
-    }
-
-    if(ui->checkBoxmoney->isChecked() == true && ui->checkBoxtime->isChecked() == true)
-    {
-        ui->labelThoiGianDen->setText("");
-        ui->labelThoiGianTra2->setText("");
-        ui->labelTongTien2->setText("");
-        long long giatienMin = ui->lineEditMin2->text().toInt();
-        long long giatienMax = ui->lineEditMax2->text().toInt();
-        this->v.clear();
-        this->thutu = 0;
-        vector<string> temp = this->tt.LayTenCacPhong2(k,giatienMin,giatienMax);
-        for(int i = 0; i < temp.size(); ++i)
-        {
-            this->v.push_back(QString::fromStdString(temp[i]));
-        }
-        int k = temp.size();
-        while((k - 2) >= 0)
-        {
-            k = k - 2;
-        }
-        k = 2 - k;
-        for(int i = 0; i < k; i++)
-        {
-            this->v.push_back("");
-        }
-        MainWindow::XuatPhong2();
-    }
-}
-
-void MainWindow::XuatPhong2()
-{
-    int dem = this->thutu;
-    ui->buttonminmax1->setText(this->v[dem]); dem++;
-    ui->buttonminmax2->setText(this->v[dem]);
-}
-
-void MainWindow::on_buttonminmaxcontinue_clicked()
-{
-    if((this->thutu + 2) >= v.size())
-    {
-        return;
-    }
-    else
-    {
-        this->thutu = this->thutu + 2;
-        MainWindow::XuatPhong2();
-    }
-}
-
-void MainWindow::on_buttonminmaxback_clicked()
-{
-    if(this->thutu == 0)
-    {
-        return;
-    }
-    else
-    {
-        this->thutu = this->thutu - 2;
-        MainWindow::XuatPhong2();
-    }
-}
-
-void MainWindow::on_buttonminmax1_clicked()
-{
-    if(ui->checkBoxtime->isChecked() == true)
-    {
-        ui->lineEditTimKiem2->setText(ui->buttonminmax1->text());
-        ui->checkBoxmoney->setChecked(false);
-        MainWindow::on_buttonTimKiem2_clicked();
-    }
-}
-
-void MainWindow::on_buttonminmax2_clicked()
-{
-    if(ui->checkBoxtime->isChecked() == true)
-    {
-        ui->lineEditTimKiem2->setText(ui->buttonminmax2->text());
-        ui->checkBoxmoney->setChecked(false);
-        MainWindow::on_buttonTimKiem2_clicked();
-    }
 }
 
 void MainWindow::on_buttonXacNhanDatPhong_clicked()

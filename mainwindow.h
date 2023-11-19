@@ -73,14 +73,6 @@ private slots:
     void on_buttonTatCaPhong_clicked();
     void on_buttonMacDinh_clicked();
 
-    void on_buttonminmaxcontinue_clicked();
-
-    void on_buttonminmaxback_clicked();
-
-    void on_buttonminmax1_clicked();
-
-    void on_buttonminmax2_clicked();
-
 private:
     Ui::MainWindow *ui;
     QuanLy ql;
