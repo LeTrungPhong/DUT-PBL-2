@@ -23,6 +23,12 @@ public:
     bool KiemTraTenPhong(string);
     bool KiemTraPhongTrong(string);
     bool KiemTraPhongBaoTri(string);
+    bool KiemTraKhachHangDatPhong(string);
+    bool KiemTraPhongDuocDatChua(string, int, int, int, int, int, int, int, int);
+    bool KiemTraQuaGioKhachHang(string);
+
+    void CapNhatTrangThaiPhong();
+    void CapNhatDuLieuKhachHang();
 
     void KhachHangDatPhong(KhachHang&);
     void HienThiPhong();
@@ -57,6 +63,8 @@ public:
     void LuuPhongVaoFile();
     void LuuKhachHangCuVaoFile();
     void LuuKhachHangMoiVaoFile();
+
+
 };
 
 #endif // TIEPTAN_H

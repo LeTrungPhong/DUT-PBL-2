@@ -23,6 +23,7 @@ public:
     virtual const PhongCoBan& operator = (const PhongCoBan&);
     int KiemTraPhongTrong();
     void ChuyenTrangThaiPhong();
+    void ChuyenTrangThaiPhongTrong();
     friend ostream& operator << (ostream&, const PhongCoBan&);
     int LayMaPhong();
     string LayTenPhong();

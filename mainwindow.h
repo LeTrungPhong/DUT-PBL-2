@@ -72,6 +72,7 @@ private slots:
     void on_buttonDichVu4_clicked();
     void on_buttonTatCaPhong_clicked();
     void on_buttonMacDinh_clicked();
+    void on_buttonRealTime_clicked();
 
 private:
     Ui::MainWindow *ui;

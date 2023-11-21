@@ -19,6 +19,8 @@ public:
     ~QuanLyKhachHang();
 
     bool KiemTraPhongBaoTri(string);
+    bool KiemTraKhachHangDatPhong(string);
+    bool KiemTraPhongDuocDatChua(string, int, int, int, int, int, int, int, int);
 
     void NhapDuLieu(KhachHang*, HashTable&, int);
 
@@ -32,6 +34,8 @@ public:
 
     void LuuKhachHangCuVaoFile();
     void LuuKhachHangMoiVaoFile();
+    int LaySoLuong();
+    KhachHang& operator [] (const int&);    
 };
 
 #endif // QUANLYKHACHHANG_H

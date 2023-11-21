@@ -177,19 +177,21 @@ void FileKhachHangMoi(QuanLyKhachHang &qlkh, HashTable &htb)
         // 2 : mp
         // 3 : ngay thang nam sinh
         // 4 : ngay thang nam den
-        // 5 6 7 8 : dich vu
-        // 9 : Ten
+        // 6 : ngay thang nam di
+        // 6 7 8 9 : dich vu
+        // 10 : Ten
         getline(file, line);
         vector<string> token = split(line,"|");
         vector<int> dv;
-        dv.push_back(stoi(token[5]));
         dv.push_back(stoi(token[6]));
         dv.push_back(stoi(token[7]));
         dv.push_back(stoi(token[8]));
+        dv.push_back(stoi(token[9]));
         vector<string> ns = split(token[3],"/");
         vector<string> nden = split(token[4],"/");
-        (k + i)->NhapThongTin(token[0],token[9],token[1],stoi(ns[0]),stoi(ns[1]),stoi(ns[2]));
-        (k + i)->NhapThongTinKhac(token[2],dv,stoi(nden[0]),stoi(nden[1]),stoi(nden[2]),stoi(nden[3]));;
+        vector<string> ndi = split(token[5],"/");
+        (k + i)->NhapThongTin(token[0],token[10],token[1],stoi(ns[0]),stoi(ns[1]),stoi(ns[2]));
+        (k + i)->NhapThongTinKhac(token[2],dv,stoi(nden[0]),stoi(nden[1]),stoi(nden[2]),stoi(nden[3]),stoi(ndi[0]),stoi(ndi[1]),stoi(ndi[2]),stoi(ndi[3]));;
     }
     qlkh.NhapDuLieu(k,htb,size);
     file.close();

@@ -10,14 +10,32 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    this->tt.CapNhatDuLieuKhachHang();
+    this->tt.CapNhatTrangThaiPhong();
     QIntValidator *validator1 = new QIntValidator(this);
     ui->lineEditMin->setValidator(validator1);
     QIntValidator *validator2 = new QIntValidator(this);
     ui->lineEditMax->setValidator(validator2);
 
+    QIntValidator *validatorGio = new QIntValidator(this);
+    ui->lineEditGio->setValidator(validatorGio);
+    QIntValidator *validatorNgay = new QIntValidator(this);
+    ui->lineEditNgay->setValidator(validatorNgay);
+    QIntValidator *validatorThang = new QIntValidator(this);
+    ui->lineEditThang->setValidator(validatorThang);
+    QIntValidator *validatorNam = new QIntValidator(this);
+    ui->lineEditNam->setValidator(validatorNam);
+
+    QIntValidator *validatorGio2 = new QIntValidator(this);
+    ui->lineEditGio2->setValidator(validatorGio2);
+    QIntValidator *validatorNgay2 = new QIntValidator(this);
+    ui->lineEditNgay2->setValidator(validatorNgay2);
+    QIntValidator *validatorThang2 = new QIntValidator(this);
+    ui->lineEditThang2->setValidator(validatorThang2);
+    QIntValidator *validatorNam2 = new QIntValidator(this);
+    ui->lineEditNam2->setValidator(validatorNam2);
+
     ui->stackedWidget->setCurrentIndex(1);
-    ui->stackedWidget2->setCurrentIndex(0);
     this->thutu = 0;
 }
 
@@ -28,9 +46,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    MainWindow::LuuPhongvaoFile();
-    MainWindow::LuuKhachHangMoiVaoFile();
-    MainWindow::LuuKhachHangCuVaoFile();
+    this->tt.CapNhatDuLieuKhachHang();
+    this->tt.CapNhatTrangThaiPhong();
+    if(ui->stackedWidget3->currentIndex() == 0)
+    {
+        MainWindow::LuuPhongvaoFile();
+        MainWindow::LuuKhachHangMoiVaoFile();
+        MainWindow::LuuKhachHangCuVaoFile();
+    }
+    if(ui->stackedWidget3->currentIndex() == 1)
+    {
+
+    }
     if(QMessageBox::question(this,"Cau hoi","Xac nhan thoat chuong trinh",QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Cancel)
     {
         event->ignore();
@@ -40,7 +67,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::NhapThongTin(const QuanLy &q, const QuanLyKhachHang &k, const QuanLyPhong &p)
 {
     this->ql = q;
-    this->tt.NhapThongTinChucNang(k,p);
+    this->ql.NhapThongTinChucNang(k,p);
+    this->tt.NhapThongTinChucNang(k,p);   
 }
 
 void MainWindow::on_TiepTanButton_clicked()
@@ -72,6 +100,8 @@ void MainWindow::on_TiepTanButton_clicked()
         ////////////////////////////////
 //        this->tt.NhapThongTinChucNang(k,p);
         ui->stackedWidget->setCurrentIndex(0);
+        ui->stackedWidget2->setCurrentIndex(0);
+        ui->stackedWidget3->setCurrentIndex(0);
         MainWindow::on_buttonTimkiem_clicked();
     }
     else
@@ -101,6 +131,9 @@ void MainWindow::on_QuanLyButton_clicked()
     if(check)
     {
         QMessageBox::information(this,"Thông báo","Đăng nhập thành công");
+        ui->stackedWidget->setCurrentIndex(0);
+        ui->stackedWidget2->setCurrentIndex(4);
+        ui->stackedWidget3->setCurrentIndex(1);
     }
     else
     {
@@ -110,6 +143,8 @@ void MainWindow::on_QuanLyButton_clicked()
 
 void MainWindow::on_buttonTimkiem_clicked()
 {
+    this->tt.CapNhatDuLieuKhachHang();
+    this->tt.CapNhatTrangThaiPhong();
     string str = ui->lineEditTimKiem->text().toStdString();
     if(tt.KiemTraTenPhong(str))
     {
@@ -456,6 +491,7 @@ void MainWindow::on_buttonChonPhong_clicked()
 
 void MainWindow::on_buttonTimKiem2_clicked()
 {
+    this->tt.CapNhatTrangThaiPhong();
     string str = ui->lineEditTimKiem2->text().toStdString();
     if(!tt.KiemTraTenPhong(str))
     {
@@ -474,7 +510,6 @@ void MainWindow::on_buttonTimKiem2_clicked()
         QString gdoiqt = "";
         QString gdqt = QLocale().toString(gd);
         bool ktr = p->KiemTraPhongTrong();
-        giatien = p->LayGiaTien();
         QString gt = QLocale().toString(p->LayGiaTien());
         MainWindow::HienThiPhongRaManHinh2(QString::fromStdString(TenPhong),LoaiPhong,gdqt,gdoiqt,ktr,gt);
     }
@@ -488,7 +523,6 @@ void MainWindow::on_buttonTimKiem2_clicked()
         QString gdqt = QLocale().toString(gd);
         QString gdoiqt = QLocale().toString(gdoi);
         bool ktr = p->KiemTraPhongTrong();
-        giatien = p->LayGiaTien();
         QString gt = QLocale().toString(p->LayGiaTien());
         MainWindow::HienThiPhongRaManHinh2(QString::fromStdString(TenPhong),LoaiPhong,gdqt,gdoiqt,ktr,gt);
     }
@@ -502,48 +536,15 @@ void MainWindow::on_buttonTimKiem2_clicked()
         QString gdqt = QLocale().toString(gd);
         QString gdoiqt = QLocale().toString(gdoi);
         bool ktr = p->KiemTraPhongTrong();
-        giatien = p->LayGiaTien();
         QString gt = QLocale().toString(p->LayGiaTien());
         MainWindow::HienThiPhongRaManHinh2(QString::fromStdString(TenPhong),LoaiPhong,gdqt,gdoiqt,ktr,gt);
     }
-
-    int giodi = ui->lineEditGio->text().toInt();
-    int ngaydi = ui->lineEditNgay->text().toInt();
-    int thangdi = ui->lineEditThang->text().toInt();
-    int namdi = ui->lineEditNam->text().toInt();
-
-    time_t now = time(0);
-    tm* currentDate = localtime(&now);
-    int currentYear = currentDate->tm_year + 1900;
-    int currentMonth = currentDate->tm_mon + 1;
-    int currentDay = currentDate->tm_mday;
-    int currentHour = currentDate->tm_hour;
-
-    bool check = false;
-    if(namdi < currentYear) check = true;
-    if(namdi == currentYear && thangdi < currentMonth) check = true;
-    if(namdi == currentYear && thangdi == currentMonth && ngaydi < currentDay) check = true;
-    if(namdi == currentYear && thangdi == currentMonth && ngaydi == currentDay && giodi < currentHour) check = true;
-    if(giodi > 23 || giodi < 0) check = true;
-    if(thangdi > 12 || thangdi < 1) check = true;
-    if((thangdi == 1 || thangdi == 3 || thangdi == 5 || thangdi == 7 || thangdi == 8 || thangdi == 10 || thangdi == 12) && (ngaydi > 31 || ngaydi < 1)) check = true;
-    if((thangdi == 4 || thangdi == 6 || thangdi == 9 || thangdi == 11) && (ngaydi > 30 || ngaydi < 1)) check = true;
-    if((thangdi == 2) && ((((namdi % 4) == 0 ) && (ngaydi > 29 || ngaydi < 1))||(((namdi % 4) != 0) && (ngaydi > 28 || ngaydi < 1)))) check = true;
-
-    if(check)
-    {
-        QMessageBox::information(this,"Thong bao","Thoi gian khong hop le");
-        return;
-    }
-
-    KhachHang k;
-    k.NhapNgayDatPhong(currentDay,currentMonth,currentYear,currentHour);
-    k.NhapNgayTraPhong(ngaydi,thangdi,namdi,giodi);
-    k.TinhTienPhong(giatien);
 }
 
 void MainWindow::on_buttonXacNhanDatPhong_clicked()
 {
+    this->tt.CapNhatDuLieuKhachHang();
+    this->tt.CapNhatTrangThaiPhong();
     if(QMessageBox::question(this,"","Xac Nhan Dat Phong " + ui->labelTenPhong2->text(),QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Ok)
     {
         string str = ui->labelTenPhong2->text().toStdString();
@@ -556,6 +557,82 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
         if(!tt.KiemTraPhongTrong(str))
         {
             QMessageBox::warning(this,"Thông báo","Phòng đã được đặt");
+            return;
+        }
+
+        int giodi = ui->lineEditGio->text().toInt();
+        int ngaydi = ui->lineEditNgay->text().toInt();
+        int thangdi = ui->lineEditThang->text().toInt();
+        int namdi = ui->lineEditNam->text().toInt();
+
+        int gioden = ui->lineEditGio2->text().toInt();
+        int ngayden = ui->lineEditNgay2->text().toInt();
+        int thangden = ui->lineEditThang2->text().toInt();
+        int namden = ui->lineEditNam2->text().remove(',').toInt();
+
+        time_t now = time(0);
+        tm* currentDate = localtime(&now);
+        int currentYear = currentDate->tm_year + 1900;
+        int currentMonth = currentDate->tm_mon + 1;
+        int currentDay = currentDate->tm_mday;
+        int currentHour = currentDate->tm_hour;
+
+        KhachHang temp;
+
+        bool check = false;
+        if(namden < currentYear) check = true;
+        if(namden == currentYear && thangden < currentMonth) check = true;
+        if(namden == currentYear && thangden == currentMonth && ngayden < currentDay) check = true;
+        if(namden == currentYear && thangden == currentMonth && ngayden == currentDay && gioden < currentHour) check = true;
+        if(gioden > 23 || gioden < 0) check = true;
+        if(thangden > 12 || thangden < 1) check = true;
+        if((thangden == 1 || thangden == 3 || thangden == 5 || thangden == 7 || thangden == 8 || thangden == 10 || thangden == 12) && (ngayden > 31 || ngayden < 1)) check = true;
+        if((thangden == 4 || thangden == 6 || thangden == 9 || thangden == 11) && (ngayden > 30 || ngayden < 1)) check = true;
+        if((thangden == 2) && ((((namden % 4) == 0 ) && (ngayden > 29 || ngayden < 1))||(((namden % 4) != 0) && (ngayden > 28 || ngayden < 1)))) check = true;
+
+        if(check)
+        {
+            QMessageBox::warning(this,"Thong bao","Thoi gian den khong hop le");
+            return;
+        }
+
+        check = false;
+
+        if(namdi < namden) check = true;
+        if(namdi == namden && thangdi < thangden) check = true;
+        if(namdi == namden && thangdi == thangden && ngaydi < ngayden) check = true;
+        if(namdi == namden && thangdi == thangden && ngaydi == ngayden && giodi < gioden) check = true;
+        if(giodi > 23 || giodi < 0) check = true;
+        if(thangdi > 12 || thangdi < 1) check = true;
+        if((thangdi == 1 || thangdi == 3 || thangdi == 5 || thangdi == 7 || thangdi == 8 || thangdi == 10 || thangdi == 12) && (ngaydi > 31 || ngaydi < 1)) check = true;
+        if((thangdi == 4 || thangdi == 6 || thangdi == 9 || thangdi == 11) && (ngaydi > 30 || ngaydi < 1)) check = true;
+        if((thangdi == 2) && ((((namdi % 4) == 0 ) && (ngaydi > 29 || ngaydi < 1))||(((namdi % 4) != 0) && (ngaydi > 28 || ngaydi < 1)))) check = true;
+
+        if(check)
+        {
+            QMessageBox::information(this,"Thong bao","Thoi gian di khong hop le");
+            return;
+        }
+
+        temp.NhapNgayDatPhong(ngayden,thangden,namden,gioden);
+        temp.NhapNgayTraPhong(ngaydi,thangdi,namdi,giodi);
+
+        if(!(this->tt.KiemTraPhongDuocDatChua(str,gioden,ngayden,thangden,namden,giodi,ngaydi,thangdi,namdi)))
+        {
+            QMessageBox::warning(this,"Thong bao","Khoang thoi gian da co nguoi dat");
+            return;
+        }
+
+        long long giatien;
+        int lp = tt.XacDinhLoaiPhong(str);
+        if(lp == 0) return;
+        if(lp == 1) giatien = tt.LayThongTinPhongCoBan(str).LayGiaTien();
+        if(lp == 2) giatien = tt.LayThongTinPhongThuong(str).LayGiaTien();
+        if(lp == 3) giatien = tt.LayThongTinPhongThuongGia(str).LayGiaTien();
+        temp.TinhTienPhong(giatien);
+
+        if(!(QMessageBox::question(this,"Thong bao", "Tong tien phong: " + QLocale().toString(temp.LayTienPhong()),QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Ok))
+        {
             return;
         }
 
@@ -574,7 +651,18 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
                     int NgayNhap = dialog.LayNgayNhapVao().toInt();
                     int ThangNhap = dialog.LayThangNhapVao().toInt();
                     int NamNhap = dialog.LayNamNhapVao().toInt();
-                    KhachHang temp;
+
+//                    if(!(this->tt.KiemTraQuaGioKhachHang(str)))
+//                    {
+//                        QMessageBox::information(this,"Thong bao","Thong bao khach hang phong" + QString::fromStdString(str) + "thanh toan tien phong");
+//                    }
+
+                    if(this->tt.KiemTraKhachHangDatPhong(CCCDNhap))
+                    {
+                        QMessageBox::information(this,"Thong bao","Khach hang da ton tai");
+                        return;
+                    }
+
                     temp.NhapThongTin(CCCDNhap,TenNhap,SDTNhap,NgayNhap,ThangNhap,NamNhap);
                     if(!temp.KiemTraThongTinNhapVao())
                     {
@@ -582,17 +670,10 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
                         return;
                     }
 
-                    time_t now = time(0);
-                    tm* currentDate = localtime(&now);
-                    int currentYear = currentDate->tm_year + 1900;
-                    int currentMonth = currentDate->tm_mon + 1;
-                    int currentDay = currentDate->tm_mday;
-                    int currentHour = currentDate->tm_hour;
-                    temp.NhapNgayDatPhong(currentDay,currentMonth,currentYear,currentHour);
                     temp.NhapPhongKhachHangDat(str);
                     tt.KhachHangDatPhong(temp);
-                    tt.ChuyenTrangThaiPhong(str);
-                    ui->labelTinhTrang2->setText("Khong trong");
+//                    tt.ChuyenTrangThaiPhong(str);
+//                    ui->labelTinhTrang2->setText("Khong trong");
                     return;
                 }
             }
@@ -625,6 +706,8 @@ void MainWindow::HienThiPhongRaManHinh3(QString tp, QString lp, QString gdon, QS
 
 void MainWindow::on_buttonTimKiem3_clicked()
 {
+    this->tt.CapNhatDuLieuKhachHang();
+    this->tt.CapNhatTrangThaiPhong();
     string str = ui->lineEditTimKiem3->text().toStdString();
     if(!tt.KiemTraTenPhong(str))
     {
@@ -695,15 +778,30 @@ void MainWindow::on_buttonTimKiem3_clicked()
     ui->labelDichVu2->setText(QLocale().toString(dv[1]));
     ui->labelDichVu3->setText(QLocale().toString(dv[2]));
     ui->labelDichVu4->setText(QLocale().toString(dv[3]));
+
     time_t now = time(0);
     tm* currentDate = localtime(&now);
     int currentYear = currentDate->tm_year + 1900;
     int currentMonth = currentDate->tm_mon + 1;
     int currentDay = currentDate->tm_mday;
     int currentHour = currentDate->tm_hour;
-    kh->NhapNgayTraPhong(currentDay,currentMonth,currentYear,currentHour);
-    ui->labelThoiGianTra->setText(QLocale().toString(currentDay) + "/" + QLocale().toString(currentMonth) + "/" + QLocale().toString(currentYear) + "\n" + QLocale().toString(currentHour)
-                                  );
+
+    Date ndi = kh->LayNgayTraPhong();
+
+    bool check = true;
+
+    if(ndi.Nam < currentYear) check = false;
+    if(ndi.Nam == currentYear && ndi.Thang < currentMonth) check = false;
+    if(ndi.Nam == currentYear && ndi.Thang == currentMonth && ndi.Ngay < currentDay) check = false;
+    if(ndi.Nam == currentYear && ndi.Thang == currentMonth && ndi.Ngay == currentDay && ndi.Gio < currentHour) check = false;
+
+    if(!check)
+    {
+        kh->NhapNgayTraPhong(currentDay,currentMonth,currentYear,currentHour);
+    }
+    ndi = kh->LayNgayTraPhong();
+
+    ui->labelThoiGianTra->setText(QLocale().toString(ndi.Ngay) + "/" + QLocale().toString(ndi.Thang) + "/" + QLocale().toString(ndi.Nam) + "\n" + QLocale().toString(ndi.Gio));
     kh->TinhTienPhong(giatien);
     QString tien = QLocale().toString(kh->LayTienPhong());
     ui->labelTongTien->setText(tien);
@@ -711,7 +809,10 @@ void MainWindow::on_buttonTimKiem3_clicked()
 
 void MainWindow::on_buttonThanhToan_clicked()
 {
+    this->tt.CapNhatDuLieuKhachHang();
+    this->tt.CapNhatTrangThaiPhong();
     string str = ui->lineEditTimKiem3->text().toStdString();
+
     if(!tt.KiemTraTenPhong(str))
     {
         QMessageBox::warning(this,"Thong bao","Phong khong ton tai");
@@ -744,6 +845,8 @@ void MainWindow::on_buttonDichVu_clicked()
 
 void MainWindow::on_buttonTimKiem4_clicked()
 {
+    this->tt.CapNhatDuLieuKhachHang();
+    this->tt.CapNhatTrangThaiPhong();
     string str = ui->lineEditTimKiem4->text().toStdString();
     if(!tt.KiemTraTenPhong(str))
     {
@@ -907,4 +1010,19 @@ void MainWindow::on_buttonMacDinh_clicked()
     ui->comboBoxGDoi->setCurrentIndex(0);
     ui->comboBoxLP->setCurrentIndex(0);
     ui->comboBoxTT->setCurrentIndex(0);
+}
+
+void MainWindow::on_buttonRealTime_clicked()
+{
+    time_t now = time(0);
+    tm* currentDate = localtime(&now);
+    int currentYear = currentDate->tm_year + 1900;
+    int currentMonth = currentDate->tm_mon + 1;
+    int currentDay = currentDate->tm_mday;
+    int currentHour = currentDate->tm_hour;
+
+    ui->lineEditGio2->setText(QLocale().toString(currentHour));
+    ui->lineEditNgay2->setText(QLocale().toString(currentDay));
+    ui->lineEditThang2->setText(QLocale().toString(currentMonth));
+    ui->lineEditNam2->setText(QLocale().toString(currentYear));
 }

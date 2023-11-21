@@ -54,6 +54,11 @@ void PhongCoBan::ChuyenTrangThaiPhong()
     this->TrongPhong ? this->TrongPhong = false : this->TrongPhong = true;
 }
 
+void PhongCoBan::ChuyenTrangThaiPhongTrong()
+{
+    this->TrongPhong = false;
+}
+
 ostream& operator << (ostream& o, const PhongCoBan &p)
 {
     o << p.TenPhong << " " << p.TrongPhong << " " << p.GiuongDon << endl;

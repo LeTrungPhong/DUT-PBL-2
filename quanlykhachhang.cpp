@@ -43,6 +43,30 @@ bool QuanLyKhachHang::KiemTraPhongBaoTri(string str)
     return false;
 }
 
+bool QuanLyKhachHang::KiemTraKhachHangDatPhong(string str)
+{
+    for(int i = 0; i < this->size; ++i)
+    {
+        if(str == (this->kh + i)->LayCCCD())
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool QuanLyKhachHang::KiemTraPhongDuocDatChua(string str, int gioden, int ngayden, int thangden, int namden, int giodi, int ngaydi, int thangdi, int namdi)
+{
+    for(int i = 0; i < this->size; ++i)
+    {
+        if((this->kh + i)->LayTenPhong() == str)
+        {
+            if(!((this->kh + i)->KiemTraPhongDuocDatChua(gioden,ngayden,thangden,namden,giodi,ngaydi,thangdi,namdi))) return false;
+        }
+    }
+    return true;
+}
+
 void QuanLyKhachHang::NhapDuLieu(KhachHang *temp, HashTable &t, int s)
 {
     this->htb = t;
@@ -166,7 +190,18 @@ void QuanLyKhachHang::LuuKhachHangMoiVaoFile()
     for(int i = 0; i < this->size; ++i)
     {
         vector<int> v = (this->kh + i)->LayDichVu();
-        outfile << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LaySDT() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayBirth() << "|" << (this->kh + i)->LayNgayDen() << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTen() << endl;
+        outfile << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LaySDT() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayBirth() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTen() << endl;
     }
     outfile.close();
+}
+
+int QuanLyKhachHang::LaySoLuong()
+{
+    return this->size;
+}
+
+KhachHang& QuanLyKhachHang::operator[](const int& index)
+{
+    static KhachHang NGU;
+    return(index >= 0 && index < this->size)?*(this->kh + index):NGU;
 }

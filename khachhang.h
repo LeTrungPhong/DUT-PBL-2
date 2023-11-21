@@ -16,8 +16,10 @@ public:
     ~KhachHang();
     void NhapThongTinKhac(string, vector<int>, int, int, int, int);
     void NhapThongTinKhac(string, vector<int>, int, int, int, int, int, int, int, int, long long);
+    void NhapThongTinKhac(string, vector<int>, int, int, int, int, int, int, int, int);
     void NhapNgayDatPhong(int, int, int, int);
     void NhapNgayTraPhong(int, int, int, int);
+    void NhapNgayTraPhong2(Date);
     Date& LayNgayDatPhong();
     Date& LayNgayTraPhong();
     const KhachHang& operator = (const KhachHang&);
@@ -25,6 +27,9 @@ public:
     friend ostream& operator << (ostream&, const KhachHang&);
     bool KiemTraCCCD(string);
     bool KiemTraThongTinNhapVao();
+    bool KiemTraCapNhatThoiGian();
+    bool KiemTraPhongDuocDatChua(int, int, int, int, int, int, int, int);
+    bool KiemTraQuaGioKhachHang();
     string LayTenPhong();
     vector<int> LayDichVu();
     void TangDichVu(int);

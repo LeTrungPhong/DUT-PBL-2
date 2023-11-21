@@ -61,6 +61,38 @@ bool TiepTan::KiemTraPhongBaoTri(string str)
     return qlkh.KiemTraPhongBaoTri(str);
 }
 
+bool TiepTan::KiemTraKhachHangDatPhong(string str)
+{
+    return qlkh.KiemTraKhachHangDatPhong(str);
+}
+
+bool TiepTan::KiemTraPhongDuocDatChua(string str, int gioden, int ngayden, int thangden, int namden, int giodi, int ngaydi, int thangdi, int namdi)
+{
+    return this->qlkh.KiemTraPhongDuocDatChua(str,gioden,ngayden,thangden,namden,giodi,ngaydi,thangdi,namdi);
+}
+
+bool TiepTan::KiemTraQuaGioKhachHang(string str)
+{
+    int size = this->qlkh.LaySoLuong();
+    for(int i = 0; i < size; ++i)
+    {
+        KhachHang *k = &((this->qlkh)[i]);
+        if(k->LayCCCD() == "0" || k->LayCCCD() != str) continue;
+        if(k->KiemTraQuaGioKhachHang())
+        {
+            long long giaphong = 0;
+            int lp = this->qlp.XacDinhLoaiPhong(str);
+            if(lp == 1) giaphong = this->qlp.LayThongTinPhongCoBan(str).LayGiaTien();
+            if(lp == 2) giaphong = this->qlp.LayThongTinPhongThuong(str).LayGiaTien();
+            if(lp == 3) giaphong = this->qlp.LayThongTinPhongThuongGia(str).LayGiaTien();
+            k->TinhTienPhong(giaphong);
+            this->qlkh.NhapKhachHangVaoHashTable(k->LayCCCD());
+            return false;
+        }
+    }
+    return true;
+}
+
 void TiepTan::KhachHangDatPhong(KhachHang &k)
 {
     qlkh.NhapKhachHangMoi(k);
@@ -181,3 +213,107 @@ void TiepTan::LuuKhachHangMoiVaoFile()
     (this->qlkh).LuuKhachHangMoiVaoFile();
 }
 
+void TiepTan::CapNhatTrangThaiPhong()
+{
+    int sl = this->qlkh.LaySoLuong();
+    for(int i = 0; i < sl; ++i)
+    {
+        KhachHang *k = &((this->qlkh)[i]);
+        if(k->LayCCCD() == "0") continue;
+        if(k->KiemTraCapNhatThoiGian())
+        {
+            string str = k->LayTenPhong();
+            int lp = this->qlp.XacDinhLoaiPhong(str);
+            if(lp == 0) continue;
+            if(lp == 1) this->qlp.LayThongTinPhongCoBan(str).ChuyenTrangThaiPhongTrong();
+            if(lp == 2) this->qlp.LayThongTinPhongThuong(str).ChuyenTrangThaiPhongTrong();
+            if(lp == 3) this->qlp.LayThongTinPhongThuongGia(str).ChuyenTrangThaiPhongTrong();
+        }
+    }
+}
+
+bool SoSanhThoiGian(Date x, Date y)
+{
+    // x <= y
+    if(x.Nam < y.Nam) return true;
+    if(x.Nam == y.Nam && x.Thang < y.Thang) return true;
+    if(x.Nam == y.Nam && x.Thang == y.Thang && x.Ngay < y.Ngay) return true;
+    if(x.Nam == y.Nam && x.Thang == y.Thang && x.Ngay == y.Ngay && x.Gio <= y.Gio) return true;
+    return false;
+}
+
+void TiepTan::CapNhatDuLieuKhachHang()
+{
+    int sl = this->qlkh.LaySoLuong();
+    for(int i = 0; i < sl; ++i)
+    {
+        if((this->qlkh)[i].LayCCCD() == "0") continue;
+        string str = (this->qlkh)[i].LayTenPhong();
+        vector<int> tt;
+        tt.push_back(i);
+        int dem = 1;
+        for(int x = 0; x < sl; ++x)
+        {
+            if(i == x) continue;
+            if((this->qlkh)[x].LayTenPhong() == str)
+            {
+                dem++;
+                tt.push_back(x);
+            }
+        }
+        for(int x = 1; x < dem; ++x)
+        {
+            KhachHang k = (this->qlkh)[tt[x]];
+            for(int j = x - 1; j >=0; --j)
+            {
+                if(SoSanhThoiGian(k.LayNgayTraPhong(),(this->qlkh)[tt[j]].LayNgayDatPhong()))
+                {
+                    KhachHang *ct = &((this->qlkh)[tt[j+1]]);
+                    *ct = (this->qlkh)[tt[j]];
+                }
+                else
+                {
+                    KhachHang *ct = &((this->qlkh)[tt[j+1]]);
+                    *ct = k;
+                    break;
+                }
+                if(j == 0)
+                {
+                    KhachHang *ct = &((this->qlkh)[tt[0]]);
+                    *ct = k;
+                }
+            }
+        }
+
+        for(int k = dem - 1; k >= 0; --k)
+        {
+            time_t now = time(0);
+            tm* currentDate = localtime(&now);
+            int currentYear = currentDate->tm_year + 1900;
+            int currentMonth = currentDate->tm_mon + 1;
+            int currentDay = currentDate->tm_mday;
+            int currentHour = currentDate->tm_hour;
+            Date x;
+            x.Gio = currentHour;
+            x.Ngay = currentDay;
+            x.Thang = currentMonth;
+            x.Nam = currentYear;
+            if(SoSanhThoiGian((this->qlkh)[tt[k]].LayNgayDatPhong(),x))
+            {
+                for(int j = 0; j < k; ++j)
+                {
+                    (this->qlkh)[tt[j]].NhapNgayTraPhong2((this->qlkh)[tt[j+1]].LayNgayDatPhong());
+                    string str = (this->qlkh)[tt[j]].LayTenPhong();
+                    int lp = this->qlp.XacDinhLoaiPhong(str);
+                    long long giatien = 0;
+                    if(lp == 1) giatien = this->qlp.LayThongTinPhongCoBan(str).LayGiaTien();
+                    if(lp == 2) giatien = this->qlp.LayThongTinPhongThuong(str).LayGiaTien();
+                    if(lp == 3) giatien = this->qlp.LayThongTinPhongThuongGia(str).LayGiaTien();
+                    (this->qlkh)[tt[j]].TinhTienPhong(giatien);
+                    this->qlkh.NhapKhachHangVaoHashTable((this->qlkh)[tt[j]].LayCCCD());
+                }
+                break;
+            }
+        }
+    }
+}

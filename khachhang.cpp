@@ -76,6 +76,20 @@ void KhachHang::NhapThongTinKhac(string tenp, vector<int> dv, int gioden, int ng
     this->TongTien = gp;
 }
 
+void KhachHang::NhapThongTinKhac(string tenp, vector<int> dv, int gioden, int ngayden, int thangden, int namden, int giodi, int ngaydi, int thangdi, int namdi)
+{
+    this->TenPhong = tenp;
+    this->DichVu = dv;
+    this->NgayDen.Gio = gioden;
+    this->NgayDen.Ngay = ngayden;
+    this->NgayDen.Thang = thangden;
+    this->NgayDen.Nam = namden;
+    this->NgayDi.Gio = giodi;
+    this->NgayDi.Ngay = ngaydi;
+    this->NgayDi.Thang = thangdi;
+    this->NgayDi.Nam = namdi;
+}
+
 void KhachHang::NhapNgayDatPhong(int ng, int thg, int nam, int h)
 {
     this->NgayDen.Ngay = ng;
@@ -90,6 +104,11 @@ void KhachHang::NhapNgayTraPhong(int ng, int thg, int nam, int h)
     this->NgayDi.Thang = thg;
     this->NgayDi.Nam = nam;
     this->NgayDi.Gio = h;
+}
+
+void KhachHang::NhapNgayTraPhong2(Date x)
+{
+    this->NgayDi = x;
 }
 
 Date& KhachHang::LayNgayDatPhong()
@@ -167,7 +186,7 @@ bool KhachHang::KiemTraThongTinNhapVao()
         return false;
     }
 
-    if (this->Birth.Thang < 1 || this->Birth.Thang > 12)
+    if(this->Birth.Thang < 1 || this->Birth.Thang > 12)
     {
         return false;
     }
@@ -202,6 +221,72 @@ bool KhachHang::KiemTraThongTinNhapVao()
     }
 
     return true;
+}
+
+bool KhachHang::KiemTraCapNhatThoiGian()
+{
+    time_t now = time(0);
+    tm* currentDate = localtime(&now);
+    int currentYear = currentDate->tm_year + 1900;
+    int currentMonth = currentDate->tm_mon + 1;
+    int currentDay = currentDate->tm_mday;
+    int currentHour = currentDate->tm_hour;
+
+    bool check = false;
+
+    int gioden = this->NgayDen.Gio;
+    int ngayden = this->NgayDen.Ngay;
+    int thangden = this->NgayDen.Thang;
+    int namden = this->NgayDen.Nam;
+
+    if(namden < currentYear) check = true;
+    if(namden == currentYear && thangden < currentMonth) check = true;
+    if(namden == currentYear && thangden == currentMonth && ngayden < currentDay) check = true;
+    if(namden == currentYear && thangden == currentMonth && ngayden == currentDay && gioden <= currentHour) check = true;
+
+    return check;
+}
+
+bool KhachHang::KiemTraPhongDuocDatChua(int gioden, int ngayden, int thangden, int namden, int giodi, int ngaydi, int thangdi, int namdi)
+{
+    if(this->NgayDi.Nam < namden) return true;
+    if(this->NgayDi.Nam == namden && this->NgayDi.Thang < thangden) return true;
+    if(this->NgayDi.Nam == namden && this->NgayDi.Thang == thangden && this->NgayDi.Ngay < ngayden) return true;
+    if(this->NgayDi.Nam == namden && this->NgayDi.Thang == thangden && this->NgayDi.Ngay == ngayden && this->NgayDi.Gio < gioden) return true;
+
+    if(namdi < this->NgayDen.Nam) return true;
+    if(namdi == this->NgayDen.Nam && thangdi < this->NgayDen.Thang) return true;
+    if(namdi == this->NgayDen.Nam && thangdi == this->NgayDen.Thang && ngaydi < this->NgayDen.Ngay) return true;
+    if(namdi == this->NgayDen.Nam && thangdi == this->NgayDen.Thang && ngaydi == this->NgayDen.Ngay && giodi < this->NgayDen.Gio) return true;
+
+    return false;
+}
+
+bool KhachHang::KiemTraQuaGioKhachHang()
+{
+    time_t now = time(0);
+    tm* currentDate = localtime(&now);
+    int currentYear = currentDate->tm_year + 1900;
+    int currentMonth = currentDate->tm_mon + 1;
+    int currentDay = currentDate->tm_mday;
+    int currentHour = currentDate->tm_hour;
+
+    bool check = false;
+
+    if(this->NgayDi.Nam < currentYear) check = true;
+    if(this->NgayDi.Nam == currentYear && this->NgayDi.Thang < currentMonth) check = true;
+    if(this->NgayDi.Nam == currentYear && this->NgayDi.Thang == currentMonth && this->NgayDi.Ngay < currentDay) check = true;
+    if(this->NgayDi.Nam == currentYear && this->NgayDi.Thang == currentMonth && this->NgayDi.Ngay == currentDay && this->NgayDi.Gio <= currentHour) check = true;
+
+    if(check == true)
+    {
+        this->NgayDi.Nam = currentYear;
+        this->NgayDi.Thang = currentMonth;
+        this->NgayDi.Ngay = currentDay;
+        this->NgayDi.Gio = currentHour;
+        return true;
+    }
+    return false;
 }
 
 string KhachHang::LayTenPhong()
