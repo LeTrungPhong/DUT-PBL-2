@@ -80,3 +80,23 @@ bool QuanLy::KiemTraQuanLyDangNhap(string tk, string mk)
     }
     return false;
 }
+
+vector<KhachHang> QuanLy::LayDanhSachKhachHangMoi()
+{
+    return this->k.LayDanhSachKhachHangMoi();
+}
+
+vector<KhachHang> QuanLy::LayDanhSachKhachHangCu()
+{
+    return this->k.LayDanhSachKhachHangCu();
+}
+
+vector<KhachHang> QuanLy::LayDSKHTheoTTDSC(string cccd, string tenphong, string tenkh)
+{
+    return this->k.LayDSKHTheoTTDSC(cccd,tenphong,tenkh);
+}
+
+vector<KhachHang> QuanLy::LayDSKHTheoTTDSM(string cccd, string tenphong, string tenkh)
+{
+    return this->k.LayDSKHTheoTTDSM(cccd,tenphong,tenkh);
+}

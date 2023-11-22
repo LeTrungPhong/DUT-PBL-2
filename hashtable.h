@@ -33,6 +33,8 @@ public:
     const HashTable& operator = (const HashTable&);
     void HienThiTable();
     void LuuKhachHangCuVaoFile();
+    vector<KhachHang> LayDanhSachKhachHangCu();
+    vector<KhachHang> LayDSKHTheoTTDSC(string, string, string);
 };
 
 #endif // HASHTABLE_H

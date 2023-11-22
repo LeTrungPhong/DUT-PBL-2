@@ -32,7 +32,7 @@ public:
     void HienThiPhongRaManHinh2(QString,QString,QString,QString,bool, QString);
     void HienThiPhongRaManHinh3(QString,QString,QString,QString, QString);
     void XuatPhong();
-    void XuatPhong2();
+    void HienThiDanhSach();
 
     void LuuPhongvaoFile();
     void LuuKhachHangCuVaoFile();
@@ -73,12 +73,22 @@ private slots:
     void on_buttonTatCaPhong_clicked();
     void on_buttonMacDinh_clicked();
     void on_buttonRealTime_clicked();
+    void on_buttonDSKHM_clicked();
+    void on_buttonDSKHC_clicked();
+    void on_buttonContinue2_clicked();
+    void on_buttonBack2_clicked();
+    void on_buttonQLKH_clicked();
+
+    void on_buttonQLP_clicked();
+
+    void on_buttonTimKiem_clicked();
 
 private:
     Ui::MainWindow *ui;
     QuanLy ql;
     TiepTan tt;
     vector<QString> v;
+    vector<KhachHang> k;
     int thutu;
 };
 #endif // MAINWINDOW_H

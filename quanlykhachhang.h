@@ -35,7 +35,12 @@ public:
     void LuuKhachHangCuVaoFile();
     void LuuKhachHangMoiVaoFile();
     int LaySoLuong();
-    KhachHang& operator [] (const int&);    
+    KhachHang& operator [] (const int&);
+
+    vector<KhachHang> LayDanhSachKhachHangMoi();
+    vector<KhachHang> LayDanhSachKhachHangCu();
+    vector<KhachHang> LayDSKHTheoTTDSM(string, string, string);
+    vector<KhachHang> LayDSKHTheoTTDSC(string, string, string);
 };
 
 #endif // QUANLYKHACHHANG_H

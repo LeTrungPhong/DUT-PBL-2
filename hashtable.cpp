@@ -292,3 +292,29 @@ void HashTable::LuuKhachHangCuVaoFile()
     }
     outfile.close();
 }
+
+vector<KhachHang> HashTable::LayDanhSachKhachHangCu()
+{
+    vector<KhachHang> temp;
+    for(int i = 0; i < this->size; ++i)
+    {
+        if((this->kh + i)->LayCCCD() != "0")
+        {
+            temp.push_back(*(this->kh + i));
+        }
+    }
+    return temp;
+}
+
+vector<KhachHang> HashTable::LayDSKHTheoTTDSC(string cccd, string tenphong, string tenkh)
+{
+    vector<KhachHang> temp;
+    for(int i = 0; i < this->size; ++i)
+    {
+        if(!(((this->kh + i)->LayCCCD() == cccd || cccd == "") && (this->kh + i)->LayCCCD() != "0")) continue;
+        if(!(((this->kh + i)->LayTenPhong() == tenphong || tenphong == "") && (this->kh + i)->LayTenPhong() != "0")) continue;
+        if(!(((this->kh + i)->LayTen() == tenkh || tenkh == "") && (this->kh + i)->LayTen() != "0")) continue;
+        temp.push_back(*(this->kh + i));
+    }
+    return temp;
+}

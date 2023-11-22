@@ -1026,3 +1026,247 @@ void MainWindow::on_buttonRealTime_clicked()
     ui->lineEditThang2->setText(QLocale().toString(currentMonth));
     ui->lineEditNam2->setText(QLocale().toString(currentYear));
 }
+
+// Quan Ly
+
+void MainWindow::HienThiDanhSach()
+{
+    int dem = this->thutu;
+    ui->labelTKH1->setText(QString::fromStdString((this->k)[dem].LayTen()));
+    ui->labelCCCD1->setText(QString::fromStdString((this->k)[dem].LayCCCD()));
+    ui->labelSDT1->setText(QString::fromStdString((this->k)[dem].LaySDT()));
+    ui->labelND1->setText(QString::fromStdString((this->k)[dem].LayNgayDen()));
+    ui->labelNT1->setText(QString::fromStdString((this->k)[dem].LayNgayDi()));
+    ui->labelNS1->setText(QString::fromStdString((this->k)[dem].LayBirth()));
+    ui->labelTP1->setText(QString::fromStdString((this->k)[dem].LayTenPhong()));
+    ui->labelDV11->setText(QLocale().toString((this->k)[dem].LayDichVu()[0]));
+    ui->labelDV21->setText(QLocale().toString((this->k)[dem].LayDichVu()[1]));
+    ui->labelDV31->setText(QLocale().toString((this->k)[dem].LayDichVu()[2]));
+    ui->labelDV41->setText(QLocale().toString((this->k)[dem].LayDichVu()[3]));
+    ui->labelTT1->setText(QLocale().toString((this->k)[dem].LayTienPhong()));
+    dem++;
+    ui->labelTKH2->setText(QString::fromStdString((this->k)[dem].LayTen()));
+    ui->labelCCCD2->setText(QString::fromStdString((this->k)[dem].LayCCCD()));
+    ui->labelSDT2->setText(QString::fromStdString((this->k)[dem].LaySDT()));
+    ui->labelND2->setText(QString::fromStdString((this->k)[dem].LayNgayDen()));
+    ui->labelNT2->setText(QString::fromStdString((this->k)[dem].LayNgayDi()));
+    ui->labelNS2->setText(QString::fromStdString((this->k)[dem].LayBirth()));
+    ui->labelTP2->setText(QString::fromStdString((this->k)[dem].LayTenPhong()));
+    ui->labelDV12->setText(QLocale().toString((this->k)[dem].LayDichVu()[0]));
+    ui->labelDV22->setText(QLocale().toString((this->k)[dem].LayDichVu()[1]));
+    ui->labelDV32->setText(QLocale().toString((this->k)[dem].LayDichVu()[2]));
+    ui->labelDV42->setText(QLocale().toString((this->k)[dem].LayDichVu()[3]));
+    ui->labelTT2->setText(QLocale().toString((this->k)[dem].LayTienPhong()));
+    dem++;
+    ui->labelTKH3->setText(QString::fromStdString((this->k)[dem].LayTen()));
+    ui->labelCCCD3->setText(QString::fromStdString((this->k)[dem].LayCCCD()));
+    ui->labelSDT3->setText(QString::fromStdString((this->k)[dem].LaySDT()));
+    ui->labelND3->setText(QString::fromStdString((this->k)[dem].LayNgayDen()));
+    ui->labelNT3->setText(QString::fromStdString((this->k)[dem].LayNgayDi()));
+    ui->labelNS3->setText(QString::fromStdString((this->k)[dem].LayBirth()));
+    ui->labelTP3->setText(QString::fromStdString((this->k)[dem].LayTenPhong()));
+    ui->labelDV13->setText(QLocale().toString((this->k)[dem].LayDichVu()[0]));
+    ui->labelDV23->setText(QLocale().toString((this->k)[dem].LayDichVu()[1]));
+    ui->labelDV33->setText(QLocale().toString((this->k)[dem].LayDichVu()[2]));
+    ui->labelDV43->setText(QLocale().toString((this->k)[dem].LayDichVu()[3]));
+    ui->labelTT3->setText(QLocale().toString((this->k)[dem].LayTienPhong()));
+    dem++;
+    ui->labelTKH4->setText(QString::fromStdString((this->k)[dem].LayTen()));
+    ui->labelCCCD4->setText(QString::fromStdString((this->k)[dem].LayCCCD()));
+    ui->labelSDT4->setText(QString::fromStdString((this->k)[dem].LaySDT()));
+    ui->labelND4->setText(QString::fromStdString((this->k)[dem].LayNgayDen()));
+    ui->labelNT4->setText(QString::fromStdString((this->k)[dem].LayNgayDi()));
+    ui->labelNS4->setText(QString::fromStdString((this->k)[dem].LayBirth()));
+    ui->labelTP4->setText(QString::fromStdString((this->k)[dem].LayTenPhong()));
+    ui->labelDV14->setText(QLocale().toString((this->k)[dem].LayDichVu()[0]));
+    ui->labelDV24->setText(QLocale().toString((this->k)[dem].LayDichVu()[1]));
+    ui->labelDV34->setText(QLocale().toString((this->k)[dem].LayDichVu()[2]));
+    ui->labelDV44->setText(QLocale().toString((this->k)[dem].LayDichVu()[3]));
+    ui->labelTT4->setText(QLocale().toString((this->k)[dem].LayTienPhong()));
+    dem++;
+    ui->labelTKH5->setText(QString::fromStdString((this->k)[dem].LayTen()));
+    ui->labelCCCD5->setText(QString::fromStdString((this->k)[dem].LayCCCD()));
+    ui->labelSDT5->setText(QString::fromStdString((this->k)[dem].LaySDT()));
+    ui->labelND5->setText(QString::fromStdString((this->k)[dem].LayNgayDen()));
+    ui->labelNT5->setText(QString::fromStdString((this->k)[dem].LayNgayDi()));
+    ui->labelNS5->setText(QString::fromStdString((this->k)[dem].LayBirth()));
+    ui->labelTP5->setText(QString::fromStdString((this->k)[dem].LayTenPhong()));
+    ui->labelDV15->setText(QLocale().toString((this->k)[dem].LayDichVu()[0]));
+    ui->labelDV25->setText(QLocale().toString((this->k)[dem].LayDichVu()[1]));
+    ui->labelDV35->setText(QLocale().toString((this->k)[dem].LayDichVu()[2]));
+    ui->labelDV45->setText(QLocale().toString((this->k)[dem].LayDichVu()[3]));
+    ui->labelTT5->setText(QLocale().toString((this->k)[dem].LayTienPhong()));
+    dem++;
+    ui->labelTKH6->setText(QString::fromStdString((this->k)[dem].LayTen()));
+    ui->labelCCCD6->setText(QString::fromStdString((this->k)[dem].LayCCCD()));
+    ui->labelSDT6->setText(QString::fromStdString((this->k)[dem].LaySDT()));
+    ui->labelND6->setText(QString::fromStdString((this->k)[dem].LayNgayDen()));
+    ui->labelNT6->setText(QString::fromStdString((this->k)[dem].LayNgayDi()));
+    ui->labelNS6->setText(QString::fromStdString((this->k)[dem].LayBirth()));
+    ui->labelTP6->setText(QString::fromStdString((this->k)[dem].LayTenPhong()));
+    ui->labelDV16->setText(QLocale().toString((this->k)[dem].LayDichVu()[0]));
+    ui->labelDV26->setText(QLocale().toString((this->k)[dem].LayDichVu()[1]));
+    ui->labelDV36->setText(QLocale().toString((this->k)[dem].LayDichVu()[2]));
+    ui->labelDV46->setText(QLocale().toString((this->k)[dem].LayDichVu()[3]));
+    ui->labelTT6->setText(QLocale().toString((this->k)[dem].LayTienPhong()));
+    dem++;
+    ui->labelTKH7->setText(QString::fromStdString((this->k)[dem].LayTen()));
+    ui->labelCCCD7->setText(QString::fromStdString((this->k)[dem].LayCCCD()));
+    ui->labelSDT7->setText(QString::fromStdString((this->k)[dem].LaySDT()));
+    ui->labelND7->setText(QString::fromStdString((this->k)[dem].LayNgayDen()));
+    ui->labelNT7->setText(QString::fromStdString((this->k)[dem].LayNgayDi()));
+    ui->labelNS7->setText(QString::fromStdString((this->k)[dem].LayBirth()));
+    ui->labelTP7->setText(QString::fromStdString((this->k)[dem].LayTenPhong()));
+    ui->labelDV17->setText(QLocale().toString((this->k)[dem].LayDichVu()[0]));
+    ui->labelDV27->setText(QLocale().toString((this->k)[dem].LayDichVu()[1]));
+    ui->labelDV37->setText(QLocale().toString((this->k)[dem].LayDichVu()[2]));
+    ui->labelDV47->setText(QLocale().toString((this->k)[dem].LayDichVu()[3]));
+    ui->labelTT7->setText(QLocale().toString((this->k)[dem].LayTienPhong()));
+    dem++;
+    ui->labelTKH8->setText(QString::fromStdString((this->k)[dem].LayTen()));
+    ui->labelCCCD8->setText(QString::fromStdString((this->k)[dem].LayCCCD()));
+    ui->labelSDT8->setText(QString::fromStdString((this->k)[dem].LaySDT()));
+    ui->labelND8->setText(QString::fromStdString((this->k)[dem].LayNgayDen()));
+    ui->labelNT8->setText(QString::fromStdString((this->k)[dem].LayNgayDi()));
+    ui->labelNS8->setText(QString::fromStdString((this->k)[dem].LayBirth()));
+    ui->labelTP8->setText(QString::fromStdString((this->k)[dem].LayTenPhong()));
+    ui->labelDV18->setText(QLocale().toString((this->k)[dem].LayDichVu()[0]));
+    ui->labelDV28->setText(QLocale().toString((this->k)[dem].LayDichVu()[1]));
+    ui->labelDV38->setText(QLocale().toString((this->k)[dem].LayDichVu()[2]));
+    ui->labelDV48->setText(QLocale().toString((this->k)[dem].LayDichVu()[3]));
+    ui->labelTT8->setText(QLocale().toString((this->k)[dem].LayTienPhong()));
+    dem++;
+    ui->labelTKH9->setText(QString::fromStdString((this->k)[dem].LayTen()));
+    ui->labelCCCD9->setText(QString::fromStdString((this->k)[dem].LayCCCD()));
+    ui->labelSDT9->setText(QString::fromStdString((this->k)[dem].LaySDT()));
+    ui->labelND9->setText(QString::fromStdString((this->k)[dem].LayNgayDen()));
+    ui->labelNT9->setText(QString::fromStdString((this->k)[dem].LayNgayDi()));
+    ui->labelNS9->setText(QString::fromStdString((this->k)[dem].LayBirth()));
+    ui->labelTP9->setText(QString::fromStdString((this->k)[dem].LayTenPhong()));
+    ui->labelDV19->setText(QLocale().toString((this->k)[dem].LayDichVu()[0]));
+    ui->labelDV29->setText(QLocale().toString((this->k)[dem].LayDichVu()[1]));
+    ui->labelDV39->setText(QLocale().toString((this->k)[dem].LayDichVu()[2]));
+    ui->labelDV49->setText(QLocale().toString((this->k)[dem].LayDichVu()[3]));
+    ui->labelTT9->setText(QLocale().toString((this->k)[dem].LayTienPhong()));
+    dem++;
+    ui->labelTKH10->setText(QString::fromStdString((this->k)[dem].LayTen()));
+    ui->labelCCCD10->setText(QString::fromStdString((this->k)[dem].LayCCCD()));
+    ui->labelSDT10->setText(QString::fromStdString((this->k)[dem].LaySDT()));
+    ui->labelND10->setText(QString::fromStdString((this->k)[dem].LayNgayDen()));
+    ui->labelNT10->setText(QString::fromStdString((this->k)[dem].LayNgayDi()));
+    ui->labelNS10->setText(QString::fromStdString((this->k)[dem].LayBirth()));
+    ui->labelTP10->setText(QString::fromStdString((this->k)[dem].LayTenPhong()));
+    ui->labelDV110->setText(QLocale().toString((this->k)[dem].LayDichVu()[0]));
+    ui->labelDV210->setText(QLocale().toString((this->k)[dem].LayDichVu()[1]));
+    ui->labelDV310->setText(QLocale().toString((this->k)[dem].LayDichVu()[2]));
+    ui->labelDV410->setText(QLocale().toString((this->k)[dem].LayDichVu()[3]));
+    ui->labelTT10->setText(QLocale().toString((this->k)[dem].LayTienPhong()));
+}
+
+void MainWindow::on_buttonDSKHM_clicked()
+{
+    this->k.clear();
+    this->k = this->ql.LayDanhSachKhachHangMoi();
+    this->thutu = 0;
+
+    int x = this->k.size();
+    while((x - 10) >= 0)
+    {
+        x = x - 10;
+    }
+    x = 10 - x;
+    for(int i = 0; i < x; i++)
+    {
+        KhachHang temp;
+        this->k.push_back(temp);
+    }
+    MainWindow::HienThiDanhSach();
+}
+
+void MainWindow::on_buttonDSKHC_clicked()
+{
+    this->k.clear();
+    this->k = this->ql.LayDanhSachKhachHangCu();
+    this->thutu = 0;
+
+    int x = this->k.size();
+    while((x - 10) >= 0)
+    {
+        x = x - 10;
+    }
+    x = 10 - x;
+    for(int i = 0; i < x; i++)
+    {
+        KhachHang temp;
+        this->k.push_back(temp);
+    }
+    MainWindow::HienThiDanhSach();
+}
+
+void MainWindow::on_buttonContinue2_clicked()
+{
+    if((this->thutu + 10) >= this->k.size())
+    {
+        return;
+    }
+    else
+    {
+        this->thutu = this->thutu + 10;
+        MainWindow::HienThiDanhSach();
+    }
+}
+
+void MainWindow::on_buttonBack2_clicked()
+{
+    if(this->thutu == 0)
+    {
+        return;
+    }
+    else
+    {
+        this->thutu = this->thutu - 10;
+        MainWindow::HienThiDanhSach();
+    }
+}
+
+void MainWindow::on_buttonQLKH_clicked()
+{
+    ui->stackedWidget2->setCurrentIndex(4);
+}
+
+void MainWindow::on_buttonQLP_clicked()
+{
+    ui->stackedWidget2->setCurrentIndex(5);
+}
+
+void MainWindow::on_buttonTimKiem_clicked()
+{
+    string CCCD = ui->lineEditNhapCCCD->text().toStdString();
+    string TenPhong = ui->lineEditNhapTenPhong->text().toStdString();
+    string TenKhachHang = ui->lineEditNhapTenKhachHang->text().toStdString();
+    this->k.clear();
+    if(ui->radioButtonDSM->isChecked())
+    {
+        this->k = this->ql.LayDSKHTheoTTDSM(CCCD,TenPhong,TenKhachHang);
+    }
+    if(ui->radioButtonDSC->isChecked())
+    {
+        this->k = this->ql.LayDSKHTheoTTDSC(CCCD,TenPhong,TenKhachHang);
+    }
+    this->thutu = 0;
+    int x = this->k.size();
+    while((x - 10) >= 0)
+    {
+        x = x - 10;
+    }
+    x = 10 - x;
+    for(int i = 0; i < x; i++)
+    {
+        KhachHang temp;
+        this->k.push_back(temp);
+    }
+    MainWindow::HienThiDanhSach();
+}
+
+
+

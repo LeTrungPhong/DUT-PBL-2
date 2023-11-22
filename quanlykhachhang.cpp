@@ -205,3 +205,39 @@ KhachHang& QuanLyKhachHang::operator[](const int& index)
     static KhachHang NGU;
     return(index >= 0 && index < this->size)?*(this->kh + index):NGU;
 }
+
+vector<KhachHang> QuanLyKhachHang::LayDanhSachKhachHangMoi()
+{
+    vector<KhachHang> temp;
+    for(int i = 0; i < this->size; ++i)
+    {
+        if((this->kh + i)->LayCCCD() != "0")
+        {
+            temp.push_back(*(this->kh + i));
+        }
+    }
+    return temp;
+}
+
+vector<KhachHang> QuanLyKhachHang::LayDanhSachKhachHangCu()
+{
+    return this->htb.LayDanhSachKhachHangCu();
+}
+
+vector<KhachHang> QuanLyKhachHang::LayDSKHTheoTTDSM(string cccd, string tenphong, string tenkh)
+{
+    vector<KhachHang> temp;
+    for(int i = 0; i < this->size; ++i)
+    {
+        if(!(((this->kh + i)->LayCCCD() == cccd || cccd == "") && (this->kh + i)->LayCCCD() != "0")) continue;
+        if(!(((this->kh + i)->LayTenPhong() == tenphong || tenphong == "") && (this->kh + i)->LayTenPhong() != "0")) continue;
+        if(!(((this->kh + i)->LayTen() == tenkh || tenkh == "") && (this->kh + i)->LayTen() != "0")) continue;
+        temp.push_back(*(this->kh + i));
+    }
+    return temp;
+}
+
+vector<KhachHang> QuanLyKhachHang::LayDSKHTheoTTDSC(string cccd, string tenphong, string tenkh)
+{
+    return this->htb.LayDSKHTheoTTDSC(cccd,tenphong,tenkh);
+}

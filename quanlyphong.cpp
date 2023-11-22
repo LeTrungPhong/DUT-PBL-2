@@ -311,36 +311,6 @@ vector<string> QuanLyPhong::LayTenCacPhong(int a, int b, int d, int e, long long
     return v;
 }
 
-vector<string> QuanLyPhong::LayTenCacPhong2(KhachHang &k, long long min, long long max)
-{
-    vector<string> temp;
-    for(int i = 0; i < this->size[0]; ++i)
-    {
-        k.TinhTienPhong((this->pcb + i)->LayGiaTien());
-        if(k.LayTienPhong() >= min && k.LayTienPhong() <= max)
-        {
-            temp.push_back((this->pcb + i)->LayTenPhong());
-        }
-    }
-    for(int i = 0; i < this->size[1]; ++i)
-    {
-        k.TinhTienPhong((this->pt + i)->LayGiaTien());
-        if(k.LayTienPhong() >= min && k.LayTienPhong() <= max)
-        {
-            temp.push_back((this->pt + i)->LayTenPhong());
-        }
-    }
-    for(int i = 0; i < this->size[2]; ++i)
-    {
-        k.TinhTienPhong((this->ptg + i)->LayGiaTien());
-        if(k.LayTienPhong() >= min && k.LayTienPhong() <= max)
-        {
-            temp.push_back((this->ptg + i)->LayTenPhong());
-        }
-    }
-    return temp;
-}
-
 int QuanLyPhong::XacDinhLoaiPhong(string str)
 {
     for(int i = 0; i < this->size[0]; i++)

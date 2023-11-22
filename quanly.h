@@ -20,6 +20,10 @@ public:
     bool KiemTraTiepTanDangNhap(string, string);
     TiepTan& LayThongTinTiepTan(string, string);
     bool KiemTraQuanLyDangNhap(string, string);
+    vector<KhachHang> LayDanhSachKhachHangMoi();
+    vector<KhachHang> LayDanhSachKhachHangCu();
+    vector<KhachHang> LayDSKHTheoTTDSC(string, string, string);
+    vector<KhachHang> LayDSKHTheoTTDSM(string, string, string);
 };
 
 #endif // QUANLY_H
