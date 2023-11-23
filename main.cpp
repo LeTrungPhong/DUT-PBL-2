@@ -14,7 +14,6 @@ using namespace std;
 void FilePhong(PhongCoBan *, PhongThuong *, PhongThuongGia *);
 void FileKhachHangCu(HashTable&);
 void FileKhachHangMoi(QuanLyKhachHang&, HashTable&);
-void FileTiepTanVaQuanLy(TiepTan *, QuanLy&);
 vector<string> split(string, string);
 
 int main(int argc, char *argv[])
@@ -33,14 +32,9 @@ int main(int argc, char *argv[])
 
     QuanLyPhong qlp(40, 50, 30, pcb, pt, ptg);
 
-    QuanLy ql;
-    TiepTan *tt = new TiepTan[4];
-
-    FileTiepTanVaQuanLy(tt,ql);
-
     QApplication a(argc, argv);
     MainWindow w;
-    w.NhapThongTin(ql,qlkh,qlp);
+    w.NhapThongTin(qlkh,qlp);
     w.show();
 
     return a.exec();
@@ -195,51 +189,6 @@ void FileKhachHangMoi(QuanLyKhachHang &qlkh, HashTable &htb)
     }
     qlkh.NhapDuLieu(k,htb,size);
     file.close();
-}
-void FileTiepTanVaQuanLy(TiepTan *tt, QuanLy &ql)
-{
-    ifstream file;
-    file.open("D:\\HK3\\PBL-Project-3\\File_TT_QL.txt");
-    if (!file.is_open()) {
-        cout << "Error opening data file !!!" << endl;
-        return;
-    }
-    string line;
-    getline(file,line);
-    if (line != "TT")
-    {
-        cout << "Error: File data is not in the correct format !!!" << endl;
-        return;
-    }
-    line = "";
-    getline(file, line);
-    int so_tt = stoi(line);
-    for(int i = 0; i < so_tt; i++)
-    {
-        getline(file,line);
-        vector<string> token = split(line,"|");
-        vector<string> t = split(token[2],"/");
-        // 0 : CCCD
-        // 1 : SDT
-        // 2 : Ngay Thang Nam sinh
-        // 3 : tai khoan
-        // 4 : mat khau
-        // 5 : ten
-        (tt + i)->NhapThongTin(token[0],token[5],token[1],stoi(t[0]),stoi(t[1]),stoi(t[2]));
-        (tt + i)->NhapTaiKhoanMatKhau(token[3],token[4]);
-    }
-    getline(file,line);
-    if (line != "QL")
-    {
-        cout << "Error: File data is not in the correct format !!!" << endl;
-        return;
-    }
-    line = "";
-    getline(file,line);
-    vector<string> token = split(line,"|");
-    vector<string> t = split(token[2],"/");
-    ql.NhapThongTin(token[0],token[5],token[1],stoi(t[0]),stoi(t[1]),stoi(t[2]));
-    ql.NhapDuLieuQuanLy(token[3],token[4],so_tt,tt);
 }
 
 vector<string> split(string str, string delimiter)

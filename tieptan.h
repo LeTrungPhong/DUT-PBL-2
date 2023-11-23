@@ -7,8 +7,6 @@
 class TiepTan : public Nguoi
 {
 private:
-    string TaiKhoan;
-    string MatKhau;
     QuanLyKhachHang qlkh;
     QuanLyPhong qlp;
 public:
@@ -16,10 +14,8 @@ public:
     TiepTan(string, string, string, int, int, int, string, string, QuanLyKhachHang, QuanLyPhong);
     ~TiepTan();
 
-    void NhapTaiKhoanMatKhau(string, string);
     void NhapThongTinChucNang(const QuanLyKhachHang&, const QuanLyPhong&);
 
-    bool KiemTraTaiKhoanMatKhau(string, string);
     bool KiemTraTenPhong(string);
     bool KiemTraPhongTrong(string);
     bool KiemTraPhongBaoTri(string);

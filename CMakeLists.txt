@@ -32,12 +32,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         quanlykhachhang.h quanlykhachhang.cpp
         quanlyphong.h quanlyphong.cpp
         tieptan.h tieptan.cpp
-        dialogdangnhap.h dialogdangnhap.cpp dialogdangnhap.ui
+
         quanly.h quanly.cpp
         dialognhapkhachhang.h dialognhapkhachhang.cpp dialognhapkhachhang.ui
         Khach_Hang_Cu.txt
         FilePhong.txt
-        File_TT_QL.txt
+
         dialogthanhtoan.h dialogthanhtoan.cpp dialogthanhtoan.ui
         Khach_Hang_Moi.txt
 

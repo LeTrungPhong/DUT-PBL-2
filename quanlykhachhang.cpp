@@ -155,7 +155,6 @@ const QuanLyKhachHang& QuanLyKhachHang::operator = (const QuanLyKhachHang &qlkh)
     {
         this->htb = qlkh.htb;
         this->size = qlkh.size;
-        delete[] this->kh;
         this->kh = new KhachHang[this->size];
         for(int i = 0; i < this->size; ++i)
         {

@@ -64,81 +64,25 @@ void MainWindow::closeEvent(QCloseEvent *event)
     }
 }
 
-void MainWindow::NhapThongTin(const QuanLy &q, const QuanLyKhachHang &k, const QuanLyPhong &p)
+void MainWindow::NhapThongTin(const QuanLyKhachHang &k, const QuanLyPhong &p)
 {
-    this->ql = q;
     this->ql.NhapThongTinChucNang(k,p);
     this->tt.NhapThongTinChucNang(k,p);   
 }
 
 void MainWindow::on_TiepTanButton_clicked()
 {
-    DialogDangNhap dialog(this);
-    dialog.setModal(true);
-    int result = dialog.exec();
-
-    QString strtk = "";
-    QString strmk = "";
-    if(result == DialogDangNhap::Accepted)
-    {
-        strtk = dialog.LayTaiKhoanNhapVao();
-        strmk = dialog.LayMatKhauNhapVao();
-    }
-    string tk = strtk.toStdString();
-    string mk = strmk.toStdString();
-
-    bool check = ql.KiemTraTiepTanDangNhap(tk,mk);
-
-    if(check)
-    {
-        QMessageBox::information(this,"Thông báo","Đăng nhập thành công");
-//        this->tt = ql.LayThongTinTiepTan(tk,mk);
-
-//        QString strc = QString::fromStdString(tt.LayCCCD());
-//        QString strb = QString::fromStdString(tt.LayBirth());
-
-        ////////////////////////////////
-//        this->tt.NhapThongTinChucNang(k,p);
         ui->stackedWidget->setCurrentIndex(0);
         ui->stackedWidget2->setCurrentIndex(0);
         ui->stackedWidget3->setCurrentIndex(0);
         MainWindow::on_buttonTimkiem_clicked();
-    }
-    else
-    {
-        QMessageBox::warning(this,"Thông báo","Tài khoản hoặc Mật khẩu sai");
-    }
 }
 
 void MainWindow::on_QuanLyButton_clicked()
 {
-    DialogDangNhap dialog(this);
-    dialog.setModal(true);
-    int result = dialog.exec();
-
-    QString strtk = "";
-    QString strmk = "";
-    if(result == DialogDangNhap::Accepted)
-    {
-        strtk = dialog.LayTaiKhoanNhapVao();
-        strmk = dialog.LayMatKhauNhapVao();
-    }
-    string tk = strtk.toStdString();
-    string mk = strmk.toStdString();
-
-    bool check = ql.KiemTraQuanLyDangNhap(tk,mk);
-
-    if(check)
-    {
-        QMessageBox::information(this,"Thông báo","Đăng nhập thành công");
         ui->stackedWidget->setCurrentIndex(0);
         ui->stackedWidget2->setCurrentIndex(4);
         ui->stackedWidget3->setCurrentIndex(1);
-    }
-    else
-    {
-        QMessageBox::warning(this,"Thông báo","Tài khoản hoặc Mật khẩu sai");
-    }
 }
 
 void MainWindow::on_buttonTimkiem_clicked()

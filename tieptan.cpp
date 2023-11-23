@@ -18,32 +18,15 @@ TiepTan::TiepTan(string CCCD, string SDT, string Ten, int ng, int th, int nam, s
     this->Birth.Ngay = ng;
     this->Birth.Thang = th;
     this->Birth.Nam = nam;
-    this->TaiKhoan = tk;
-    this->MatKhau = mk;
 }
 
 TiepTan::~TiepTan()
 { }
 
-void TiepTan::NhapTaiKhoanMatKhau(string tk,string mk)
-{
-    this->TaiKhoan = tk;
-    this->MatKhau = mk;
-}
-
 void TiepTan::NhapThongTinChucNang(const QuanLyKhachHang &k, const QuanLyPhong &p)
 {
     this->qlkh = k;
     this->qlp = p;
-}
-
-bool TiepTan::KiemTraTaiKhoanMatKhau(string tk, string mk)
-{
-    if(this->TaiKhoan == tk && this->MatKhau == mk)
-    {
-        return true;
-    }
-    return false;
 }
 
 bool TiepTan::KiemTraTenPhong(string str)
@@ -147,8 +130,6 @@ const TiepTan& TiepTan::operator = (const TiepTan &tt)
         this->Birth.Ngay = tt.Birth.Ngay;
         this->Birth.Thang = tt.Birth.Thang;
         this->Birth.Nam = tt.Birth.Nam;
-        this->TaiKhoan = tt.TaiKhoan;
-        this->MatKhau = tt.MatKhau;
     }
     return *this;
 }
