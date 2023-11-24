@@ -106,21 +106,6 @@ void TiepTan::HienThiTable()
     qlkh.HienThiTable();
 }
 
-void TiepTan::ThemPhongCoBan(PhongCoBan p)
-{
-    qlp.ThemPhongCoBan(p);
-}
-
-void TiepTan::ThemPhongThuong(PhongThuong p)
-{
-    qlp.ThemPhongThuong(p);
-}
-
-void TiepTan::ThemPhongThuongGia(PhongThuongGia p)
-{
-    qlp.ThemPhongThuongGia(p);
-}
-
 const TiepTan& TiepTan::operator = (const TiepTan &tt)
 {
     if(this != &tt)

@@ -79,6 +79,8 @@ private slots:
     void on_buttonQLKH_clicked();
     void on_buttonQLP_clicked();
     void on_buttonTimKiem_clicked();
+    void on_buttonXacNhan_clicked();
+    void on_buttonXacNhan2_clicked();
 
 private:
     Ui::MainWindow *ui;

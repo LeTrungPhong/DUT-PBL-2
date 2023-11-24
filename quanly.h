@@ -12,10 +12,30 @@ public:
     ~QuanLy();
     void NhapThongTinChucNang(const QuanLyKhachHang&, const QuanLyPhong&);
     const QuanLy& operator = (const QuanLy&); // khong = qlkh, qlp
+
+    bool KiemTraTenPhong(string);
+    bool KiemTraPhongTrong(string);
+
     vector<KhachHang> LayDanhSachKhachHangMoi();
     vector<KhachHang> LayDanhSachKhachHangCu();
     vector<KhachHang> LayDSKHTheoTTDSC(string, string, string);
     vector<KhachHang> LayDSKHTheoTTDSM(string, string, string);
+
+    int XacDinhLoaiPhong(string);
+    PhongCoBan& LayThongTinPhongCoBan(string);
+    PhongThuong& LayThongTinPhongThuong(string);
+    PhongThuongGia& LayThongTinPhongThuongGia(string);
+
+    void ThemPhong(const PhongCoBan&);
+    void ThemPhong(const PhongThuong&);
+    void ThemPhong(const PhongThuongGia&);
+
+    void XoaPhong(string,int);
+
+    void LuuPhongVaoFile();
+    void LuuKhachHangCuVaoFile();
+    void LuuKhachHangMoiVaoFile();
+
 };
 
 #endif // QUANLY_H

@@ -86,3 +86,13 @@ bool PhongThuong::KiemTraPhongTheoChiDinh(int a, int b, int e, long long f, long
     if(!(this->GiaPhong >= f && this->GiaPhong <= g)) return false;
     return true;
 }
+
+void PhongThuong::DatLaiSoGiuongDon(int k)
+{
+    this->GiuongDon = k;
+}
+
+void PhongThuong::DatLaiSoGiuongDoi(int k)
+{
+    this->GiuongDoi = k;
+}

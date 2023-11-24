@@ -50,13 +50,15 @@ void MainWindow::closeEvent(QCloseEvent *event)
     this->tt.CapNhatTrangThaiPhong();
     if(ui->stackedWidget3->currentIndex() == 0)
     {
-        MainWindow::LuuPhongvaoFile();
-        MainWindow::LuuKhachHangMoiVaoFile();
-        MainWindow::LuuKhachHangCuVaoFile();
+        this->tt.LuuPhongVaoFile();
+        this->tt.LuuKhachHangMoiVaoFile();
+        this->tt.LuuKhachHangCuVaoFile();
     }
     if(ui->stackedWidget3->currentIndex() == 1)
     {
-
+        this->ql.LuuPhongVaoFile();
+        this->ql.LuuKhachHangMoiVaoFile();
+        this->ql.LuuKhachHangCuVaoFile();
     }
     if(QMessageBox::question(this,"Cau hoi","Xac nhan thoat chuong trinh",QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Cancel)
     {
@@ -72,17 +74,17 @@ void MainWindow::NhapThongTin(const QuanLyKhachHang &k, const QuanLyPhong &p)
 
 void MainWindow::on_TiepTanButton_clicked()
 {
-        ui->stackedWidget->setCurrentIndex(0);
-        ui->stackedWidget2->setCurrentIndex(0);
-        ui->stackedWidget3->setCurrentIndex(0);
-        MainWindow::on_buttonTimkiem_clicked();
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget2->setCurrentIndex(0);
+    ui->stackedWidget3->setCurrentIndex(0);
+    MainWindow::on_buttonTimkiem_clicked();
 }
 
 void MainWindow::on_QuanLyButton_clicked()
 {
-        ui->stackedWidget->setCurrentIndex(0);
-        ui->stackedWidget2->setCurrentIndex(4);
-        ui->stackedWidget3->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget2->setCurrentIndex(4);
+    ui->stackedWidget3->setCurrentIndex(1);
 }
 
 void MainWindow::on_buttonTimkiem_clicked()
@@ -907,21 +909,6 @@ void MainWindow::on_buttonDichVu4_clicked()
     }
 }
 
-void MainWindow::LuuPhongvaoFile()
-{
-    (this->tt).LuuPhongVaoFile();
-}
-
-void MainWindow::LuuKhachHangCuVaoFile()
-{
-    (this->tt).LuuKhachHangCuVaoFile();
-}
-
-void MainWindow::LuuKhachHangMoiVaoFile()
-{
-    (this->tt).LuuKhachHangMoiVaoFile();
-}
-
 void MainWindow::on_buttonTatCaPhong_clicked()
 {
     this->v.clear();
@@ -1212,5 +1199,276 @@ void MainWindow::on_buttonTimKiem_clicked()
     MainWindow::HienThiDanhSach();
 }
 
+void MainWindow::on_buttonXacNhan_clicked()
+{
+    if(ui->radioButtonPCB->isChecked())
+    {
+        if(ui->radioButtonAdd->isChecked())
+        {
+            string str = ui->lineEditTenPhongSuaXoa->text().toStdString();
+            if(str == "" || this->ql.KiemTraTenPhong(str))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong trong hoac da ton tai");
+                return;
+            }
+            ui->lineEditTenPhong->setEnabled(false);
+            ui->spinBoxGDon->setEnabled(false);
+            ui->spinBoxGDoi->setEnabled(false);
+            ui->spinBoxGDon->setValue(1);
+            ui->spinBoxGDoi->setValue(0);
+            ui->lineEditTenPhong->setText(ui->lineEditTenPhongSuaXoa->text());
+        }
+        if(ui->radioButtonChange->isChecked())
+        {
+            QMessageBox::warning(this,"Thong bao","Khong the thay doi phong co ban");
+            return;
+        }
+        if(ui->radioButtonDelete->isChecked())
+        {
+            string str = ui->lineEditTenPhongSuaXoa->text().toStdString();
+            if(this->ql.XacDinhLoaiPhong(str) != 1 || !(this->ql.KiemTraTenPhong(str)))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong co ban khong dung");
+                return;
+            }
+            ui->lineEditTenPhong->setEnabled(false);
+            ui->spinBoxGDon->setEnabled(false);
+            ui->spinBoxGDoi->setEnabled(false);
+            PhongCoBan *p = &(this->ql.LayThongTinPhongCoBan(str));
+            ui->spinBoxGDon->setValue(p->LaySoLuongGiuongDon());
+            ui->spinBoxGDoi->setValue(0);
+            ui->lineEditTenPhong->setText(QString::fromStdString(p->LayTenPhong()));
+        }
+    }
+    if(ui->radioButtonPT->isChecked())
+    {
+        if(ui->radioButtonAdd->isChecked())
+        {
+            string str = ui->lineEditTenPhongSuaXoa->text().toStdString();
+            if(str == "" || this->ql.KiemTraTenPhong(str))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong trong hoac da ton tai");
+                return;
+            }
+            ui->lineEditTenPhong->setEnabled(false);
+            ui->spinBoxGDon->setEnabled(true);
+            ui->spinBoxGDoi->setEnabled(true);
+            ui->lineEditTenPhong->setText(ui->lineEditTenPhongSuaXoa->text());
+        }
+        if(ui->radioButtonChange->isChecked())
+        {
+            string str = ui->lineEditTenPhongSuaXoa->text().toStdString();
+            if(this->ql.XacDinhLoaiPhong(str) != 2 || !(this->ql.KiemTraTenPhong(str)))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong co ban khong dung");
+                return;
+            }
+            PhongThuong *p = &(this->ql.LayThongTinPhongThuong(str));
+            ui->lineEditTenPhong->setEnabled(false);
+            ui->spinBoxGDon->setEnabled(true);
+            ui->spinBoxGDoi->setEnabled(true);
+            ui->spinBoxGDon->setValue(p->LaySoLuongGiuongDon());
+            ui->spinBoxGDoi->setValue(p->LaySoLuongGiuongDoi());
+            ui->lineEditTenPhong->setText(QString::fromStdString(p->LayTenPhong()));
+        }
+        if(ui->radioButtonDelete->isChecked())
+        {
+            string str = ui->lineEditTenPhongSuaXoa->text().toStdString();
+            if(this->ql.XacDinhLoaiPhong(str) != 2 || !(this->ql.KiemTraTenPhong(str)))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong co ban khong dung");
+                return;
+            }
+            PhongThuong *p = &(this->ql.LayThongTinPhongThuong(str));
+            ui->lineEditTenPhong->setEnabled(false);
+            ui->spinBoxGDon->setEnabled(true);
+            ui->spinBoxGDoi->setEnabled(true);
+            ui->spinBoxGDon->setValue(p->LaySoLuongGiuongDon());
+            ui->spinBoxGDoi->setValue(p->LaySoLuongGiuongDoi());
+            ui->lineEditTenPhong->setText(QString::fromStdString(p->LayTenPhong()));
+        }
+    }
+    if(ui->radioButtonPTG->isChecked())
+    {
+        if(ui->radioButtonAdd->isChecked())
+        {
+            string str = ui->lineEditTenPhongSuaXoa->text().toStdString();
+            if(str == "" || this->ql.KiemTraTenPhong(str))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong trong hoac da ton tai");
+                return;
+            }
+            ui->lineEditTenPhong->setEnabled(false);
+            ui->spinBoxGDon->setEnabled(true);
+            ui->spinBoxGDoi->setEnabled(true);
+            ui->lineEditTenPhong->setText(ui->lineEditTenPhongSuaXoa->text());
+        }
+        if(ui->radioButtonChange->isChecked())
+        {
+            string str = ui->lineEditTenPhongSuaXoa->text().toStdString();
+            if(this->ql.XacDinhLoaiPhong(str) != 3 || !(this->ql.KiemTraTenPhong(str)))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong co ban khong dung");
+                return;
+            }
+            PhongThuongGia *p = &(this->ql.LayThongTinPhongThuongGia(str));
+            ui->lineEditTenPhong->setEnabled(false);
+            ui->spinBoxGDon->setEnabled(true);
+            ui->spinBoxGDoi->setEnabled(true);
+            ui->spinBoxGDon->setValue(p->LaySoLuongGiuongDon());
+            ui->spinBoxGDoi->setValue(p->LaySoLuongGiuongDoi());
+            ui->lineEditTenPhong->setText(QString::fromStdString(p->LayTenPhong()));
+        }
+        if(ui->radioButtonDelete->isChecked())
+        {
+            string str = ui->lineEditTenPhongSuaXoa->text().toStdString();
+            if(this->ql.XacDinhLoaiPhong(str) != 3 || !(this->ql.KiemTraTenPhong(str)))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong co ban khong dung");
+                return;
+            }
+            PhongThuongGia *p = &(this->ql.LayThongTinPhongThuongGia(str));
+            ui->lineEditTenPhong->setEnabled(false);
+            ui->spinBoxGDon->setEnabled(true);
+            ui->spinBoxGDoi->setEnabled(true);
+            ui->spinBoxGDon->setValue(p->LaySoLuongGiuongDon());
+            ui->spinBoxGDoi->setValue(p->LaySoLuongGiuongDoi());
+            ui->lineEditTenPhong->setText(QString::fromStdString(p->LayTenPhong()));
+        }
+    }
+}
 
+void MainWindow::on_buttonXacNhan2_clicked()
+{
+    if(ui->radioButtonPCB->isChecked())
+    {
+        if(ui->radioButtonAdd->isChecked())
+        {
+            string str = ui->lineEditTenPhong->text().toStdString();
+            if(str == "" || this->ql.KiemTraTenPhong(str))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong trong hoac da ton tai");
+                return;
+            }
+            PhongCoBan p(str,1);
+            this->ql.ThemPhong(p);
+        }
+        if(ui->radioButtonChange->isChecked())
+        {
+            QMessageBox::warning(this,"Thong bao","Khong the thay doi phong co ban");
+            return;
+        }
+        if(ui->radioButtonDelete->isChecked())
+        {
+            string str = ui->lineEditTenPhong->text().toStdString();
+            int lp = this->ql.XacDinhLoaiPhong(str);
+            if(lp != 1 || !(this->ql.KiemTraTenPhong(str)))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong co ban khong dung");
+                return;
+            }
+            if(this->ql.KiemTraPhongTrong(str))
+            {
+                QMessageBox::warning(this,"Thong bao","Co khach hang dang dat phong");
+            }
+            this->ql.XoaPhong(str,lp);
+        }
+    }
+    if(ui->radioButtonPT->isChecked())
+    {
+        if(ui->radioButtonAdd->isChecked())
+        {
+            string str = ui->lineEditTenPhong->text().toStdString();
+            if(str == "" || this->ql.KiemTraTenPhong(str))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong trong hoac da ton tai");
+                return;
+            }
+            int gdon = ui->spinBoxGDon->value();
+            int gdoi = ui->spinBoxGDoi->value();
+            PhongThuong p(str,1,gdon,gdoi);
+            this->ql.ThemPhong(p);
+        }
+        if(ui->radioButtonChange->isChecked())
+        {
+            string str = ui->lineEditTenPhongSuaXoa->text().toStdString();
+            if(this->ql.XacDinhLoaiPhong(str) != 2 || !(this->ql.KiemTraTenPhong(str)))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong co ban khong dung");
+                return;
+            }
+            if(this->ql.KiemTraPhongTrong(str))
+            {
+                QMessageBox::warning(this,"Thong bao","Co khach hang dang dat phong");
+            }
+            PhongThuong *p = &(this->ql.LayThongTinPhongThuong(str));
+            p->DatLaiSoGiuongDon(ui->spinBoxGDon->value());
+            p->DatLaiSoGiuongDoi(ui->spinBoxGDoi->value());
+            p->TinhTienPhong();
+        }
+        if(ui->radioButtonDelete->isChecked())
+        {
+            string str = ui->lineEditTenPhong->text().toStdString();
+            int lp = this->ql.XacDinhLoaiPhong(str);
+            if(lp != 2 || !(this->ql.KiemTraTenPhong(str)))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong co ban khong dung");
+                return;
+            }
+            if(this->ql.KiemTraPhongTrong(str))
+            {
+                QMessageBox::warning(this,"Thong bao","Co khach hang dang dat phong");
+            }
+            this->ql.XoaPhong(str,lp);
+        }
+    }
+    if(ui->radioButtonPTG->isChecked())
+    {
+        if(ui->radioButtonAdd->isChecked())
+        {
+            string str = ui->lineEditTenPhong->text().toStdString();
+            if(str == "" || this->ql.KiemTraTenPhong(str))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong trong hoac da ton tai");
+                return;
+            }
+            int gdon = ui->spinBoxGDon->value();
+            int gdoi = ui->spinBoxGDoi->value();
 
+            PhongThuongGia p(str,1,gdon,gdoi);
+            this->ql.ThemPhong(p);
+        }
+        if(ui->radioButtonChange->isChecked())
+        {
+            string str = ui->lineEditTenPhongSuaXoa->text().toStdString();
+            if(this->ql.XacDinhLoaiPhong(str) != 3 || !(this->ql.KiemTraTenPhong(str)))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong co ban khong dung");
+                return;
+            }
+            if(this->ql.KiemTraPhongTrong(str))
+            {
+                QMessageBox::warning(this,"Thong bao","Co khach hang dang dat phong");
+            }
+            PhongThuongGia *p = &(this->ql.LayThongTinPhongThuongGia(str));
+            p->DatLaiSoGiuongDon(ui->spinBoxGDon->value());
+            p->DatLaiSoGiuongDoi(ui->spinBoxGDoi->value());
+            p->TinhTienPhong();
+        }
+        if(ui->radioButtonDelete->isChecked())
+        {
+            string str = ui->lineEditTenPhong->text().toStdString();
+            int lp = this->ql.XacDinhLoaiPhong(str);
+            if(lp != 3 || !(this->ql.KiemTraTenPhong(str)))
+            {
+                QMessageBox::warning(this,"Thong bao","Ten phong co ban khong dung");
+                return;
+            }
+            if(this->ql.KiemTraPhongTrong(str))
+            {
+                QMessageBox::warning(this,"Thong bao","Co khach hang dang dat phong");
+            }
+            this->ql.XoaPhong(str,lp);
+        }
+    }
+}

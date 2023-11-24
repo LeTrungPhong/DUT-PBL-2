@@ -16,22 +16,19 @@ public:
     QuanLyPhong(QuanLyPhong&);
     ~QuanLyPhong();
 
+    void NhapThongTinPhong(int, int, int, PhongCoBan*, PhongThuong*, PhongThuongGia*);
     bool KiemTraTenPhong(string);
     bool KiemTraPhongTrong(string);
     void ChuyenTrangThaiPhong(string);
 
-    bool KiemTraPhongTrong(PhongCoBan&);
-    void ChuyenTrangThaiPhong(PhongCoBan&);
-    bool KiemTraPhongTrong(PhongThuong&);
-    void ChuyenTrangThaiPhong(PhongThuong&);
-    bool KiemTraPhongTrong(PhongThuongGia&);
-    void ChuyenTrangThaiPhong(PhongThuongGia&);
     void HienThiPhong();
 
     //// còn sai
-    void ThemPhongCoBan(const PhongCoBan&);
-    void ThemPhongThuong(const PhongThuong&);
-    void ThemPhongThuongGia(const PhongThuongGia&);
+    void ThemPhong(const PhongCoBan&);
+    void ThemPhong(const PhongThuong&);
+    void ThemPhong(const PhongThuongGia&);
+
+    void XoaPhong(string,int);
     ///
 
     const QuanLyPhong& operator = (const QuanLyPhong&);

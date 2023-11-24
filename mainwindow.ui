@@ -443,7 +443,7 @@
 }</string>
              </property>
              <property name="currentIndex">
-              <number>4</number>
+              <number>5</number>
              </property>
              <widget class="QWidget" name="page_5">
               <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -4142,7 +4142,173 @@
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="page_11"/>
+             <widget class="QWidget" name="page_11">
+              <layout class="QVBoxLayout" name="verticalLayout_11">
+               <item alignment="Qt::AlignTop">
+                <widget class="QFrame" name="frame_75">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_8">
+                  <item>
+                   <widget class="QFrame" name="frame_76">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_19">
+                     <item row="1" column="2" rowspan="2" colspan="2">
+                      <widget class="QFrame" name="frame_77">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QGridLayout" name="gridLayout_18">
+                        <item row="3" column="0">
+                         <widget class="QSpinBox" name="spinBoxGDoi">
+                          <property name="maximum">
+                           <number>2</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="0">
+                         <widget class="QSpinBox" name="spinBoxGDon">
+                          <property name="maximum">
+                           <number>2</number>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QLineEdit" name="lineEditTenPhong">
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="placeholderText">
+                           <string>Tên phòng</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item row="0" column="0" colspan="2">
+                      <widget class="QLineEdit" name="lineEditTenPhongSuaXoa">
+                       <property name="placeholderText">
+                        <string>Tên phòng sửa hoặc xóa</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0" colspan="2">
+                      <widget class="QPushButton" name="buttonXacNhan">
+                       <property name="text">
+                        <string>Xác nhận</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="2" colspan="2">
+                      <widget class="QPushButton" name="buttonXacNhan2">
+                       <property name="text">
+                        <string>Xác nhận</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1" rowspan="2">
+                      <widget class="QFrame" name="frame_81">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_25">
+                        <item>
+                         <widget class="QRadioButton" name="radioButtonAdd">
+                          <property name="text">
+                           <string>Thêm phòng</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QRadioButton" name="radioButtonChange">
+                          <property name="text">
+                           <string>Sửa thông tin phòng</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QRadioButton" name="radioButtonDelete">
+                          <property name="text">
+                           <string>Xóa phòng</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item row="1" column="0" rowspan="2">
+                      <widget class="QFrame" name="frame_80">
+                       <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_13">
+                        <item>
+                         <widget class="QRadioButton" name="radioButtonPCB">
+                          <property name="text">
+                           <string>Phòng Cơ Bản</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QRadioButton" name="radioButtonPT">
+                          <property name="text">
+                           <string>Phòng Thường</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QRadioButton" name="radioButtonPTG">
+                          <property name="text">
+                           <string>Phòng Thương Gia</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QFrame" name="frame_74">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
             </widget>
            </item>
           </layout>

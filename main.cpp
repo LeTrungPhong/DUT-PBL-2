@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void FilePhong(PhongCoBan *, PhongThuong *, PhongThuongGia *);
+void FilePhong(QuanLyPhong&);
 void FileKhachHangCu(HashTable&);
 void FileKhachHangMoi(QuanLyKhachHang&, HashTable&);
 vector<string> split(string, string);
@@ -24,13 +24,8 @@ int main(int argc, char *argv[])
     QuanLyKhachHang qlkh;
     FileKhachHangMoi(qlkh,htb);
 
-    PhongCoBan *pcb = new PhongCoBan[40];
-    PhongThuong *pt = new PhongThuong[50];
-    PhongThuongGia *ptg = new PhongThuongGia[30];
-
-    FilePhong(pcb,pt,ptg);
-
-    QuanLyPhong qlp(40, 50, 30, pcb, pt, ptg);
+    QuanLyPhong qlp;
+    FilePhong(qlp);
 
     QApplication a(argc, argv);
     MainWindow w;
@@ -40,7 +35,7 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
-void FilePhong(PhongCoBan *p1, PhongThuong *p2, PhongThuongGia *p3)
+void FilePhong(QuanLyPhong &qlp)
 {
     ifstream file;
     file.open("D:\\HK3\\PBL-Project-3\\FilePhong.txt");
@@ -58,8 +53,9 @@ void FilePhong(PhongCoBan *p1, PhongThuong *p2, PhongThuongGia *p3)
     }
     line = "";
     getline(file, line);
-    int so_phong = stoi(line);
-    for (int i = 0; i < so_phong; i++)
+    int so_phong1 = stoi(line);
+    PhongCoBan *p1 = new PhongCoBan[so_phong1];
+    for (int i = 0; i < so_phong1; i++)
     {
         getline(file, line);
         if (line.empty())
@@ -77,8 +73,9 @@ void FilePhong(PhongCoBan *p1, PhongThuong *p2, PhongThuongGia *p3)
     }
     line = "";
     getline(file, line);
-    so_phong = stoi(line);
-    for (int i = 0; i < so_phong; i++)
+    int so_phong2 = stoi(line);
+    PhongThuong *p2 = new PhongThuong[so_phong2];
+    for (int i = 0; i < so_phong2; i++)
     {
         getline(file, line);
         if (line.empty())
@@ -96,8 +93,9 @@ void FilePhong(PhongCoBan *p1, PhongThuong *p2, PhongThuongGia *p3)
     }
     line = "";
     getline(file, line);
-    so_phong = stoi(line);
-    for (int i = 0; i < so_phong; i++)
+    int so_phong3 = stoi(line);
+    PhongThuongGia *p3 = new PhongThuongGia[so_phong3];
+    for (int i = 0; i < so_phong3; i++)
     {
         getline(file, line);
         if (line.empty())
@@ -107,6 +105,7 @@ void FilePhong(PhongCoBan *p1, PhongThuong *p2, PhongThuongGia *p3)
         vector<string> tokens = split(line, " ");
         (p3 + (i))->NhapThongTinPhong(tokens[0],stoi(tokens[1]),stoi(tokens[2]),stoi(tokens[3]));
     }
+    qlp.NhapThongTinPhong(so_phong1,so_phong2,so_phong3,p1,p2,p3);
     file.close();
 }
 

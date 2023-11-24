@@ -16,6 +16,8 @@ public:
     friend ostream& operator << (ostream&, const PhongThuong&);
     int LaySoLuongGiuongDoi();
     bool KiemTraPhongTheoChiDinh(int,int,int,long long,long long);
+    void DatLaiSoGiuongDon(int);
+    void DatLaiSoGiuongDoi(int);
 };
 
 #endif // PHONGTHUONG_H

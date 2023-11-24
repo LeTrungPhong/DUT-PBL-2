@@ -34,10 +34,6 @@ public:
     void HienThiThongTinKhachHang();
     void HienThiTable();
 
-    void ThemPhongCoBan(PhongCoBan);
-    void ThemPhongThuong(PhongThuong);
-    void ThemPhongThuongGia(PhongThuongGia);
-
     KhachHang& KhachHangTheoPhong(string);
 
     const TiepTan& operator = (const TiepTan&); // khong = qlkh, qlp
@@ -58,7 +54,6 @@ public:
     void LuuPhongVaoFile();
     void LuuKhachHangCuVaoFile();
     void LuuKhachHangMoiVaoFile();
-
 
 };
 
