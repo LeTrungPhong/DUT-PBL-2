@@ -1,10 +1,12 @@
 #include "hashtable.h"
 #include <fstream>
 
-HashTable::HashTable()
+template<class T>
+HashTable<T>::HashTable()
 { }
 
-HashTable::HashTable(long long s, long long sl)
+template<class T>
+HashTable<T>::HashTable(long long s, long long sl)
     :size(s),SoLuong(sl),SoNguyenTo(1)
 {
     HashTable::TimSoNguyenTo();
@@ -13,10 +15,11 @@ HashTable::HashTable(long long s, long long sl)
     {
         *(this->kcg + i) = 0;
     }
-    this->kh = new KhachHang[this->size];
+    this->kh = new T[this->size];
 }
 
-HashTable::HashTable(long long s, long long sl, KhachHang *k, long long ksl)
+template<class T>
+HashTable<T>::HashTable(long long s, long long sl, T *k, long long ksl)
     :size(s),SoLuong(sl),SoNguyenTo(1)
 {
     HashTable::TimSoNguyenTo();
@@ -25,7 +28,7 @@ HashTable::HashTable(long long s, long long sl, KhachHang *k, long long ksl)
     {
         *(this->kcg + i) = 0;
     }
-    this->kh = new KhachHang[this->size];
+    this->kh = new T[this->size];
     for(int i = 0; i < ksl; i++)
     {
         HashTable::NhapKhachHangVaoHashTable(*(k + i));
@@ -33,7 +36,8 @@ HashTable::HashTable(long long s, long long sl, KhachHang *k, long long ksl)
     delete[] k;
 }
 
-void HashTable::NhapDuLieu(long long s, long long sl, KhachHang *k, long long ksl)
+template<class T>
+void HashTable<T>::NhapDuLieu(long long s, long long sl, T *k, long long ksl)
 {
     this->size = s;
     this->SoLuong = sl;
@@ -44,7 +48,7 @@ void HashTable::NhapDuLieu(long long s, long long sl, KhachHang *k, long long ks
     {
         *(this->kcg + i) = 0;
     }
-    this->kh = new KhachHang[this->size];
+    this->kh = new T[this->size];
     for(int i = 0; i < ksl; i++)
     {
         HashTable::NhapKhachHangVaoHashTable(*(k + i));
@@ -52,7 +56,8 @@ void HashTable::NhapDuLieu(long long s, long long sl, KhachHang *k, long long ks
     delete[] k;
 }
 
-HashTable::HashTable(HashTable &t)
+template<class T>
+HashTable<T>::HashTable(HashTable &t)
 {
     this->SoNguyenTo = t.SoNguyenTo;
     this->size = t.size;
@@ -62,20 +67,22 @@ HashTable::HashTable(HashTable &t)
     {
         *(this->kcg + i) = *(t.kcg + i);
     }
-    this->kh = new KhachHang[this->size];
+    this->kh = new T[this->size];
     for(int i = 0; i < this->size; i++)
     {
         *(this->kh + i) = *(t.kh + i);
     }
 }
 
-HashTable::~HashTable()
+template<class T>
+HashTable<T>::~HashTable()
 {
     delete[] this->kcg;
     delete[] this->kh;
 }
 
-bool HashTable::KiemTraCoPhaiSoNguyenTo()
+template<class T>
+bool HashTable<T>::KiemTraCoPhaiSoNguyenTo()
 {
     for(long long i = 2; i <= sqrt(this->SoNguyenTo); i++)
     {
@@ -87,7 +94,8 @@ bool HashTable::KiemTraCoPhaiSoNguyenTo()
     return 1;
 }
 
-void HashTable::TimSoNguyenTo()
+template<class T>
+void HashTable<T>::TimSoNguyenTo()
 {
     this->SoNguyenTo = this->size;
     while(1)
@@ -100,17 +108,20 @@ void HashTable::TimSoNguyenTo()
     }
 }
 
-void HashTable::LaySoNguyenTo()
+template<class T>
+void HashTable<T>::LaySoNguyenTo()
 {
     cout << this->SoNguyenTo;
 }
 
-long long HashTable::hashing(long long value)
+template<class T>
+long long HashTable<T>::hashing(long long value)
 {
     return (value%(this->SoNguyenTo));
 }
 
-void HashTable::KiemTraHeSoTai()
+template<class T>
+void HashTable<T>::KiemTraHeSoTai()
 {
     if(((float)this->SoLuong / this->size) >= (float)3/4)
     {
@@ -119,10 +130,11 @@ void HashTable::KiemTraHeSoTai()
     }
 }
 
-void HashTable::ReHashing()
+template<class T>
+void HashTable<T>::ReHashing()
 {
     HashTable::TimSoNguyenTo();
-    KhachHang *temp = new KhachHang[this->size / 2];
+    T *temp = new T[this->size / 2];
     for(int i = 0; i < (this->size / 2); i++)
     {
         temp[i] = kh[i];
@@ -134,7 +146,7 @@ void HashTable::ReHashing()
     {
         *(this->kcg + i) = 0;
     }
-    this->kh = new KhachHang[this->size];
+    this->kh = new T[this->size];
     this->SoLuong = 0;
     for(int i = 0; i < (this->size / 2); i++)
     {
@@ -143,7 +155,8 @@ void HashTable::ReHashing()
     delete[] temp;
 }
 
-bool HashTable::KiemTraViTri(int index)
+template<class T>
+bool HashTable<T>::KiemTraViTri(int index)
 {
     if((this->kh + index)->LayCCCD(1))
     {
@@ -155,7 +168,8 @@ bool HashTable::KiemTraViTri(int index)
     }
 }
 
-void HashTable::NhapKhachHangVaoHashTable(KhachHang &k)
+template<class T>
+void HashTable<T>::NhapKhachHangVaoHashTable(T &k)
 {
     if(k.LayCCCD(1) == 0) return;
     int kc = 0;
@@ -166,7 +180,7 @@ void HashTable::NhapKhachHangVaoHashTable(KhachHang &k)
         {
             if(*(this->kcg + index) < kc)
             {
-                KhachHang tmp = k;
+                T tmp = k;
                 k = kh[index];
                 kh[index] = tmp;
                 int temp = *(this->kcg + index);
@@ -192,7 +206,48 @@ void HashTable::NhapKhachHangVaoHashTable(KhachHang &k)
     HashTable::KiemTraHeSoTai();
 }
 
-void HashTable::Table()
+template<class T>
+void HashTable<T>::XoaKhachHang(string CCCD)
+{
+    // long long k =
+    int index = HashTable::hashing(stoll(CCCD));
+    int kc = 0;
+    while(1)
+    {
+        if((this->kh + index)->LayCCCD() == CCCD)
+        {
+            break;
+        }
+        index++;
+        if(index == this->size)
+        {
+            index = 0;
+        }
+        if(*(this->kcg + index) == 0)
+        {
+            return;
+        }
+    }
+    while(1)
+    {
+        T temp;
+        if(*(this->kcg + (index + 1)) == 0)
+        {
+            *(this->kh + index) = temp;
+            *(this->kcg + index) = 0;
+            break;
+        }
+        else
+        {
+            *(this->kh + index) = *(this->kh + (index + 1));
+            *(this->kcg + index) = *(this->kcg + index + 1) - 1;
+        }
+        index++;
+    }
+}
+
+template<class T>
+void HashTable<T>::Table()
 {
     int count = 0;
     int tmp = this->size;
@@ -221,13 +276,15 @@ void HashTable::Table()
     }
 }
 
-KhachHang& HashTable::operator [] (const int& index)
+template<class T>
+T &HashTable<T>::operator [](const int& index)
 {
-    static KhachHang p;
+    static T p;
     return(index >= 0 && index < this->size)?*(this->kh + index):p;
 }
 
-const HashTable& HashTable::operator = (const HashTable& h)
+template<class T>
+const HashTable<T>& HashTable<T>::operator = (const HashTable<T>& h)
 {
     if(this != &h)
     {
@@ -239,7 +296,7 @@ const HashTable& HashTable::operator = (const HashTable& h)
         {
             *(this->kcg + i) = *(h.kcg + i);
         }
-        this->kh = new KhachHang[this->size];
+        this->kh = new T[this->size];
         for(int i = 0; i < this->size; i++)
         {
             *(this->kh + i) = *(h.kh + i);
@@ -248,7 +305,8 @@ const HashTable& HashTable::operator = (const HashTable& h)
     return *this;
 }
 
-void HashTable::HienThiTable()
+template<class T>
+void HashTable<T>::HienThiTable()
 {
     int count = 0;
     int tmp = this->size;
@@ -277,7 +335,8 @@ void HashTable::HienThiTable()
     }
 }
 
-void HashTable::LuuKhachHangCuVaoFile()
+template<class T>
+void HashTable<T>::LuuKhachHangCuVaoFile()
 {
     ofstream outfile("D:\\HK3\\PBL-Project-3\\Khach_Hang_Cu.txt");
     outfile << this->size << endl;
@@ -293,9 +352,27 @@ void HashTable::LuuKhachHangCuVaoFile()
     outfile.close();
 }
 
-vector<KhachHang> HashTable::LayDanhSachKhachHangCu()
+template<class T>
+void HashTable<T>::LuuHoaDonVaoFile()
 {
-    vector<KhachHang> temp;
+    ofstream outfile("D:\\HK3\\PBL-Project-3\\FileLichSu.txt");
+    outfile << this->size << endl;
+    outfile << this->SoLuong << endl;
+    for(int i = 0; i < this->size; ++i)
+    {
+        if(!((this->kh + i)->LayCCCD() == "0"))
+        {
+            vector<int> v = (this->kh + i)->LayDichVu();
+            outfile << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTienPhong() << endl;
+        }
+    }
+    outfile.close();
+}
+
+template<class T>
+vector<T> HashTable<T>::LayDanhSachKhachHangCu()
+{
+    vector<T> temp;
     for(int i = 0; i < this->size; ++i)
     {
         if((this->kh + i)->LayCCCD() != "0")
@@ -306,9 +383,10 @@ vector<KhachHang> HashTable::LayDanhSachKhachHangCu()
     return temp;
 }
 
-vector<KhachHang> HashTable::LayDSKHTheoTTDSC(string cccd, string tenphong, string tenkh)
+template<class T>
+vector<T> HashTable<T>::LayDSKHTheoTTDSC(string cccd, string tenphong, string tenkh)
 {
-    vector<KhachHang> temp;
+    vector<T> temp;
     for(int i = 0; i < this->size; ++i)
     {
         if(!(((this->kh + i)->LayCCCD() == cccd || cccd == "") && (this->kh + i)->LayCCCD() != "0")) continue;
@@ -318,3 +396,6 @@ vector<KhachHang> HashTable::LayDSKHTheoTTDSC(string cccd, string tenphong, stri
     }
     return temp;
 }
+
+template class HashTable<KhachHang>;
+template class HashTable<HoaDon>;

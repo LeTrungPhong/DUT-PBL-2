@@ -40,6 +40,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         dialogthanhtoan.h dialogthanhtoan.cpp dialogthanhtoan.ui
         Khach_Hang_Moi.txt
+        hoadon.h hoadon.cpp
+        FileLichSu.txt
 
     )
 # Define target properties for Android with Qt 6 as:

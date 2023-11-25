@@ -90,6 +90,24 @@ void KhachHang::NhapThongTinKhac(string tenp, vector<int> dv, int gioden, int ng
     this->NgayDi.Nam = namdi;
 }
 
+void KhachHang::DatLaiThongTin()
+{
+    this->TenPhong = "0";
+    this->NgayDen.Gio = 0;
+    this->NgayDen.Ngay = 0;
+    this->NgayDen.Thang = 0;
+    this->NgayDen.Nam = 0;
+    this->NgayDi.Gio = 0;
+    this->NgayDi.Ngay = 0;
+    this->NgayDi.Thang = 0;
+    this->NgayDi.Nam = 0;
+    for(int i = 0; i < 4; ++i)
+    {
+        this->DichVu[i] = 0;
+    }
+    this->TongTien = 0;
+}
+
 void KhachHang::NhapNgayDatPhong(int ng, int thg, int nam, int h)
 {
     this->NgayDen.Ngay = ng;
@@ -125,6 +143,11 @@ ostream& operator << (ostream& o, const KhachHang& k)
 {
     o << k.CCCD << " " << k.SDT << " " << k.Birth.Ngay << " " << k.Birth.Thang << " " << k.Birth.Nam << " " << k.TenPhong << endl;
     return o;
+}
+
+bool KhachHang::operator == (const KhachHang& kh)
+{
+    return(this->CCCD == kh.CCCD);
 }
 
 bool KhachHang::KiemTraCCCD(string str)

@@ -7,14 +7,15 @@ using namespace std;
 class QuanLyKhachHang
 {
 private:
-    HashTable htb;
+    HashTable<KhachHang> htb;
+    HashTable<HoaDon> htb1;
     KhachHang *kh;
     int size;
 public:
     QuanLyKhachHang();
     QuanLyKhachHang(int);
-    QuanLyKhachHang(HashTable&, int);
-    QuanLyKhachHang(KhachHang*, HashTable&, int);
+    QuanLyKhachHang(HashTable<KhachHang>&, int);
+    QuanLyKhachHang(KhachHang*, HashTable<KhachHang>&, int);
     QuanLyKhachHang(QuanLyKhachHang&);
     ~QuanLyKhachHang();
 
@@ -22,7 +23,7 @@ public:
     bool KiemTraKhachHangDatPhong(string);
     bool KiemTraPhongDuocDatChua(string, int, int, int, int, int, int, int, int);
 
-    void NhapDuLieu(KhachHang*, HashTable&, int);
+    void NhapDuLieu(KhachHang*, HashTable<KhachHang>&, int, HashTable<HoaDon>&);
 
     void NhapKhachHangMoi(const KhachHang&);
     void NhapKhachHangVaoHashTable(string);

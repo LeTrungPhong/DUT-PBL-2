@@ -3,23 +3,25 @@
 #include <iostream>
 #include <math.h>
 #include "khachhang.h"
+#include "hoadon.h"
 using namespace std;
 
+template<class T>
 class HashTable
 {
 private:
     long long SoNguyenTo;
     long long size;
     long long SoLuong;
-    KhachHang *kh;
+    T *kh;
     int *kcg;
 public:
     HashTable();
     HashTable(long long, long long);
-    HashTable(long long, long long, KhachHang*, long long);
+    HashTable(long long, long long, T*, long long);
     HashTable(HashTable&);
     ~HashTable();
-    void NhapDuLieu(long long, long long, KhachHang*, long long);
+    void NhapDuLieu(long long, long long, T*, long long);
     bool KiemTraCoPhaiSoNguyenTo();
     void TimSoNguyenTo();
     void LaySoNguyenTo();
@@ -27,14 +29,16 @@ public:
     void KiemTraHeSoTai();
     void ReHashing();
     bool KiemTraViTri(int);
-    void NhapKhachHangVaoHashTable(KhachHang&);
+    void NhapKhachHangVaoHashTable(T&);
+    void XoaKhachHang(string);
     void Table();
-    KhachHang& operator [] (const int&);
+    T& operator [] (const int&);
     const HashTable& operator = (const HashTable&);
     void HienThiTable();
     void LuuKhachHangCuVaoFile();
-    vector<KhachHang> LayDanhSachKhachHangCu();
-    vector<KhachHang> LayDSKHTheoTTDSC(string, string, string);
+    void LuuHoaDonVaoFile();
+    vector<T> LayDanhSachKhachHangCu();
+    vector<T> LayDSKHTheoTTDSC(string, string, string);
 };
 
 #endif // HASHTABLE_H

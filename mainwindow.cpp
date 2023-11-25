@@ -598,11 +598,6 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
                     int ThangNhap = dialog.LayThangNhapVao().toInt();
                     int NamNhap = dialog.LayNamNhapVao().toInt();
 
-//                    if(!(this->tt.KiemTraQuaGioKhachHang(str)))
-//                    {
-//                        QMessageBox::information(this,"Thong bao","Thong bao khach hang phong" + QString::fromStdString(str) + "thanh toan tien phong");
-//                    }
-
                     if(this->tt.KiemTraKhachHangDatPhong(CCCDNhap))
                     {
                         QMessageBox::information(this,"Thong bao","Khach hang da ton tai");
@@ -618,8 +613,6 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
 
                     temp.NhapPhongKhachHangDat(str);
                     tt.KhachHangDatPhong(temp);
-//                    tt.ChuyenTrangThaiPhong(str);
-//                    ui->labelTinhTrang2->setText("Khong trong");
                     return;
                 }
             }
@@ -748,7 +741,9 @@ void MainWindow::on_buttonTimKiem3_clicked()
     ndi = kh->LayNgayTraPhong();
 
     ui->labelThoiGianTra->setText(QLocale().toString(ndi.Ngay) + "/" + QLocale().toString(ndi.Thang) + "/" + QLocale().toString(ndi.Nam) + "\n" + QLocale().toString(ndi.Gio));
+
     kh->TinhTienPhong(giatien);
+
     QString tien = QLocale().toString(kh->LayTienPhong());
     ui->labelTongTien->setText(tien);
 }
@@ -775,6 +770,14 @@ void MainWindow::on_buttonThanhToan_clicked()
         DialogThanhToan dialog(this);
         dialog.setModal(true);
         dialog.exec();
+        KhachHang *kh = &(tt.KhachHangTheoPhong(str));
+        time_t now = time(0);
+        tm* currentDate = localtime(&now);
+        int currentYear = currentDate->tm_year + 1900;
+        int currentMonth = currentDate->tm_mon + 1;
+        int currentDay = currentDate->tm_mday;
+        int currentHour = currentDate->tm_hour;
+        kh->NhapNgayTraPhong(currentDay,currentMonth,currentYear,currentHour);
         tt.ChuyenTrangThaiPhong(str);
         tt.NhapKhachHangVaoHashTable((this->tt).KhachHangTheoPhong(str).LayCCCD());
     }

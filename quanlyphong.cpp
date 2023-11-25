@@ -408,8 +408,6 @@ PhongCoBan& QuanLyPhong::LayThongTinPhongCoBan(string str)
             return *(this->pcb + i);
         }
     }
-    PhongCoBan p;
-    return p;
 }
 
 PhongThuong& QuanLyPhong::LayThongTinPhongThuong(string str)
@@ -421,8 +419,6 @@ PhongThuong& QuanLyPhong::LayThongTinPhongThuong(string str)
             return *(this->pt + i);
         }
     }
-    PhongThuong p;
-    return p;
 }
 
 PhongThuongGia& QuanLyPhong::LayThongTinPhongThuongGia(string str)
@@ -434,8 +430,6 @@ PhongThuongGia& QuanLyPhong::LayThongTinPhongThuongGia(string str)
             return *(this->ptg + i);
         }
     }
-    PhongThuongGia p;
-    return p;
 }
 
 void QuanLyPhong::LuuPhongVaoFile()

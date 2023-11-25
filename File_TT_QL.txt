@@ -1,8 +1,0 @@
-TT
-4
-046204006878|0383256231|15/02/2004|p|p|Le Trung Phong
-046204006878|0383256231|15/02/2004|nguyenminhphuc|phuc123|Nguyen Minh Phuc
-046204006878|0383256231|15/02/2004|letran|tran123|Le Nguyen Ai Tran
-046204006878|0383256231|15/02/2004|nguyentrung|trung123|Nguyen Thanh Trung
-QL
-046204006878|0383256231|15/02/2004|letrungphong|phong123|Le Trung Phong

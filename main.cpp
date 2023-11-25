@@ -12,17 +12,21 @@
 using namespace std;
 
 void FilePhong(QuanLyPhong&);
-void FileKhachHangCu(HashTable&);
-void FileKhachHangMoi(QuanLyKhachHang&, HashTable&);
+void FileKhachHangCu(HashTable<KhachHang>&);
+void FileKhachHangMoi(QuanLyKhachHang&, HashTable<KhachHang>&, HashTable<HoaDon>&);
+void FileLichSu(HashTable<HoaDon>&);
 vector<string> split(string, string);
 
 int main(int argc, char *argv[])
-{
-    HashTable htb;
+{   
+    HashTable<KhachHang> htb;
     FileKhachHangCu(htb);
 
+    HashTable<HoaDon> htb1;
+    FileLichSu(htb1);
+
     QuanLyKhachHang qlkh;
-    FileKhachHangMoi(qlkh,htb);
+    FileKhachHangMoi(qlkh,htb,htb1);
 
     QuanLyPhong qlp;
     FilePhong(qlp);
@@ -109,7 +113,7 @@ void FilePhong(QuanLyPhong &qlp)
     file.close();
 }
 
-void FileKhachHangCu(HashTable &htb)
+void FileKhachHangCu(HashTable<KhachHang> &htb)
 {
     ifstream file;
     file.open("D:\\HK3\\PBL-Project-3\\Khach_Hang_Cu.txt");
@@ -151,7 +155,57 @@ void FileKhachHangCu(HashTable &htb)
     file.close();
 }
 
-void FileKhachHangMoi(QuanLyKhachHang &qlkh, HashTable &htb)
+void FileLichSu(HashTable<HoaDon> &htb)
+{
+    ifstream file;
+    file.open("D:\\HK3\\PBL-Project-3\\FileLichSu.txt");
+    if (!file.is_open()) {
+        cout << "Error opening data file !!!" << endl;
+        return;
+    }
+    string line;
+    getline(file, line);
+    long long size = stoi(line);
+    getline(file, line);
+    int sl = stoi(line);
+    HoaDon *k = new HoaDon[sl];
+    // 0 : CCCD
+    // 1 : Ten Phong
+    // 2 : Ngay den
+    // 3 : Ngay di
+    // 4 : Dich Vu 1
+    // 5 : Dich Vu 2
+    // 6 : Dich Vu 3
+    // 7 : Dich Vu 4
+    // 8 : Tong Tien
+    for(int i = 0; i < sl; i++)
+    {
+        getline(file, line);
+        vector<string> token = split(line,"|");
+        vector<int> dv;
+        dv.push_back(stoi(token[4]));
+        dv.push_back(stoi(token[5]));
+        dv.push_back(stoi(token[6]));
+        dv.push_back(stoi(token[7]));
+        vector<string> nden = split(token[2],"/");
+        vector<string> ndi = split(token[3],"/");
+        Date Ngayden;
+        Ngayden.Gio = stoi(nden[0]);
+        Ngayden.Ngay = stoi(nden[1]);
+        Ngayden.Thang = stoi(nden[2]);
+        Ngayden.Nam = stoi(nden[3]);
+        Date Ngaydi;
+        Ngaydi.Gio = stoi(ndi[0]);
+        Ngaydi.Ngay = stoi(ndi[1]);
+        Ngaydi.Thang = stoi(ndi[2]);
+        Ngaydi.Nam = stoi(ndi[3]);
+        (k + i)->NhapThongTin(token[0],token[1],dv,Ngayden,Ngaydi,stoi(token[8]));
+    }
+    htb.NhapDuLieu(size,0,k,sl);
+    file.close();
+}
+
+void FileKhachHangMoi(QuanLyKhachHang &qlkh, HashTable<KhachHang> &htb, HashTable<HoaDon> &htb1)
 {
     ifstream file;
     file.open("D:\\HK3\\PBL-Project-3\\Khach_Hang_Moi.txt");
@@ -186,9 +240,11 @@ void FileKhachHangMoi(QuanLyKhachHang &qlkh, HashTable &htb)
         (k + i)->NhapThongTin(token[0],token[10],token[1],stoi(ns[0]),stoi(ns[1]),stoi(ns[2]));
         (k + i)->NhapThongTinKhac(token[2],dv,stoi(nden[0]),stoi(nden[1]),stoi(nden[2]),stoi(nden[3]),stoi(ndi[0]),stoi(ndi[1]),stoi(ndi[2]),stoi(ndi[3]));;
     }
-    qlkh.NhapDuLieu(k,htb,size);
+    qlkh.NhapDuLieu(k,htb,size,htb1);
     file.close();
 }
+
+
 
 vector<string> split(string str, string delimiter)
 {

@@ -13,14 +13,14 @@ QuanLyKhachHang::QuanLyKhachHang(int s)
     this->kh = new KhachHang[this->size];
 }
 
-QuanLyKhachHang::QuanLyKhachHang(HashTable &t, int s)
+QuanLyKhachHang::QuanLyKhachHang(HashTable<KhachHang> &t, int s)
     :htb(t)
 {
     this->size = s;
     this->kh = new KhachHang[this->size];
 }
 
-QuanLyKhachHang::QuanLyKhachHang(KhachHang *temp, HashTable &t, int s)
+QuanLyKhachHang::QuanLyKhachHang(KhachHang *temp, HashTable<KhachHang> &t, int s)
     :htb(t)
 {
     this->size = s;
@@ -67,9 +67,10 @@ bool QuanLyKhachHang::KiemTraPhongDuocDatChua(string str, int gioden, int ngayde
     return true;
 }
 
-void QuanLyKhachHang::NhapDuLieu(KhachHang *temp, HashTable &t, int s)
+void QuanLyKhachHang::NhapDuLieu(KhachHang *temp, HashTable<KhachHang> &t, int s, HashTable<HoaDon> &h)
 {
     this->htb = t;
+    this->htb1 = h;
     this->size = s;
     this->kh = new KhachHang[this->size];
     for(int i = 0; i < this->size; i++)
@@ -119,7 +120,7 @@ void QuanLyKhachHang::NhapKhachHangVaoHashTable(string CCCD)
     }
     if(k < 0) return;
     KhachHang temp;
-    htb.NhapKhachHangVaoHashTable(*(this->kh + k));
+    this->htb.NhapKhachHangVaoHashTable(*(this->kh + k));
     *(this->kh + k) = temp;
 }
 
