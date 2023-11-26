@@ -53,6 +53,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         this->tt.LuuPhongVaoFile();
         this->tt.LuuKhachHangMoiVaoFile();
         this->tt.LuuKhachHangCuVaoFile();
+        this->tt.LuuHoaDonVaoFile();
     }
     if(ui->stackedWidget3->currentIndex() == 1)
     {
@@ -611,8 +612,26 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
                         return;
                     }
 
-                    temp.NhapPhongKhachHangDat(str);
-                    tt.KhachHangDatPhong(temp);
+                    if(this->tt.KiemTraKhachHangCu(temp))
+                    {
+                        if(this->tt.KiemTraThongTin(temp))
+                        {
+                            temp.NhapSoLuong((this->tt.KhachHangCuTheoCCCD(CCCDNhap)).LaySoLuong());
+                            temp.NhapPhongKhachHangDat(str);
+                            this->tt.KhachHangDatPhong(temp);
+                            this->tt.LayKhachHanghtb(CCCDNhap);
+                        }
+                        else
+                        {
+                            QMessageBox::warning(this,"Thong bao","Khach hang ton tai, thong tin khong hop le");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        temp.NhapPhongKhachHangDat(str);
+                        tt.KhachHangDatPhong(temp);
+                    }
                     return;
                 }
             }
@@ -777,9 +796,17 @@ void MainWindow::on_buttonThanhToan_clicked()
         int currentMonth = currentDate->tm_mon + 1;
         int currentDay = currentDate->tm_mday;
         int currentHour = currentDate->tm_hour;
-        kh->NhapNgayTraPhong(currentDay,currentMonth,currentYear,currentHour);
-        tt.ChuyenTrangThaiPhong(str);
-        tt.NhapKhachHangVaoHashTable((this->tt).KhachHangTheoPhong(str).LayCCCD());
+        Date nditt;
+        nditt.Gio = currentHour;
+        nditt.Ngay = currentDay;
+        nditt.Thang = currentMonth;
+        nditt.Nam = currentYear;
+        kh->TangSoLuong();
+        HoaDon hd;
+        hd.NhapThongTin(kh->LayCCCD(),kh->LayTenPhong(),kh->LayDichVu(),kh->LayNgayDatPhong(),kh->LayNgayTraPhong(),nditt,kh->LayTienPhong());
+        this->tt.NhapHoaDonVaoHashTable(hd);
+        this->tt.ChuyenTrangThaiPhong(str);
+        this->tt.NhapKhachHangVaoHashTable(kh->LayCCCD());
     }
     else
     {

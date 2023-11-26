@@ -22,19 +22,25 @@ public:
     bool KiemTraPhongBaoTri(string);
     bool KiemTraKhachHangDatPhong(string);
     bool KiemTraPhongDuocDatChua(string, int, int, int, int, int, int, int, int);
+    bool KiemTraKhachHangCu(KhachHang&);
+    bool KiemTraThongTin(KhachHang&);
 
     void NhapDuLieu(KhachHang*, HashTable<KhachHang>&, int, HashTable<HoaDon>&);
 
     void NhapKhachHangMoi(const KhachHang&);
     void NhapKhachHangVaoHashTable(string);
+    void NhapHoaDonVaoHashTable(HoaDon);
     void HienThiThongTinKhachHang();
     KhachHang& KhachHangTheoPhong(string);
+    KhachHang& KhachHangCuTheoCCCD(string);
     void HienThiTable();
     const QuanLyKhachHang& operator = (const QuanLyKhachHang&);
     void TangDichVu(int,string);
 
     void LuuKhachHangCuVaoFile();
     void LuuKhachHangMoiVaoFile();
+    void LuuHoaDonVaoFile();
+    void LayKhachHanghtb(string);
     int LaySoLuong();
     KhachHang& operator [] (const int&);
 

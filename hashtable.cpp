@@ -31,7 +31,7 @@ HashTable<T>::HashTable(long long s, long long sl, T *k, long long ksl)
     this->kh = new T[this->size];
     for(int i = 0; i < ksl; i++)
     {
-        HashTable::NhapKhachHangVaoHashTable(*(k + i));
+        HashTable::NhapDuLieuVaoHashTable(*(k + i));
     }
     delete[] k;
 }
@@ -51,7 +51,7 @@ void HashTable<T>::NhapDuLieu(long long s, long long sl, T *k, long long ksl)
     this->kh = new T[this->size];
     for(int i = 0; i < ksl; i++)
     {
-        HashTable::NhapKhachHangVaoHashTable(*(k + i));
+        HashTable::NhapDuLieuVaoHashTable(*(k + i));
     }
     delete[] k;
 }
@@ -150,7 +150,7 @@ void HashTable<T>::ReHashing()
     this->SoLuong = 0;
     for(int i = 0; i < (this->size / 2); i++)
     {
-        HashTable::NhapKhachHangVaoHashTable(temp[i]);
+        HashTable::NhapDuLieuVaoHashTable(temp[i]);
     }
     delete[] temp;
 }
@@ -169,7 +169,7 @@ bool HashTable<T>::KiemTraViTri(int index)
 }
 
 template<class T>
-void HashTable<T>::NhapKhachHangVaoHashTable(T &k)
+void HashTable<T>::NhapDuLieuVaoHashTable(T &k)
 {
     if(k.LayCCCD(1) == 0) return;
     int kc = 0;
@@ -209,7 +209,6 @@ void HashTable<T>::NhapKhachHangVaoHashTable(T &k)
 template<class T>
 void HashTable<T>::XoaKhachHang(string CCCD)
 {
-    // long long k =
     int index = HashTable::hashing(stoll(CCCD));
     int kc = 0;
     while(1)
@@ -235,6 +234,7 @@ void HashTable<T>::XoaKhachHang(string CCCD)
         {
             *(this->kh + index) = temp;
             *(this->kcg + index) = 0;
+            this->SoLuong--;
             break;
         }
         else
@@ -243,6 +243,63 @@ void HashTable<T>::XoaKhachHang(string CCCD)
             *(this->kcg + index) = *(this->kcg + index + 1) - 1;
         }
         index++;
+    }
+}
+
+template<class T>
+bool HashTable<T>::KiemTraDuLieuCu(T &t)
+{
+    int index = HashTable::hashing(stoll(t.LayCCCD()));
+    while(1)
+    {
+        if((this->kh + index)->LayCCCD() == t.LayCCCD())
+        {
+            return true;
+        }
+        else
+        {
+            index++;
+            if(index == this->size)
+            {
+                index = 0;
+            }
+            if(*(this->kcg + index) == 0)
+            {
+                return false;
+            }
+        }
+    }
+}
+
+template<class T>
+bool HashTable<T>::KiemTraThongTin(T &t)
+{
+    int index = HashTable::hashing(stoll(t.LayCCCD()));
+    while(1)
+    {
+        if((this->kh + index)->LayCCCD() == t.LayCCCD())
+        {
+            if(*(this->kh + index) == t)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            index++;
+            if(index == this->size)
+            {
+                index = 0;
+            }
+            if(*(this->kcg + index) == 0)
+            {
+                return false;
+            }
+        }
     }
 }
 
@@ -336,23 +393,6 @@ void HashTable<T>::HienThiTable()
 }
 
 template<class T>
-void HashTable<T>::LuuKhachHangCuVaoFile()
-{
-    ofstream outfile("D:\\HK3\\PBL-Project-3\\Khach_Hang_Cu.txt");
-    outfile << this->size << endl;
-    outfile << this->SoLuong << endl;
-    for(int i = 0; i < this->size; ++i)
-    {
-        if(!((this->kh + i)->LayCCCD() == "0"))
-        {
-            vector<int> v = (this->kh + i)->LayDichVu();
-            outfile << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LaySDT() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayBirth() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTienPhong() << "|" << (this->kh + i)->LayTen() << endl;
-        }
-    }
-    outfile.close();
-}
-
-template<class T>
 void HashTable<T>::LuuHoaDonVaoFile()
 {
     ofstream outfile("D:\\HK3\\PBL-Project-3\\FileLichSu.txt");
@@ -363,10 +403,52 @@ void HashTable<T>::LuuHoaDonVaoFile()
         if(!((this->kh + i)->LayCCCD() == "0"))
         {
             vector<int> v = (this->kh + i)->LayDichVu();
-            outfile << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTienPhong() << endl;
+            outfile << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << (this->kh + i)->LayNgayDiThucTe()  << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTienPhong() << endl;
         }
     }
     outfile.close();
+}
+
+template<class T>
+void HashTable<T>::LuuKhachHangCuVaoFile()
+{
+    ofstream outfile("D:\\HK3\\PBL-Project-3\\Khach_Hang_Cu.txt");
+    outfile << this->size << endl;
+    outfile << this->SoLuong << endl;
+    for(int i = 0; i < this->size; ++i)
+    {
+        if(!((this->kh + i)->LayCCCD() == "0"))
+        {
+            vector<int> v = (this->kh + i)->LayDichVu();
+            outfile << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LaySDT() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayBirth() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << (this->kh + i)->LaySoLuong() << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTienPhong() << "|" << (this->kh + i)->LayTen() << endl;
+        }
+    }
+    outfile.close();
+}
+
+
+
+template<class T>
+T& HashTable<T>::LayThongTinTheoID(string cccd)
+{
+    int index = HashTable::hashing(stoll(cccd));
+    while(1)
+    {
+        if((this->kh + index)->LayCCCD() == cccd)
+        {
+            return *(this->kh + index);
+        }
+        else
+        {
+            index++;
+            if(index == this->size) index = 0;
+            if(*(this->kcg + index) == 0)
+            {
+                T temp;
+                return temp;
+            }
+        }
+    }
 }
 
 template<class T>

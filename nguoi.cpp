@@ -45,3 +45,14 @@ string Nguoi::LayBirth()
     string str = to_string(this->Birth.Ngay) + "/" + to_string(this->Birth.Thang) + "/" + to_string(this->Birth.Nam);
     return str;
 }
+
+bool Nguoi::operator == (const Nguoi& n)
+{
+    bool check = true;
+    if(this->CCCD != n.CCCD) check = false;
+    if(this->Ten != n.Ten) check = false;
+    if(this->Birth.Ngay != n.Birth.Ngay) check = false;
+    if(this->Birth.Thang != n.Birth.Thang) check = false;
+    if(this->Birth.Nam != n.Birth.Nam) check = false;
+    return check;
+}

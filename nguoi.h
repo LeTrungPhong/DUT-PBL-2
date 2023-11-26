@@ -29,6 +29,7 @@ public:
     string LaySDT();
     long long LayCCCD(int);
     string LayBirth();
+    bool operator == (const Nguoi&);
 };
 
 #endif // NGUOI_H

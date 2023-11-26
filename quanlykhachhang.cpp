@@ -67,6 +67,16 @@ bool QuanLyKhachHang::KiemTraPhongDuocDatChua(string str, int gioden, int ngayde
     return true;
 }
 
+bool QuanLyKhachHang::KiemTraKhachHangCu(KhachHang &k)
+{
+    return this->htb.KiemTraDuLieuCu(k);
+}
+
+bool QuanLyKhachHang::KiemTraThongTin(KhachHang &k)
+{
+    return this->htb.KiemTraThongTin(k);
+}
+
 void QuanLyKhachHang::NhapDuLieu(KhachHang *temp, HashTable<KhachHang> &t, int s, HashTable<HoaDon> &h)
 {
     this->htb = t;
@@ -120,8 +130,13 @@ void QuanLyKhachHang::NhapKhachHangVaoHashTable(string CCCD)
     }
     if(k < 0) return;
     KhachHang temp;
-    this->htb.NhapKhachHangVaoHashTable(*(this->kh + k));
+    this->htb.NhapDuLieuVaoHashTable(*(this->kh + k));
     *(this->kh + k) = temp;
+}
+
+void QuanLyKhachHang::NhapHoaDonVaoHashTable(HoaDon hd)
+{
+    this->htb1.NhapDuLieuVaoHashTable(hd);
 }
 
 void QuanLyKhachHang::HienThiThongTinKhachHang()
@@ -145,6 +160,11 @@ KhachHang& QuanLyKhachHang::KhachHangTheoPhong(string tp)
     return k;
 }
 
+KhachHang& QuanLyKhachHang::KhachHangCuTheoCCCD(string cccd)
+{
+    return this->htb.LayThongTinTheoID(cccd);
+}
+
 void QuanLyKhachHang::HienThiTable()
 {
     htb.HienThiTable();
@@ -155,6 +175,7 @@ const QuanLyKhachHang& QuanLyKhachHang::operator = (const QuanLyKhachHang &qlkh)
     if(this != &qlkh)
     {
         this->htb = qlkh.htb;
+        this->htb1 = qlkh.htb1;
         this->size = qlkh.size;
         this->kh = new KhachHang[this->size];
         for(int i = 0; i < this->size; ++i)
@@ -190,14 +211,24 @@ void QuanLyKhachHang::LuuKhachHangMoiVaoFile()
     for(int i = 0; i < this->size; ++i)
     {
         vector<int> v = (this->kh + i)->LayDichVu();
-        outfile << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LaySDT() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayBirth() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTen() << endl;
+        outfile << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LaySDT() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayBirth() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << (this->kh + i)->LaySoLuong() << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTen() << endl;
     }
     outfile.close();
+}
+
+void QuanLyKhachHang::LuuHoaDonVaoFile()
+{
+    (this->htb1).LuuHoaDonVaoFile();
 }
 
 int QuanLyKhachHang::LaySoLuong()
 {
     return this->size;
+}
+
+void QuanLyKhachHang::LayKhachHanghtb(string cccd)
+{
+                                                   return this->htb.XoaKhachHang(cccd);
 }
 
 KhachHang& QuanLyKhachHang::operator[](const int& index)

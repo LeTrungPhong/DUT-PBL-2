@@ -24,6 +24,7 @@ KhachHang::KhachHang()
     {
         (this->DichVu).push_back(0);
     }
+    this->SoLuong = 0;
 }
 
 KhachHang::~KhachHang()
@@ -42,6 +43,7 @@ const KhachHang& KhachHang::operator = (const KhachHang& kh)
         this->NgayDen = kh.NgayDen;
         this->NgayDi = kh.NgayDi;
         this->TongTien = kh.TongTien;
+        this->SoLuong = kh.SoLuong;
     }
     return *this;
 }
@@ -61,7 +63,7 @@ void KhachHang::NhapThongTinKhac(string tenp, vector<int> dv, int gioden, int ng
     this->NgayDen.Nam = namden;
 }
 
-void KhachHang::NhapThongTinKhac(string tenp, vector<int> dv, int gioden, int ngayden, int thangden, int namden, int giodi, int ngaydi, int thangdi, int namdi, long long gp)
+void KhachHang::NhapThongTinKhac(string tenp, vector<int> dv, int gioden, int ngayden, int thangden, int namden, int giodi, int ngaydi, int thangdi, int namdi, int sl, long long gp)
 {
     this->TenPhong = tenp;
     this->DichVu = dv;
@@ -74,9 +76,10 @@ void KhachHang::NhapThongTinKhac(string tenp, vector<int> dv, int gioden, int ng
     this->NgayDi.Thang = thangdi;
     this->NgayDi.Nam = namdi;
     this->TongTien = gp;
+    this->SoLuong = sl;
 }
 
-void KhachHang::NhapThongTinKhac(string tenp, vector<int> dv, int gioden, int ngayden, int thangden, int namden, int giodi, int ngaydi, int thangdi, int namdi)
+void KhachHang::NhapThongTinKhac(string tenp, vector<int> dv, int gioden, int ngayden, int thangden, int namden, int giodi, int ngaydi, int thangdi, int namdi, int sl)
 {
     this->TenPhong = tenp;
     this->DichVu = dv;
@@ -88,6 +91,7 @@ void KhachHang::NhapThongTinKhac(string tenp, vector<int> dv, int gioden, int ng
     this->NgayDi.Ngay = ngaydi;
     this->NgayDi.Thang = thangdi;
     this->NgayDi.Nam = namdi;
+    this->SoLuong = sl;
 }
 
 void KhachHang::DatLaiThongTin()
@@ -147,7 +151,19 @@ ostream& operator << (ostream& o, const KhachHang& k)
 
 bool KhachHang::operator == (const KhachHang& kh)
 {
-    return(this->CCCD == kh.CCCD);
+    bool check = true;
+    if(this->CCCD == kh.CCCD)
+    {
+        if(this->Ten != kh.Ten) check = false;
+        if(this->Birth.Ngay != kh.Birth.Ngay) check = false;
+        if(this->Birth.Thang != kh.Birth.Thang) check = false;
+        if(this->Birth.Nam != kh.Birth.Nam) check = false;
+    }
+    else
+    {
+        check = false;
+    }
+    return check;
 }
 
 bool KhachHang::KiemTraCCCD(string str)
@@ -411,6 +427,21 @@ long long KhachHang::LayTienPhong()
     return this->TongTien;
 }
 
+int KhachHang::LaySoLuong()
+{
+    return this->SoLuong;
+}
+
+void KhachHang::NhapSoLuong(int k)
+{
+    this->SoLuong = k;
+}
+
+void KhachHang::TangSoLuong()
+{
+    this->SoLuong++;
+}
+
 string KhachHang::LayNgayDen()
 {
     string str = to_string(this->NgayDen.Gio) + "/" + to_string(this->NgayDen.Ngay) + "/" + to_string(this->NgayDen.Thang) + "/" + to_string(this->NgayDen.Nam);
@@ -421,4 +452,9 @@ string KhachHang::LayNgayDi()
 {
     string str = to_string(this->NgayDi.Gio) + "/" + to_string(this->NgayDi.Ngay) + "/" + to_string(this->NgayDi.Thang) + "/" + to_string(this->NgayDi.Nam);
     return str;
+}
+
+string KhachHang::LayNgayDiThucTe()
+{
+    return "";
 }

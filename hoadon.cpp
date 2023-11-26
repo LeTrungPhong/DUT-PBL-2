@@ -10,6 +10,10 @@ HoaDon::HoaDon()
     this->NgayDi.Thang = 0;
     this->NgayDi.Nam = 0;
     this->NgayDi.Gio = 0;
+    this->NgayDiThucTe.Ngay = 0;
+    this->NgayDiThucTe.Thang = 0;
+    this->NgayDiThucTe.Nam = 0;
+    this->NgayDiThucTe.Gio = 0;
     this->TenPhong = "0";
     this->CCCD = "0";
     this->TongTien = 0;
@@ -22,13 +26,14 @@ HoaDon::HoaDon()
 HoaDon::~HoaDon()
 { }
 
-void HoaDon::NhapThongTin(string cccd, string tp, vector<int> dv, const Date& nden, const Date& ndi, long long tt)
+void HoaDon::NhapThongTin(string cccd, string tp, vector<int> dv, const Date& nden, const Date& ndi, const Date& nditt, long long tt)
 {
     this->CCCD = cccd;
     this->TenPhong = tp;
     this->DichVu = dv;
     this->NgayDen = nden;
     this->NgayDi = ndi;
+    this->NgayDiThucTe = nditt;
     this->TongTien = tt;
 }
 
@@ -46,8 +51,27 @@ bool HoaDon::operator == (const HoaDon& hd)
     if(this->NgayDi.Thang != hd.NgayDi.Thang) check = false;
     if(this->NgayDi.Nam != hd.NgayDi.Nam) check = false;
     if(this->NgayDi.Gio != hd.NgayDi.Gio) check = false;
+    if(this->NgayDiThucTe.Ngay != hd.NgayDiThucTe.Ngay) check = false;
+    if(this->NgayDiThucTe.Thang != hd.NgayDiThucTe.Thang) check = false;
+    if(this->NgayDiThucTe.Nam != hd.NgayDiThucTe.Nam) check = false;
+    if(this->NgayDiThucTe.Gio != hd.NgayDiThucTe.Gio) check = false;
     if(this->TongTien != hd.TongTien) check = false;
     return check;
+}
+
+const HoaDon& HoaDon::operator = (const HoaDon& temp)
+{
+    if(this != &temp)
+    {
+        this->CCCD = temp.CCCD;
+        this->TenPhong = temp.TenPhong;
+        this->DichVu = temp.DichVu;
+        this->NgayDen = temp.NgayDen;
+        this->NgayDi = temp.NgayDi;
+        this->NgayDiThucTe = temp.NgayDiThucTe;
+        this->TongTien = temp.TongTien;
+    }
+    return *this;
 }
 
 string HoaDon::LayCCCD()
@@ -90,6 +114,12 @@ string HoaDon::LayNgayDi()
     return str;
 }
 
+string HoaDon::LayNgayDiThucTe()
+{
+    string str = to_string(this->NgayDiThucTe.Gio) + "/" + to_string(this->NgayDiThucTe.Ngay) + "/" + to_string(this->NgayDiThucTe.Thang) + "/" + to_string(this->NgayDiThucTe.Nam);
+    return str;
+}
+
 long long HoaDon::LayTienPhong()
 {
     return this->TongTien;
@@ -103,4 +133,9 @@ string HoaDon::LayTen()
 string HoaDon::LayBirth()
 {
     return "";
+}
+
+int HoaDon::LaySoLuong()
+{
+    return 0;
 }

@@ -22,6 +22,8 @@ public:
     bool KiemTraKhachHangDatPhong(string);
     bool KiemTraPhongDuocDatChua(string, int, int, int, int, int, int, int, int);
     bool KiemTraQuaGioKhachHang(string);
+    bool KiemTraKhachHangCu(KhachHang&);
+    bool KiemTraThongTin(KhachHang&);
 
     void CapNhatTrangThaiPhong();
     void CapNhatDuLieuKhachHang();
@@ -31,10 +33,13 @@ public:
 
     void LuuThongTinKhachHang(KhachHang&, string);
     void NhapKhachHangVaoHashTable(string);
+    void NhapHoaDonVaoHashTable(HoaDon);
     void HienThiThongTinKhachHang();
     void HienThiTable();
+    void LayKhachHanghtb(string);
 
     KhachHang& KhachHangTheoPhong(string);
+    KhachHang& KhachHangCuTheoCCCD(string);
 
     const TiepTan& operator = (const TiepTan&); // khong = qlkh, qlp
 
@@ -54,7 +59,7 @@ public:
     void LuuPhongVaoFile();
     void LuuKhachHangCuVaoFile();
     void LuuKhachHangMoiVaoFile();
-
+    void LuuHoaDonVaoFile();
 };
 
 #endif // TIEPTAN_H

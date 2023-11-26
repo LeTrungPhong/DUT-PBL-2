@@ -11,12 +11,13 @@ private:
     vector<int> DichVu;
     Date NgayDen;
     Date NgayDi;
+    int SoLuong;
 public:
     KhachHang();
     ~KhachHang();
     void NhapThongTinKhac(string, vector<int>, int, int, int, int);
-    void NhapThongTinKhac(string, vector<int>, int, int, int, int, int, int, int, int, long long);
-    void NhapThongTinKhac(string, vector<int>, int, int, int, int, int, int, int, int);
+    void NhapThongTinKhac(string, vector<int>, int, int, int, int, int, int, int, int, int, long long);
+    void NhapThongTinKhac(string, vector<int>, int, int, int, int, int, int, int, int, int);
     void DatLaiThongTin();
     void NhapNgayDatPhong(int, int, int, int);
     void NhapNgayTraPhong(int, int, int, int);
@@ -37,8 +38,12 @@ public:
     void TangDichVu(int);
     void TinhTienPhong(long long);
     long long LayTienPhong();
+    int LaySoLuong();
+    void NhapSoLuong(int);
+    void TangSoLuong();
     string LayNgayDen();
     string LayNgayDi();
+    string LayNgayDiThucTe();
 };
 
 #endif // KHACHHANG_H

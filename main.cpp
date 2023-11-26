@@ -31,6 +31,29 @@ int main(int argc, char *argv[])
     QuanLyPhong qlp;
     FilePhong(qlp);
 
+//    Date nden;
+//    nden.Ngay = 12;
+//    nden.Gio = 12;
+//    nden.Thang = 12;
+//    nden.Nam = 12;
+
+//    Date ndi;
+//    ndi.Ngay = 12;
+//    ndi.Gio = 12;
+//    ndi.Thang = 12;
+//    ndi.Nam = 12;
+//    vector<int> dv;
+//    dv.push_back(1);
+//    dv.push_back(1);
+//    dv.push_back(1);
+//    dv.push_back(1);
+//    HoaDon temp;
+//    temp.NhapThongTin("123","1233",dv,nden,ndi,123123123);
+
+//    TiepTan t;
+//    t.NhapThongTinChucNang(qlkh,qlp);
+//    t.NhapHoaDonVaoHashTable(temp);
+//    t.LuuHoaDonVaoFile();
     QApplication a(argc, argv);
     MainWindow w;
     w.NhapThongTin(qlkh,qlp);
@@ -133,23 +156,24 @@ void FileKhachHangCu(HashTable<KhachHang> &htb)
     // 3 : ngay thang nam sinh
     // 4 : ngay thang nam den
     // 5 : ngay thang nam di
-    // 6 7 8 9 : dich vu
-    // 10 : gia tien
-    // 11 : Ten
+    // 6 : So luong
+    // 7 8 9 10 : dich vu
+    // 11 : gia tien
+    // 12 : Ten
     for(int i = 0; i < sl; i++)
     {
         getline(file, line);
         vector<string> token = split(line,"|");
         vector<int> dv;
-        dv.push_back(stoi(token[6]));
         dv.push_back(stoi(token[7]));
         dv.push_back(stoi(token[8]));
         dv.push_back(stoi(token[9]));
+        dv.push_back(stoi(token[10]));
         vector<string> ns = split(token[3],"/");
         vector<string> nden = split(token[4],"/");
         vector<string> ndi = split(token[5],"/");
-        (k + i)->NhapThongTin(token[0],token[11],token[1],stoi(ns[0]),stoi(ns[1]),stoi(ns[2]));
-        (k + i)->NhapThongTinKhac(token[2],dv,stoi(nden[0]),stoi(nden[1]),stoi(nden[2]),stoi(nden[3]),stoi(ndi[0]),stoi(ndi[1]),stoi(ndi[2]),stoi(ndi[3]),stoi(token[10]));;
+        (k + i)->NhapThongTin(token[0],token[12],token[1],stoi(ns[0]),stoi(ns[1]),stoi(ns[2]));
+        (k + i)->NhapThongTinKhac(token[2],dv,stoi(nden[0]),stoi(nden[1]),stoi(nden[2]),stoi(nden[3]),stoi(ndi[0]),stoi(ndi[1]),stoi(ndi[2]),stoi(ndi[3]),stoi(token[6]),stoi(token[11]));;
     }
     htb.NhapDuLieu(size,0,k,sl);
     file.close();
@@ -173,22 +197,24 @@ void FileLichSu(HashTable<HoaDon> &htb)
     // 1 : Ten Phong
     // 2 : Ngay den
     // 3 : Ngay di
-    // 4 : Dich Vu 1
-    // 5 : Dich Vu 2
-    // 6 : Dich Vu 3
-    // 7 : Dich Vu 4
-    // 8 : Tong Tien
+    // 4 : Ngay di thuc te
+    // 5 : Dich Vu 1
+    // 6 : Dich Vu 2
+    // 7 : Dich Vu 3
+    // 8 : Dich Vu 4
+    // 9 : Tong Tien
     for(int i = 0; i < sl; i++)
     {
         getline(file, line);
         vector<string> token = split(line,"|");
         vector<int> dv;
-        dv.push_back(stoi(token[4]));
         dv.push_back(stoi(token[5]));
         dv.push_back(stoi(token[6]));
         dv.push_back(stoi(token[7]));
+        dv.push_back(stoi(token[8]));
         vector<string> nden = split(token[2],"/");
         vector<string> ndi = split(token[3],"/");
+        vector<string> nditt = split(token[4],"/");
         Date Ngayden;
         Ngayden.Gio = stoi(nden[0]);
         Ngayden.Ngay = stoi(nden[1]);
@@ -199,7 +225,12 @@ void FileLichSu(HashTable<HoaDon> &htb)
         Ngaydi.Ngay = stoi(ndi[1]);
         Ngaydi.Thang = stoi(ndi[2]);
         Ngaydi.Nam = stoi(ndi[3]);
-        (k + i)->NhapThongTin(token[0],token[1],dv,Ngayden,Ngaydi,stoi(token[8]));
+        Date Ngayditt;
+        Ngayditt.Gio = stoi(nditt[0]);
+        Ngayditt.Ngay = stoi(nditt[1]);
+        Ngayditt.Thang = stoi(nditt[2]);
+        Ngayditt.Nam = stoi(nditt[3]);
+        (k + i)->NhapThongTin(token[0],token[1],dv,Ngayden,Ngaydi,Ngayditt,stoi(token[9]));
     }
     htb.NhapDuLieu(size,0,k,sl);
     file.close();
@@ -224,21 +255,22 @@ void FileKhachHangMoi(QuanLyKhachHang &qlkh, HashTable<KhachHang> &htb, HashTabl
         // 2 : mp
         // 3 : ngay thang nam sinh
         // 4 : ngay thang nam den
-        // 6 : ngay thang nam di
-        // 6 7 8 9 : dich vu
-        // 10 : Ten
+        // 5 : ngay thang nam di
+        // 6 : so luong
+        // 7 8 9 10: dich vu
+        // 11 : Ten
         getline(file, line);
         vector<string> token = split(line,"|");
         vector<int> dv;
-        dv.push_back(stoi(token[6]));
         dv.push_back(stoi(token[7]));
         dv.push_back(stoi(token[8]));
         dv.push_back(stoi(token[9]));
+        dv.push_back(stoi(token[10]));
         vector<string> ns = split(token[3],"/");
         vector<string> nden = split(token[4],"/");
         vector<string> ndi = split(token[5],"/");
-        (k + i)->NhapThongTin(token[0],token[10],token[1],stoi(ns[0]),stoi(ns[1]),stoi(ns[2]));
-        (k + i)->NhapThongTinKhac(token[2],dv,stoi(nden[0]),stoi(nden[1]),stoi(nden[2]),stoi(nden[3]),stoi(ndi[0]),stoi(ndi[1]),stoi(ndi[2]),stoi(ndi[3]));;
+        (k + i)->NhapThongTin(token[0],token[11],token[1],stoi(ns[0]),stoi(ns[1]),stoi(ns[2]));
+        (k + i)->NhapThongTinKhac(token[2],dv,stoi(nden[0]),stoi(nden[1]),stoi(nden[2]),stoi(nden[3]),stoi(ndi[0]),stoi(ndi[1]),stoi(ndi[2]),stoi(ndi[3]),stoi(token[6]));;
     }
     qlkh.NhapDuLieu(k,htb,size,htb1);
     file.close();
