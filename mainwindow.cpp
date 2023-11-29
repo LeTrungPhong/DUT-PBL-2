@@ -4,6 +4,7 @@
 #include <QCloseEvent>
 #include <QString>
 #include <ctime>
+#include <QApplication>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -36,6 +37,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEditNam2->setValidator(validatorNam2);
 
     ui->stackedWidget->setCurrentIndex(1);
+    ui->labelImgQL->setPixmap(QPixmap("D:\\HK3\\PBL-Project-3\\nguyenminhphuc.jpg"));
+    ui->labelImgTT->setPixmap(QPixmap("D:\\HK3\\PBL-Project-3\\letrungphong.jpg"));
     this->thutu = 0;
 }
 
@@ -78,6 +81,7 @@ void MainWindow::on_TiepTanButton_clicked()
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget2->setCurrentIndex(0);
     ui->stackedWidget3->setCurrentIndex(0);
+    ui->stackedWidget4->setCurrentIndex(1);
     MainWindow::on_buttonTimkiem_clicked();
 }
 
@@ -86,6 +90,7 @@ void MainWindow::on_QuanLyButton_clicked()
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget2->setCurrentIndex(4);
     ui->stackedWidget3->setCurrentIndex(1);
+    ui->stackedWidget4->setCurrentIndex(0);
 }
 
 void MainWindow::on_buttonTimkiem_clicked()
@@ -157,18 +162,89 @@ void MainWindow::on_buttonTimkiem_clicked()
 void MainWindow::XuatPhong()
 {
     int dem = this->thutu;
-    ui->buttonPhong1->setText(this->v[dem]); dem++;
-    ui->buttonPhong2->setText(this->v[dem]); dem++;
-    ui->buttonPhong3->setText(this->v[dem]); dem++;
-    ui->buttonPhong4->setText(this->v[dem]); dem++;
-    ui->buttonPhong5->setText(this->v[dem]); dem++;
-    ui->buttonPhong6->setText(this->v[dem]); dem++;
-    ui->buttonPhong7->setText(this->v[dem]); dem++;
-    ui->buttonPhong8->setText(this->v[dem]); dem++;
-    ui->buttonPhong9->setText(this->v[dem]); dem++;
-    ui->buttonPhong10->setText(this->v[dem]); dem++;
-    ui->buttonPhong11->setText(this->v[dem]); dem++;
+
+    ui->buttonPhong1->setText(this->v[dem]);
+    if(this->tt.KiemTraPhongTrong(this->v[dem].toStdString()))
+        ui->buttonPhong1->setStyleSheet("background-color:#55aa7f");
+    else
+        ui->buttonPhong1->setStyleSheet("background-color:#ff557f");
+    dem++;
+
+    ui->buttonPhong2->setText(this->v[dem]);
+    if(this->tt.KiemTraPhongTrong(this->v[dem].toStdString()))
+        ui->buttonPhong2->setStyleSheet("background-color:#55aa7f");
+    else
+        ui->buttonPhong2->setStyleSheet("background-color:#ff557f");
+    dem++;
+
+    ui->buttonPhong3->setText(this->v[dem]);
+    if(this->tt.KiemTraPhongTrong(this->v[dem].toStdString()))
+        ui->buttonPhong3->setStyleSheet("background-color:#55aa7f");
+    else
+        ui->buttonPhong3->setStyleSheet("background-color:#ff557f");
+    dem++;
+
+    ui->buttonPhong4->setText(this->v[dem]);
+    if(this->tt.KiemTraPhongTrong(this->v[dem].toStdString()))
+        ui->buttonPhong4->setStyleSheet("background-color:#55aa7f");
+    else
+        ui->buttonPhong4->setStyleSheet("background-color:#ff557f");
+    dem++;
+
+    ui->buttonPhong5->setText(this->v[dem]);
+    if(this->tt.KiemTraPhongTrong(this->v[dem].toStdString()))
+        ui->buttonPhong5->setStyleSheet("background-color:#55aa7f");
+    else
+        ui->buttonPhong5->setStyleSheet("background-color:#ff557f");
+    dem++;
+
+    ui->buttonPhong6->setText(this->v[dem]);
+    if(this->tt.KiemTraPhongTrong(this->v[dem].toStdString()))
+        ui->buttonPhong6->setStyleSheet("background-color:#55aa7f");
+    else
+        ui->buttonPhong6->setStyleSheet("background-color:#ff557f");
+    dem++;
+
+    ui->buttonPhong7->setText(this->v[dem]);
+    if(this->tt.KiemTraPhongTrong(this->v[dem].toStdString()))
+        ui->buttonPhong7->setStyleSheet("background-color:#55aa7f");
+    else
+        ui->buttonPhong7->setStyleSheet("background-color:#ff557f");
+    dem++;
+
+    ui->buttonPhong8->setText(this->v[dem]);
+    if(this->tt.KiemTraPhongTrong(this->v[dem].toStdString()))
+        ui->buttonPhong8->setStyleSheet("background-color:#55aa7f");
+    else
+        ui->buttonPhong8->setStyleSheet("background-color:#ff557f");
+    dem++;
+
+    ui->buttonPhong9->setText(this->v[dem]);
+    if(this->tt.KiemTraPhongTrong(this->v[dem].toStdString()))
+        ui->buttonPhong9->setStyleSheet("background-color:#55aa7f");
+    else
+        ui->buttonPhong9->setStyleSheet("background-color:#ff557f");
+    dem++;
+
+    ui->buttonPhong10->setText(this->v[dem]);
+    if(this->tt.KiemTraPhongTrong(this->v[dem].toStdString()))
+        ui->buttonPhong10->setStyleSheet("background-color:#55aa7f");
+    else
+        ui->buttonPhong10->setStyleSheet("background-color:#ff557f");
+    dem++;
+
+    ui->buttonPhong11->setText(this->v[dem]);
+    if(this->tt.KiemTraPhongTrong(this->v[dem].toStdString()))
+        ui->buttonPhong11->setStyleSheet("background-color:#55aa7f");
+    else
+        ui->buttonPhong11->setStyleSheet("background-color:#ff557f");
+    dem++;
+
     ui->buttonPhong12->setText(this->v[dem]);
+    if(this->tt.KiemTraPhongTrong(this->v[dem].toStdString()))
+        ui->buttonPhong12->setStyleSheet("background-color:#55aa7f");
+    else
+        ui->buttonPhong12->setStyleSheet("background-color:#ff557f");
 }
 
 void MainWindow::on_buttonBack_clicked()
@@ -1502,3 +1578,33 @@ void MainWindow::on_buttonXacNhan2_clicked()
         }
     }
 }
+
+void MainWindow::on_buttonOutTT_clicked()
+{
+    this->tt.CapNhatDuLieuKhachHang();
+    this->tt.CapNhatTrangThaiPhong();
+    if(QMessageBox::question(this,"Cau hoi","Xac nhan thoat chuong trinh",QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Ok)
+    {
+        this->tt.LuuPhongVaoFile();
+        this->tt.LuuKhachHangMoiVaoFile();
+        this->tt.LuuKhachHangCuVaoFile();
+        this->tt.LuuHoaDonVaoFile();
+        QCloseEvent *event;
+        event->ignore();
+    }
+}
+
+void MainWindow::on_buttonOutQL_clicked()
+{
+    this->tt.CapNhatDuLieuKhachHang();
+    this->tt.CapNhatTrangThaiPhong();
+    if(QMessageBox::question(this,"Cau hoi","Xac nhan thoat chuong trinh",QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Ok)
+    {
+        this->ql.LuuPhongVaoFile();
+        this->ql.LuuKhachHangMoiVaoFile();
+        this->ql.LuuKhachHangCuVaoFile();
+        QCloseEvent *event;
+        event->ignore();
+    }
+}
+

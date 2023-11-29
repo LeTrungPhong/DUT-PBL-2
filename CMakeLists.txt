@@ -42,6 +42,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Khach_Hang_Moi.txt
         hoadon.h hoadon.cpp
         FileLichSu.txt
+        nguyenminhphuc.jpg
+        letrungphong.jpg
 
     )
 # Define target properties for Android with Qt 6 as:

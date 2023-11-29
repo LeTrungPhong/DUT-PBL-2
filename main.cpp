@@ -31,29 +31,6 @@ int main(int argc, char *argv[])
     QuanLyPhong qlp;
     FilePhong(qlp);
 
-//    Date nden;
-//    nden.Ngay = 12;
-//    nden.Gio = 12;
-//    nden.Thang = 12;
-//    nden.Nam = 12;
-
-//    Date ndi;
-//    ndi.Ngay = 12;
-//    ndi.Gio = 12;
-//    ndi.Thang = 12;
-//    ndi.Nam = 12;
-//    vector<int> dv;
-//    dv.push_back(1);
-//    dv.push_back(1);
-//    dv.push_back(1);
-//    dv.push_back(1);
-//    HoaDon temp;
-//    temp.NhapThongTin("123","1233",dv,nden,ndi,123123123);
-
-//    TiepTan t;
-//    t.NhapThongTinChucNang(qlkh,qlp);
-//    t.NhapHoaDonVaoHashTable(temp);
-//    t.LuuHoaDonVaoFile();
     QApplication a(argc, argv);
     MainWindow w;
     w.NhapThongTin(qlkh,qlp);
