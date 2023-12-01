@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>984</width>
-    <height>759</height>
+    <width>1033</width>
+    <height>770</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,10 +24,99 @@
        <string notr="true">#stackedWidget
 {
 	border: 2px solid rgb(170, 170, 170);
-}</string>
+}
+
+*
+{
+	font-family:Arial Helvetica;
+	background-color: rgb(247, 247, 247);
+}
+
+#TiepTanButton,
+#QuanLyButton,
+#buttonTimKiem2,
+#buttonRealTime,
+#buttonXacNhanDatPhong,
+#buttonTimKiem3,
+#buttonTimKiem4,
+#buttonThanhToan,
+#buttonDichVu1,
+#buttonDichVu2,
+#buttonDichVu3,
+#buttonDichVu4,
+#buttonMacDinh,
+#buttonTatCaPhong,
+#buttonTimkiem,
+#buttonChonPhong,
+#buttonDSKHM,
+#buttonDSKHC,
+#buttonTimKiem,
+#buttonContinue2,
+#buttonBack2,
+#buttonXacNhan,
+#buttonXacNhan2
+{
+	background-color: rgb(232, 232, 232);
+	font-weight: 600;
+	color:rgb(77, 77, 77);
+}
+
+#labelTC1
+{
+	font-size: 40px;
+	color: rgb(170, 0, 0);
+	font-weight: 800
+}
+
+#labelTC2
+{
+	font-size: 35px;
+	color: rgb(0, 170, 0);
+	font-weight: 800;
+}
+
+#labelTC4
+{
+	font-size: 20px;
+	color: rgb(0, 0, 127);
+	font-weight: 800;
+}
+
+#labelTC3
+{
+	font-size: 20px;
+	color: rgb(0, 85, 255);
+	font-weight: 600px;
+}
+
+#labelTC5
+{
+	font-size: 20px;
+	color: rgb(85, 0, 0);
+	font-weight: 600px;
+}
+
+#labelSV1,#labelMSSV1,
+#labelSV2,#labelMSSV2
+{
+	font-size: 12px;
+	color:rgb(77, 77, 77);
+	font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -364,15 +453,32 @@
               <string notr="true">#stackedWidget3
 {
 	border: 1.5px solid gray;
+}
+
+#buttonTimPhong,
+#buttonDatPhong,
+#buttonTraPhong,
+#buttonDichVu,
+#buttonOutTT,
+#buttonQLKH,
+#buttonQLP,
+#buttonOutQL
+{
+	color:rgb(77, 77, 77);
+	font-weight: 800;
+	background-color:rgb(225, 225, 225);
 }</string>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="page_8">
               <layout class="QHBoxLayout" name="horizontalLayout_3">
                <item>
                 <widget class="QFrame" name="frame_7">
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
                  </property>
@@ -584,7 +690,7 @@
 #frame_55,#frame_56,#frame_57,#frame_58,
 #frame_49,#frame_50,#frame_51,#frame_53,
 #frame_64,#frame_65,#frame_66,#frame_67,
-#frame_71,#frame_37,
+#frame_71,#frame_36,
 #frame_24,#frame_25,#frame_86,#frame_52,
 #frame_79,#frame_80,#frame_81
 {
@@ -598,8 +704,8 @@
 
 #frame_4,#frame_12,
 #frame_38,#frame_54,#frame_41,#frame_48,#frame_59,#frame_63,
-#frame_68,#frame_70,#frame_36,#frame_78,#frame_26,#frame_19,
-#frame_34,#frame_40,#frame_84
+#frame_68,#frame_70,#frame_78,#frame_26,#frame_19,
+#frame_34,#frame_40,#frame_84,#frame_27
 {
 	border: 1.5px solid rgb(208, 208, 208);
 }
@@ -664,9 +770,19 @@
 }
 
 #label_70,#label_71,#label_72,#label_73,
-#label_76,#label_75,#label_74,#label_77,#label_79
+#label_76,#label_75,#label_74,#label_77,#label_79,
+#label_82,#label_83,#label_84,#label_85,
+#label_86,#label_87,#label_88,#label_89,
+#label_90
 {
 	color: rgb(93, 93, 93);
+}
+
+#buttonBack,#buttonContinue
+{
+	background-color: rgb(172, 172, 172);
+	color: rgb(241, 241, 241);
+	font-weight: 700;
 }</string>
              </property>
              <property name="currentIndex">
@@ -1589,6 +1705,21 @@
                      <enum>QFrame::Raised</enum>
                     </property>
                     <layout class="QGridLayout" name="gridLayout">
+                     <property name="leftMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="spacing">
+                      <number>5</number>
+                     </property>
                      <item row="2" column="1">
                       <widget class="QFrame" name="frame_32">
                        <property name="frameShape">
@@ -1824,6 +1955,21 @@
                      <enum>QFrame::Raised</enum>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_26">
+                     <property name="spacing">
+                      <number>5</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>5</number>
+                     </property>
                      <item>
                       <widget class="QFrame" name="frame_79">
                        <property name="frameShape">
@@ -1832,7 +1978,80 @@
                        <property name="frameShadow">
                         <enum>QFrame::Raised</enum>
                        </property>
-                       <layout class="QVBoxLayout" name="verticalLayout_12"/>
+                       <layout class="QVBoxLayout" name="verticalLayout_12">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLabel" name="label_80">
+                          <property name="font">
+                           <font>
+                            <family>Arial Helvetica</family>
+                            <italic>true</italic>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Lưu ý:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_82">
+                          <property name="text">
+                           <string>- Giá phòng giảm 15% vào 6am - 6pm</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_83">
+                          <property name="text">
+                           <string>- Đặt tối thiểu 6h (thời gian dư (tiền * 45%))</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_84">
+                          <property name="text">
+                           <string>- Tiền được tính tiếp * 90% sau 3 ngày</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_85">
+                          <property name="text">
+                           <string>- Quá thời gian so với dự định ban thì thì hệ</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_86">
+                          <property name="text">
+                           <string>thống vẫn tiếp tục tính tiền</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_87">
+                          <property name="text">
+                           <string>- Quá thời gian so với khoảng thời gian khách</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_88">
+                          <property name="text">
+                           <string>hàng khác đặt phòng trước thì quản lý sẽ trực</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_89">
+                          <property name="text">
+                           <string> tiếp mời khách hàng đang ở rời phòng</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
                       </widget>
                      </item>
                     </layout>
@@ -2400,6 +2619,7 @@
                       <widget class="QLabel" name="label_71">
                        <property name="font">
                         <font>
+                         <family>Arial Helvetica</family>
                          <italic>false</italic>
                         </font>
                        </property>
@@ -2439,6 +2659,7 @@
                       <widget class="QLabel" name="label_75">
                        <property name="font">
                         <font>
+                         <family>Arial Helvetica</family>
                          <italic>false</italic>
                         </font>
                        </property>
@@ -2510,6 +2731,7 @@
                       <widget class="QLabel" name="label_70">
                        <property name="font">
                         <font>
+                         <family>Arial Helvetica</family>
                          <italic>false</italic>
                         </font>
                        </property>
@@ -2522,6 +2744,7 @@
                       <widget class="QLabel" name="label_72">
                        <property name="font">
                         <font>
+                         <family>Arial Helvetica</family>
                          <italic>false</italic>
                         </font>
                        </property>
@@ -2580,6 +2803,7 @@
                       <widget class="QLabel" name="label_76">
                        <property name="font">
                         <font>
+                         <family>Arial Helvetica</family>
                          <italic>false</italic>
                         </font>
                        </property>
@@ -2592,6 +2816,7 @@
                       <widget class="QLabel" name="label_77">
                        <property name="font">
                         <font>
+                         <family>Arial Helvetica</family>
                          <italic>false</italic>
                         </font>
                        </property>
@@ -2629,6 +2854,7 @@
                       <widget class="QLabel" name="label_73">
                        <property name="font">
                         <font>
+                         <family>Arial Helvetica</family>
                          <italic>false</italic>
                         </font>
                        </property>
@@ -2641,6 +2867,7 @@
                       <widget class="QLabel" name="label_74">
                        <property name="font">
                         <font>
+                         <family>Arial Helvetica</family>
                          <italic>false</italic>
                         </font>
                        </property>
@@ -4690,34 +4917,21 @@
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout">
-              <item>
-               <spacer name="horizontalSpacer">
+             <layout class="QGridLayout" name="gridLayout_32">
+              <item row="3" column="2">
+               <spacer name="verticalSpacer">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
-                  <width>40</width>
-                  <height>20</height>
+                  <width>20</width>
+                  <height>40</height>
                  </size>
                 </property>
                </spacer>
               </item>
-              <item>
-               <widget class="QPushButton" name="TiepTanButton">
-                <property name="minimumSize">
-                 <size>
-                  <width>200</width>
-                  <height>71</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Tiếp Tân</string>
-                </property>
-               </widget>
-              </item>
-              <item>
+              <item row="2" column="3">
                <widget class="QPushButton" name="QuanLyButton">
                 <property name="minimumSize">
                  <size>
@@ -4730,7 +4944,7 @@
                 </property>
                </widget>
               </item>
-              <item>
+              <item row="2" column="4">
                <spacer name="horizontalSpacer_2">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -4742,6 +4956,214 @@
                  </size>
                 </property>
                </spacer>
+              </item>
+              <item row="1" column="0" colspan="5">
+               <widget class="QFrame" name="frame_85">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>300</height>
+                 </size>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_33">
+                 <item row="7" column="4">
+                  <spacer name="horizontalSpacer_12">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Maximum</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="6" column="4">
+                  <spacer name="horizontalSpacer_5">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Maximum</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="7" column="2">
+                  <widget class="QLabel" name="labelSV2">
+                   <property name="maximumSize">
+                    <size>
+                     <width>200</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>Sinh viên: Nguyễn Minh Phúc</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0" colspan="5" alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="labelTC4">
+                   <property name="text">
+                    <string>Đề tài: Xây dựng hệ thống quản lý phòng và khách hàng của khách sạn</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="2">
+                  <widget class="QLabel" name="labelSV1">
+                   <property name="maximumSize">
+                    <size>
+                     <width>200</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>Sinh viên: Lê Trung Phong</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="3">
+                  <widget class="QLabel" name="labelMSSV2">
+                   <property name="text">
+                    <string>MSSV 102220246</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0" colspan="5" alignment="Qt::AlignHCenter">
+                  <widget class="QFrame" name="frame_88">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout">
+                    <item>
+                     <widget class="QLabel" name="labelTC3">
+                      <property name="text">
+                       <string>Giảng viên phụ trách: </string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="labelTC5">
+                      <property name="text">
+                       <string>Mai Văn Hà</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="6" column="0" colspan="2">
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Maximum</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>550</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="1" column="0" colspan="5" alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="labelTC1">
+                   <property name="text">
+                    <string>ĐỒ ÁN CƠ SỞ LẬP TRÌNH PBL 2</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0" colspan="5" alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="labelTC2">
+                   <property name="text">
+                    <string>Lập Trình Hướng Đối Tượng &amp; Cấu Trúc Dữ Liệu</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="0" colspan="2">
+                  <spacer name="horizontalSpacer_4">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="6" column="3">
+                  <widget class="QLabel" name="labelMSSV1">
+                   <property name="text">
+                    <string>MSSV 102220245</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0" colspan="5">
+                  <spacer name="verticalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Maximum</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>70</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="2" column="2">
+               <widget class="QPushButton" name="TiepTanButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>71</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Tiếp Tân</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -4761,7 +5183,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>984</width>
+     <width>1033</width>
      <height>21</height>
     </rect>
    </property>
