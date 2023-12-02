@@ -237,7 +237,7 @@ void FileKhachHangMoi(QuanLyKhachHang &qlkh, HashTable<KhachHang> &htb, HashTabl
         vector<string> nden = split(token[5],"/");
         vector<string> ndi = split(token[6],"/");
         (k + i)->NhapThongTin(token[1],token[12],token[2],stoi(ns[0]),stoi(ns[1]),stoi(ns[2]));
-        (k + i)->NhapThongTinKhac(token[0],token[3],dv,stoi(nden[0]),stoi(nden[1]),stoi(nden[2]),stoi(nden[3]),stoi(ndi[0]),stoi(ndi[1]),stoi(ndi[2]),stoi(ndi[3]),stoi(token[7]));;
+        (k + i)->NhapThongTinKhac(token[0],token[3],dv,stoi(nden[0]),stoi(nden[1]),stoi(nden[2]),stoi(nden[3]),stoi(ndi[0]),stoi(ndi[1]),stoi(ndi[2]),stoi(ndi[3]),stoi(token[7]));
     }
     qlkh.NhapDuLieu(k,htb,size,htb1);
     file.close();

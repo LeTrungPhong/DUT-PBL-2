@@ -194,9 +194,10 @@ void TiepTan::CapNhatTrangThaiPhong()
     {
         KhachHang *k = &((this->qlkh)[i]);
         if(k->LayCCCD() == "0") continue;
-        if(k->KiemTraCapNhatThoiGian())
+        HoaDon *hd = &(this->qlkh.HoaDonTheoCCCDMaHD(k->LayCCCD(),k->LayMaHD()));
+        if(hd->KiemTraCapNhatThoiGian())
         {
-            string str = k->LayTenPhong();
+            string str = hd->LayTenPhong();
             int lp = this->qlp.XacDinhLoaiPhong(str);
             if(lp == 0) continue;
             if(lp == 1) this->qlp.LayThongTinPhongCoBan(str).ChuyenTrangThaiPhongTrong();
@@ -221,15 +222,19 @@ void TiepTan::CapNhatDuLieuKhachHang()
     int sl = this->qlkh.LaySoLuong();
     for(int i = 0; i < sl; ++i)
     {
-        if((this->qlkh)[i].LayCCCD() == "0") continue;
-        string str = (this->qlkh)[i].LayTenPhong();
+        KhachHang *kh = &((this->qlkh)[i]);
+        if(kh->LayCCCD() == "0") continue;
+        HoaDon *hd = &(this->qlkh.HoaDonTheoCCCDMaHD(kh->LayCCCD(),kh->LayMaHD()));
+        string str = hd->LayTenPhong();
         vector<int> tt;
         tt.push_back(i);
         int dem = 1;
         for(int x = 0; x < sl; ++x)
         {
+            KhachHang *temp = &((this->qlkh)[x]);
+            HoaDon *hdt = &(this->qlkh.HoaDonTheoCCCDMaHD(temp->LayCCCD(),temp->LayMaHD()));
             if(i == x) continue;
-            if((this->qlkh)[x].LayTenPhong() == str)
+            if(hdt->LayTenPhong() == str)
             {
                 dem++;
                 tt.push_back(x);
@@ -237,10 +242,13 @@ void TiepTan::CapNhatDuLieuKhachHang()
         }
         for(int x = 1; x < dem; ++x)
         {
-            KhachHang k = (this->qlkh)[tt[x]];
+            KhachHang *k = &((this->qlkh)[tt[x]]);
+            HoaDon *hdt = &(this->qlkh.HoaDonTheoCCCDMaHD(k->LayCCCD(),k->LayMaHD()));
             for(int j = x - 1; j >=0; --j)
             {
-                if(SoSanhThoiGian(k.LayNgayTraPhong(),(this->qlkh)[tt[j]].LayNgayDatPhong()))
+                KhachHang *temp = &((this->qlkh)[tt[j]]);
+                HoaDon *hdt1 = &(this->qlkh.HoaDonTheoCCCDMaHD(temp->LayCCCD(),temp->LayMaHD()));
+                if(SoSanhThoiGian(hdt->LayNgayTraPhong(),hdt1->LayNgayDatPhong()))
                 {
                     KhachHang *ct = &((this->qlkh)[tt[j+1]]);
                     *ct = (this->qlkh)[tt[j]];
@@ -248,13 +256,13 @@ void TiepTan::CapNhatDuLieuKhachHang()
                 else
                 {
                     KhachHang *ct = &((this->qlkh)[tt[j+1]]);
-                    *ct = k;
+                    *ct = *k;
                     break;
                 }
                 if(j == 0)
                 {
                     KhachHang *ct = &((this->qlkh)[tt[0]]);
-                    *ct = k;
+                    *ct = *k;
                 }
             }
         }
@@ -272,34 +280,27 @@ void TiepTan::CapNhatDuLieuKhachHang()
             x.Ngay = currentDay;
             x.Thang = currentMonth;
             x.Nam = currentYear;
-            if(SoSanhThoiGian((this->qlkh)[tt[k]].LayNgayDatPhong(),x))
+            KhachHang *kht = &((this->qlkh)[tt[k]]);
+            HoaDon *hdt = &(this->qlkh.HoaDonTheoCCCDMaHD(kht->LayCCCD(),kht->LayMaHD()));
+            if(SoSanhThoiGian(hdt->LayNgayDatPhong(),x))
             {
                 for(int j = 0; j < k; ++j)
                 {
-//                    (this->qlkh)[tt[j]].NhapNgayTraPhong2((this->qlkh)[tt[j+1]].LayNgayDatPhong());
-//                    string str = (this->qlkh)[tt[j]].LayTenPhong();
-//                    int lp = this->qlp.XacDinhLoaiPhong(str);
-//                    long long giatien = 0;
-//                    if(lp == 1) giatien = this->qlp.LayThongTinPhongCoBan(str).LayGiaTien();
-//                    if(lp == 2) giatien = this->qlp.LayThongTinPhongThuong(str).LayGiaTien();
-//                    if(lp == 3) giatien = this->qlp.LayThongTinPhongThuongGia(str).LayGiaTien();
-//                    (this->qlkh)[tt[j]].TinhTienPhong(giatien);
-
                     KhachHang *t = &((this->qlkh)[tt[j]]);
-                    t->NhapNgayTraPhong2((this->qlkh)[tt[j+1]].LayNgayDatPhong());
-                    string str = t->LayTenPhong();
+                    HoaDon *hdtt = &((this->qlkh).HoaDonTheoCCCDMaHD(t->LayCCCD(),t->LayMaHD()));
+                    KhachHang *t1 = &((this->qlkh)[tt[j+1]]);
+                    HoaDon *hdtt1 = &((this->qlkh).HoaDonTheoCCCDMaHD(t1->LayCCCD(),t1->LayMaHD()));
+                    hdtt->NhapNgayTraPhong(hdtt1->LayNgayDatPhong());
+                    hdtt->NhapNgayThucTe(hdtt1->LayNgayDatPhong());
+                    string str = hdtt->LayTenPhong();
                     int lp = this->qlp.XacDinhLoaiPhong(str);
                     long long giatien = 0;
                     if(lp == 1) giatien = this->qlp.LayThongTinPhongCoBan(str).LayGiaTien();
                     if(lp == 2) giatien = this->qlp.LayThongTinPhongThuong(str).LayGiaTien();
                     if(lp == 3) giatien = this->qlp.LayThongTinPhongThuongGia(str).LayGiaTien();
-                    t->TinhTienPhong(giatien);
-
-                    HoaDon hd;
-                    hd.NhapThongTin(t->LayCCCD(),t->LayTenPhong(),t->LayDichVu(),t->LayNgayDatPhong(),t->LayNgayTraPhong(),t->LayNgayTraPhong(),t->LayTienPhong());
-                    hd.TaoMaHD();
-                    this->qlkh.NhapHoaDonVaoHashTable(hd);
-                    this->qlkh.NhapKhachHangVaoHashTable((this->qlkh)[tt[j]].LayCCCD());
+                    hdtt->TinhTienPhong(giatien);
+                    t->TangSoLuong();
+                    this->qlkh.NhapKhachHangVaoHashTable(t->LayCCCD());
                 }
                 break;
             }

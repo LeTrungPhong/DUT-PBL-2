@@ -66,6 +66,16 @@ void HoaDon::NhapCCCD(string cccd)
     this->CCCD = cccd;
 }
 
+void HoaDon::NhapNgayThucTe(const Date& ngtt)
+{
+    this->NgayDiThucTe = ngtt;
+}
+
+void HoaDon::NhapNgayTraPhong(const Date & hd)
+{
+    this->NgayDi = hd;
+}
+
 bool HoaDon::operator == (const HoaDon& hd)
 {
     bool check = true;
@@ -242,4 +252,43 @@ void HoaDon::TinhTienPhong(long long gt)
         this->TongTien = this->TongTien + (6 - (giodi - gioden))*gt*(45.0/100);
     }
     this->TongTien = this->TongTien + tiendv;
+}
+
+void HoaDon::TangDichVu(int k)
+{
+    this->DichVu[k]++;
+}
+
+Date& HoaDon::LayNgayDatPhong()
+{
+    return this->NgayDen;
+}
+
+Date& HoaDon::LayNgayTraPhong()
+{
+    return this->NgayDi;
+}
+
+bool HoaDon::KiemTraCapNhatThoiGian()
+{
+    time_t now = time(0);
+    tm* currentDate = localtime(&now);
+    int currentYear = currentDate->tm_year + 1900;
+    int currentMonth = currentDate->tm_mon + 1;
+    int currentDay = currentDate->tm_mday;
+    int currentHour = currentDate->tm_hour;
+
+    bool check = false;
+
+    int gioden = this->NgayDen.Gio;
+    int ngayden = this->NgayDen.Ngay;
+    int thangden = this->NgayDen.Thang;
+    int namden = this->NgayDen.Nam;
+
+    if(namden < currentYear) check = true;
+    if(namden == currentYear && thangden < currentMonth) check = true;
+    if(namden == currentYear && thangden == currentMonth && ngayden < currentDay) check = true;
+    if(namden == currentYear && thangden == currentMonth && ngayden == currentDay && gioden <= currentHour) check = true;
+
+    return check;
 }

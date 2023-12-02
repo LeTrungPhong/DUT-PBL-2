@@ -710,7 +710,6 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
                             temp.NhapSoLuong((this->tt.KhachHangCuTheoCCCD(CCCDNhap)).LaySoLuong());
                             temp.NhapPhongKhachHangDat(str);
                             this->tt.KhachHangDatPhong(temp);
-//                            this->tt.LayKhachHanghtb(CCCDNhap);
                         }
                         else
                         {
@@ -816,10 +815,11 @@ void MainWindow::on_buttonTimKiem3_clicked()
         MainWindow::HienThiPhongRaManHinh3(QString::fromStdString(TenPhong),LoaiPhong,gdqt,gdoiqt,gt);
     }
 
-    KhachHang *kh = &(tt.KhachHangTheoPhongTime(str));
-    Date date = kh->LayNgayDatPhong();
-    vector<int> dv = kh->LayDichVu();
-    ui->labelCCCD->setText(QString::fromStdString(kh->LayCCCD()));
+    KhachHang *kh = &(this->tt.KhachHangTheoPhongTime(str));
+    HoaDon *hd = &(this->tt.HoaDonTheoCCCDMaHD(kh->LayCCCD(),kh->LayMaHD()));
+    Date date = hd->LayNgayDatPhong();
+    vector<int> dv = hd->LayDichVu();
+    ui->labelCCCD->setText(QString::fromStdString(hd->LayCCCD()));
     ui->labelTenKhachHang->setText(QString::fromStdString(kh->LayTen()));
     ui->labelSDT->setText(QString::fromStdString(kh->LaySDT()));
     ui->labelNgaySinh->setText(QString::fromStdString(kh->LayBirth()));
@@ -836,7 +836,12 @@ void MainWindow::on_buttonTimKiem3_clicked()
     int currentDay = currentDate->tm_mday;
     int currentHour = currentDate->tm_hour;
 
-    Date ndi = kh->LayNgayTraPhong();
+    date.Gio = currentHour;
+    date.Ngay = currentDay;
+    date.Thang = currentMonth;
+    date.Nam = currentYear;
+
+    Date ndi = hd->LayNgayTraPhong();
 
     bool check = true;
 
@@ -847,15 +852,15 @@ void MainWindow::on_buttonTimKiem3_clicked()
 
     if(!check)
     {
-        kh->NhapNgayTraPhong(currentDay,currentMonth,currentYear,currentHour);
+        hd->NhapNgayTraPhong(date);
     }
-    ndi = kh->LayNgayTraPhong();
+    ndi = hd->LayNgayTraPhong();
 
     ui->labelThoiGianTra->setText(QLocale().toString(ndi.Ngay) + "/" + QLocale().toString(ndi.Thang) + "/" + QLocale().toString(ndi.Nam) + "\n" + QLocale().toString(ndi.Gio));
 
-    kh->TinhTienPhong(giatien);
+    hd->TinhTienPhong(giatien);
 
-    QString tien = QLocale().toString(kh->LayTienPhong());
+    QString tien = QLocale().toString(hd->LayTienPhong());
     ui->labelTongTien->setText(tien);
 }
 
@@ -881,7 +886,7 @@ void MainWindow::on_buttonThanhToan_clicked()
         DialogThanhToan dialog(this);
         dialog.setModal(true);
         dialog.exec();
-        KhachHang *kh = &(tt.KhachHangTheoPhongTime(str));
+
         time_t now = time(0);
         tm* currentDate = localtime(&now);
         int currentYear = currentDate->tm_year + 1900;
@@ -893,11 +898,11 @@ void MainWindow::on_buttonThanhToan_clicked()
         nditt.Ngay = currentDay;
         nditt.Thang = currentMonth;
         nditt.Nam = currentYear;
+
+        KhachHang *kh = &(this->tt.KhachHangTheoPhongTime(str));
+        HoaDon *hd = &(this->tt.HoaDonTheoCCCDMaHD(kh->LayCCCD(),kh->LayMaHD()));
+        hd->NhapNgayThucTe(nditt);
         kh->TangSoLuong();
-        HoaDon hd;
-        hd.NhapThongTin(kh->LayCCCD(),kh->LayTenPhong(),kh->LayDichVu(),kh->LayNgayDatPhong(),kh->LayNgayTraPhong(),nditt,kh->LayTienPhong());
-        hd.TaoMaHD();
-        this->tt.NhapHoaDonVaoHashTable(hd);
         this->tt.ChuyenTrangThaiPhong(str);
         this->tt.NhapKhachHangVaoHashTable(kh->LayCCCD());
     }
@@ -956,6 +961,9 @@ void MainWindow::on_buttonDichVu1_clicked()
     }
     if(QMessageBox::question(this,"Thong bao","Xac nhan khach hang su dung dich vu 1",QMessageBox::Ok,QMessageBox::Cancel) == QMessageBox::Ok)
     {
+        KhachHang *kh = &(this->tt.KhachHangTheoPhongTime(str));
+        HoaDon *hd = &(this->tt.HoaDonTheoCCCDMaHD(kh->LayCCCD(),kh->LayMaHD()));
+        hd->TangDichVu(0);
         this->tt.TangDichVu(0,str);
         QMessageBox::information(this,"Thong bao","Thanh cong");
         int k = ui->labelSoluongDichVu1->text().toInt();
@@ -979,6 +987,9 @@ void MainWindow::on_buttonDichVu2_clicked()
     }
     if(QMessageBox::question(this,"Thong bao","Xac nhan khach hang su dung dich vu 2",QMessageBox::Ok,QMessageBox::Cancel) == QMessageBox::Ok)
     {
+        KhachHang *kh = &(this->tt.KhachHangTheoPhongTime(str));
+        HoaDon *hd = &(this->tt.HoaDonTheoCCCDMaHD(kh->LayCCCD(),kh->LayMaHD()));
+        hd->TangDichVu(1);
         tt.TangDichVu(1,str);
         QMessageBox::information(this,"Thong bao","Thanh cong");
         int k = ui->labelSoluongDichVu2->text().toInt();
@@ -1002,6 +1013,9 @@ void MainWindow::on_buttonDichVu3_clicked()
     }
     if(QMessageBox::question(this,"Thong bao","Xac nhan khach hang su dung dich vu 3",QMessageBox::Ok,QMessageBox::Cancel) == QMessageBox::Ok)
     {
+        KhachHang *kh = &(this->tt.KhachHangTheoPhongTime(str));
+        HoaDon *hd = &(this->tt.HoaDonTheoCCCDMaHD(kh->LayCCCD(),kh->LayMaHD()));
+        hd->TangDichVu(2);
         tt.TangDichVu(2,str);
         QMessageBox::information(this,"Thong bao","Thanh cong");
         int k = ui->labelSoluongDichVu3->text().toInt();
@@ -1025,6 +1039,9 @@ void MainWindow::on_buttonDichVu4_clicked()
     }
     if(QMessageBox::question(this,"Thong bao","Xac nhan khach hang su dung dich vu 1",QMessageBox::Ok,QMessageBox::Cancel) == QMessageBox::Ok)
     {
+        KhachHang *kh = &(this->tt.KhachHangTheoPhongTime(str));
+        HoaDon *hd = &(this->tt.HoaDonTheoCCCDMaHD(kh->LayCCCD(),kh->LayMaHD()));
+        hd->TangDichVu(3);
         tt.TangDichVu(3,str);
         QMessageBox::information(this,"Thong bao","Thanh cong");
         int k = ui->labelSoluongDichVu4->text().toInt();
@@ -1079,7 +1096,7 @@ void MainWindow::on_buttonRealTime_clicked()
     ui->lineEditGio2->setText(QLocale().toString(currentHour));
     ui->lineEditNgay2->setText(QLocale().toString(currentDay));
     ui->lineEditThang2->setText(QLocale().toString(currentMonth));
-    ui->lineEditNam2->setText(QLocale().toString(currentYear));
+    ui->lineEditNam2->setText(QLocale().toString(currentYear).remove(','));
 }
 
 // Quan Ly
