@@ -147,6 +147,40 @@ void QuanLyKhachHang::HienThiThongTinKhachHang()
     }
 }
 
+KhachHang& QuanLyKhachHang::KhachHangTheoPhongTime(string tp)
+{
+    for(int i = 0; i < this->size; i++)
+    {
+        bool check = false;
+        time_t now = time(0);
+        tm* currentDate = localtime(&now);
+        int currentYear = currentDate->tm_year + 1900;
+        int currentMonth = currentDate->tm_mon + 1;
+        int currentDay = currentDate->tm_mday;
+        int currentHour = currentDate->tm_hour;
+        Date nden = (this->kh + i)->LayNgayDatPhong();
+        int gioden = nden.Gio;
+        int ngayden = nden.Ngay;
+        int thangden = nden.Thang;
+        int namden = nden.Nam;
+
+        if(currentYear < namden) check = true;
+        if(currentYear == namden && currentMonth < thangden) check = true;
+        if(currentYear == namden && currentMonth == thangden && currentDay < ngayden) check = true;
+        if(currentYear == namden && currentMonth == thangden && currentDay == ngayden && currentHour < gioden) check = true;
+        if(check)
+        {
+            continue;
+        }
+        if((this->kh + i)->LayTenPhong() == tp)
+        {
+            return *(this->kh + i);
+        }
+    }
+    KhachHang k;
+    return k;
+}
+
 KhachHang& QuanLyKhachHang::KhachHangTheoPhong(string tp)
 {
     for(int i = 0; i < this->size; i++)
@@ -163,6 +197,11 @@ KhachHang& QuanLyKhachHang::KhachHangTheoPhong(string tp)
 KhachHang& QuanLyKhachHang::KhachHangCuTheoCCCD(string cccd)
 {
     return this->htb.LayThongTinTheoID(cccd);
+}
+
+HoaDon& QuanLyKhachHang::HoaDonTheoCCCDMaHD(string cccd, string mahd)
+{
+    return this->htb1.LayThongTinTheoID(cccd,mahd);
 }
 
 void QuanLyKhachHang::HienThiTable()
@@ -190,6 +229,27 @@ void QuanLyKhachHang::TangDichVu(int k, string str)
 {
     for(int i = 0; i < this->size; i++)
     {
+        bool check = false;
+        time_t now = time(0);
+        tm* currentDate = localtime(&now);
+        int currentYear = currentDate->tm_year + 1900;
+        int currentMonth = currentDate->tm_mon + 1;
+        int currentDay = currentDate->tm_mday;
+        int currentHour = currentDate->tm_hour;
+        Date nden = (this->kh + i)->LayNgayDatPhong();
+        int gioden = nden.Gio;
+        int ngayden = nden.Ngay;
+        int thangden = nden.Thang;
+        int namden = nden.Nam;
+
+        if(currentYear < namden) check = true;
+        if(currentYear == namden && currentMonth < thangden) check = true;
+        if(currentYear == namden && currentMonth == thangden && currentDay < ngayden) check = true;
+        if(currentYear == namden && currentMonth == thangden && currentDay == ngayden && currentHour < gioden) check = true;
+        if(check)
+        {
+            continue;
+        }
         if(str == (this->kh + i)->LayTenPhong())
         {
             (this->kh + i)->TangDichVu(k);
@@ -211,7 +271,7 @@ void QuanLyKhachHang::LuuKhachHangMoiVaoFile()
     for(int i = 0; i < this->size; ++i)
     {
         vector<int> v = (this->kh + i)->LayDichVu();
-        outfile << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LaySDT() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayBirth() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << (this->kh + i)->LaySoLuong() << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTen() << endl;
+        outfile << (this->kh + i)->LayMaHD() << "|" << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LaySDT() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayBirth() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << (this->kh + i)->LaySoLuong() << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTen() << endl;
     }
     outfile.close();
 }
@@ -228,7 +288,7 @@ int QuanLyKhachHang::LaySoLuong()
 
 void QuanLyKhachHang::LayKhachHanghtb(string cccd)
 {
-                                                   return this->htb.XoaKhachHang(cccd);
+    return this->htb.XoaKhachHang(cccd);
 }
 
 KhachHang& QuanLyKhachHang::operator[](const int& index)

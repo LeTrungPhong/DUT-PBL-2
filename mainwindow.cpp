@@ -73,7 +73,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::NhapThongTin(const QuanLyKhachHang &k, const QuanLyPhong &p)
 {
     this->ql.NhapThongTinChucNang(k,p);
-    this->tt.NhapThongTinChucNang(k,p);   
+    this->tt.NhapThongTinChucNang(k,p);
 }
 
 void MainWindow::on_TiepTanButton_clicked()
@@ -645,13 +645,28 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
             QMessageBox::warning(this,"Thong bao","Khoang thoi gian da co nguoi dat");
             return;
         }
+        Date nden;
+        nden.Gio = gioden;
+        nden.Ngay = ngayden;
+        nden.Thang = thangden;
+        nden.Nam = namden;
+        Date ndi;
+        ndi.Gio = giodi;
+        ndi.Ngay = ngaydi;
+        ndi.Thang = thangdi;
+        ndi.Nam = namdi;
+        HoaDon hd;
+        hd.NhapThongTin(nden,ndi);
+        hd.NhapTenPhong(str);
+        hd.TaoMaHD();
 
-        long long giatien;
+        long long giatien = 0;
         int lp = tt.XacDinhLoaiPhong(str);
         if(lp == 0) return;
         if(lp == 1) giatien = tt.LayThongTinPhongCoBan(str).LayGiaTien();
         if(lp == 2) giatien = tt.LayThongTinPhongThuong(str).LayGiaTien();
         if(lp == 3) giatien = tt.LayThongTinPhongThuongGia(str).LayGiaTien();
+        hd.TinhTienPhong(giatien);
         temp.TinhTienPhong(giatien);
 
         if(!(QMessageBox::question(this,"Thong bao", "Tong tien phong: " + QLocale().toString(temp.LayTienPhong()),QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Ok))
@@ -674,20 +689,20 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
                     int NgayNhap = dialog.LayNgayNhapVao().toInt();
                     int ThangNhap = dialog.LayThangNhapVao().toInt();
                     int NamNhap = dialog.LayNamNhapVao().toInt();
-
+                    hd.NhapCCCD(CCCDNhap);
                     if(this->tt.KiemTraKhachHangDatPhong(CCCDNhap))
                     {
                         QMessageBox::information(this,"Thong bao","Khach hang da ton tai");
                         return;
                     }
 
+                    temp.NhapMaHD(hd.LayMaHD());
                     temp.NhapThongTin(CCCDNhap,TenNhap,SDTNhap,NgayNhap,ThangNhap,NamNhap);
                     if(!temp.KiemTraThongTinNhapVao())
                     {
                         QMessageBox::warning(this,"Thong bao","Thong tin nhap vao khong hop le");
                         return;
                     }
-
                     if(this->tt.KiemTraKhachHangCu(temp))
                     {
                         if(this->tt.KiemTraThongTin(temp))
@@ -695,7 +710,7 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
                             temp.NhapSoLuong((this->tt.KhachHangCuTheoCCCD(CCCDNhap)).LaySoLuong());
                             temp.NhapPhongKhachHangDat(str);
                             this->tt.KhachHangDatPhong(temp);
-                            this->tt.LayKhachHanghtb(CCCDNhap);
+//                            this->tt.LayKhachHanghtb(CCCDNhap);
                         }
                         else
                         {
@@ -706,8 +721,9 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
                     else
                     {
                         temp.NhapPhongKhachHangDat(str);
-                        tt.KhachHangDatPhong(temp);
+                        this->tt.KhachHangDatPhong(temp);
                     }
+                    this->tt.NhapHoaDonVaoHashTable(hd);
                     return;
                 }
             }
@@ -758,7 +774,7 @@ void MainWindow::on_buttonTimKiem3_clicked()
         QMessageBox::information(this,"Thong bao","Phong dang bao tri");
         return;
     }
-    long long giatien;
+    long long giatien = 0;
     int lp = tt.XacDinhLoaiPhong(str);
     if(lp == 0) return;
     if(lp == 1)
@@ -800,7 +816,7 @@ void MainWindow::on_buttonTimKiem3_clicked()
         MainWindow::HienThiPhongRaManHinh3(QString::fromStdString(TenPhong),LoaiPhong,gdqt,gdoiqt,gt);
     }
 
-    KhachHang *kh = &(tt.KhachHangTheoPhong(str));
+    KhachHang *kh = &(tt.KhachHangTheoPhongTime(str));
     Date date = kh->LayNgayDatPhong();
     vector<int> dv = kh->LayDichVu();
     ui->labelCCCD->setText(QString::fromStdString(kh->LayCCCD()));
@@ -865,7 +881,7 @@ void MainWindow::on_buttonThanhToan_clicked()
         DialogThanhToan dialog(this);
         dialog.setModal(true);
         dialog.exec();
-        KhachHang *kh = &(tt.KhachHangTheoPhong(str));
+        KhachHang *kh = &(tt.KhachHangTheoPhongTime(str));
         time_t now = time(0);
         tm* currentDate = localtime(&now);
         int currentYear = currentDate->tm_year + 1900;
@@ -880,6 +896,7 @@ void MainWindow::on_buttonThanhToan_clicked()
         kh->TangSoLuong();
         HoaDon hd;
         hd.NhapThongTin(kh->LayCCCD(),kh->LayTenPhong(),kh->LayDichVu(),kh->LayNgayDatPhong(),kh->LayNgayTraPhong(),nditt,kh->LayTienPhong());
+        hd.TaoMaHD();
         this->tt.NhapHoaDonVaoHashTable(hd);
         this->tt.ChuyenTrangThaiPhong(str);
         this->tt.NhapKhachHangVaoHashTable(kh->LayCCCD());
@@ -915,8 +932,9 @@ void MainWindow::on_buttonTimKiem4_clicked()
         QMessageBox::information(this,"Thong bao","Phong dang bao tri");
         return;
     }
-    KhachHang *kh = &(tt.KhachHangTheoPhong(str));
-    vector<int> v = kh->LayDichVu();
+    KhachHang *kh = &(this->tt.KhachHangTheoPhongTime(str));
+    HoaDon *hd = &(this->tt.HoaDonTheoCCCDMaHD(kh->LayCCCD(),kh->LayMaHD()));
+    vector<int> v = hd->LayDichVu();
     ui->labelSoluongDichVu1->setText(QLocale().toString(v[0]));
     ui->labelSoluongDichVu2->setText(QLocale().toString(v[1]));
     ui->labelSoluongDichVu3->setText(QLocale().toString(v[2]));
@@ -938,7 +956,7 @@ void MainWindow::on_buttonDichVu1_clicked()
     }
     if(QMessageBox::question(this,"Thong bao","Xac nhan khach hang su dung dich vu 1",QMessageBox::Ok,QMessageBox::Cancel) == QMessageBox::Ok)
     {
-        tt.TangDichVu(0,str);
+        this->tt.TangDichVu(0,str);
         QMessageBox::information(this,"Thong bao","Thanh cong");
         int k = ui->labelSoluongDichVu1->text().toInt();
         k++;
@@ -1607,4 +1625,3 @@ void MainWindow::on_buttonOutQL_clicked()
         event->ignore();
     }
 }
-

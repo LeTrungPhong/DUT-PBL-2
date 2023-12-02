@@ -3,6 +3,7 @@
 
 KhachHang::KhachHang()
 {
+    this->MaHD = "0";
     this->CCCD = "0";
     this->Ten = "0";
     this->SDT = "0";
@@ -34,6 +35,7 @@ const KhachHang& KhachHang::operator = (const KhachHang& kh)
 {
     if(this != &kh)
     {
+        this->MaHD = kh.MaHD;
         this->CCCD = kh.CCCD;
         this->Ten = kh.Ten;
         this->SDT = kh.SDT;
@@ -79,8 +81,9 @@ void KhachHang::NhapThongTinKhac(string tenp, vector<int> dv, int gioden, int ng
     this->SoLuong = sl;
 }
 
-void KhachHang::NhapThongTinKhac(string tenp, vector<int> dv, int gioden, int ngayden, int thangden, int namden, int giodi, int ngaydi, int thangdi, int namdi, int sl)
+void KhachHang::NhapThongTinKhac(string mahd, string tenp, vector<int> dv, int gioden, int ngayden, int thangden, int namden, int giodi, int ngaydi, int thangdi, int namdi, int sl)
 {
+    this->MaHD = mahd;
     this->TenPhong = tenp;
     this->DichVu = dv;
     this->NgayDen.Gio = gioden;
@@ -94,8 +97,14 @@ void KhachHang::NhapThongTinKhac(string tenp, vector<int> dv, int gioden, int ng
     this->SoLuong = sl;
 }
 
+void KhachHang::NhapMaHD(string mahd)
+{
+    this->MaHD = mahd;
+}
+
 void KhachHang::DatLaiThongTin()
 {
+    this->MaHD = "0";
     this->TenPhong = "0";
     this->NgayDen.Gio = 0;
     this->NgayDen.Ngay = 0;
@@ -354,8 +363,8 @@ void KhachHang::TinhTienPhong(long long gt)
     int giodi = this->NgayDi.Gio;
     int ngaydi = this->NgayDi.Ngay;
     int thangdi = this->NgayDi.Thang;
-    int namdi = this->NgayDi.Nam;   
-    
+    int namdi = this->NgayDi.Nam;
+
     // từ 6h sáng -> 18h tối  : giá * 85%
     // từ 18h tối -> 24h -> 0 -> 6h sáng : giá gốc
     // 1 ngày 00:00 -> 24:00
@@ -457,4 +466,9 @@ string KhachHang::LayNgayDi()
 string KhachHang::LayNgayDiThucTe()
 {
     return "";
+}
+
+string KhachHang::LayMaHD()
+{
+    return this->MaHD;
 }

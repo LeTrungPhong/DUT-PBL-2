@@ -6,6 +6,7 @@
 class KhachHang : public Nguoi
 {
 private:
+    string MaHD;
     string TenPhong;
     long long TongTien;
     vector<int> DichVu;
@@ -17,7 +18,8 @@ public:
     ~KhachHang();
     void NhapThongTinKhac(string, vector<int>, int, int, int, int);
     void NhapThongTinKhac(string, vector<int>, int, int, int, int, int, int, int, int, int, long long);
-    void NhapThongTinKhac(string, vector<int>, int, int, int, int, int, int, int, int, int);
+    void NhapThongTinKhac(string, string, vector<int>, int, int, int, int, int, int, int, int, int);
+    void NhapMaHD(string);
     void DatLaiThongTin();
     void NhapNgayDatPhong(int, int, int, int);
     void NhapNgayTraPhong(int, int, int, int);
@@ -44,6 +46,7 @@ public:
     string LayNgayDen();
     string LayNgayDi();
     string LayNgayDiThucTe();
+    string LayMaHD();
 };
 
 #endif // KHACHHANG_H

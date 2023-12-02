@@ -21,7 +21,6 @@ public:
     bool KiemTraPhongBaoTri(string);
     bool KiemTraKhachHangDatPhong(string);
     bool KiemTraPhongDuocDatChua(string, int, int, int, int, int, int, int, int);
-    bool KiemTraQuaGioKhachHang(string);
     bool KiemTraKhachHangCu(KhachHang&);
     bool KiemTraThongTin(KhachHang&);
 
@@ -39,7 +38,10 @@ public:
     void LayKhachHanghtb(string);
 
     KhachHang& KhachHangTheoPhong(string);
+    KhachHang& KhachHangTheoPhongTime(string);
     KhachHang& KhachHangCuTheoCCCD(string);
+
+    HoaDon& HoaDonTheoCCCDMaHD(string, string);
 
     const TiepTan& operator = (const TiepTan&); // khong = qlkh, qlp
 

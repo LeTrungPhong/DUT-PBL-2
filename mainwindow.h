@@ -81,9 +81,7 @@ private slots:
     void on_buttonTimKiem_clicked();
     void on_buttonXacNhan_clicked();
     void on_buttonXacNhan2_clicked();
-
     void on_buttonOutTT_clicked();
-
     void on_buttonOutQL_clicked();
 
 private:

@@ -176,6 +176,11 @@ void HashTable<T>::NhapDuLieuVaoHashTable(T &k)
     int index = HashTable::hashing(k.LayCCCD(1));
     while (1)
     {
+        if((this->kh + index)->LayCCCD() == k.LayCCCD())
+        {
+            *(this->kh + index) = k;
+            return;
+        }
         if(HashTable::KiemTraViTri(index))
         {
             if(*(this->kcg + index) < kc)
@@ -403,7 +408,7 @@ void HashTable<T>::LuuHoaDonVaoFile()
         if(!((this->kh + i)->LayCCCD() == "0"))
         {
             vector<int> v = (this->kh + i)->LayDichVu();
-            outfile << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << (this->kh + i)->LayNgayDiThucTe()  << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTienPhong() << endl;
+            outfile << (this->kh + i)->LayMaHD() << "|" << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << (this->kh + i)->LayNgayDiThucTe()  << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTienPhong() << endl;
         }
     }
     outfile.close();
@@ -420,7 +425,7 @@ void HashTable<T>::LuuKhachHangCuVaoFile()
         if(!((this->kh + i)->LayCCCD() == "0"))
         {
             vector<int> v = (this->kh + i)->LayDichVu();
-            outfile << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LaySDT() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayBirth() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << (this->kh + i)->LaySoLuong() << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTienPhong() << "|" << (this->kh + i)->LayTen() << endl;
+            outfile << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LaySDT() << "|" << (this->kh + i)->LayBirth() << "|" << (this->kh + i)->LaySoLuong() << "|" << (this->kh + i)->LayTen() << endl;
         }
     }
     outfile.close();
@@ -435,6 +440,29 @@ T& HashTable<T>::LayThongTinTheoID(string cccd)
     while(1)
     {
         if((this->kh + index)->LayCCCD() == cccd)
+        {
+            return *(this->kh + index);
+        }
+        else
+        {
+            index++;
+            if(index == this->size) index = 0;
+            if(*(this->kcg + index) == 0)
+            {
+                T temp;
+                return temp;
+            }
+        }
+    }
+}
+
+template<class T>
+T& HashTable<T>::LayThongTinTheoID(string cccd, string mhd)
+{
+    int index = HashTable::hashing(stoll(cccd));
+    while(1)
+    {
+        if((this->kh + index)->LayCCCD() == cccd && (this->kh + index)->LayMaHD() == mhd)
         {
             return *(this->kh + index);
         }

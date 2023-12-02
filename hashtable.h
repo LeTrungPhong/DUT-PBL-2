@@ -40,6 +40,7 @@ public:
     void LuuHoaDonVaoFile();
     void LuuKhachHangCuVaoFile();
     T& LayThongTinTheoID(string);
+    T& LayThongTinTheoID(string, string);
     vector<T> LayDanhSachKhachHangCu();
     vector<T> LayDSKHTheoTTDSC(string, string, string);
 };

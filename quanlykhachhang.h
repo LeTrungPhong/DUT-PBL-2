@@ -32,7 +32,9 @@ public:
     void NhapHoaDonVaoHashTable(HoaDon);
     void HienThiThongTinKhachHang();
     KhachHang& KhachHangTheoPhong(string);
+    KhachHang& KhachHangTheoPhongTime(string);
     KhachHang& KhachHangCuTheoCCCD(string);
+    HoaDon& HoaDonTheoCCCDMaHD(string, string);
     void HienThiTable();
     const QuanLyKhachHang& operator = (const QuanLyKhachHang&);
     void TangDichVu(int,string);

@@ -2,6 +2,7 @@
 
 HoaDon::HoaDon()
 {
+    this->MaHD = "0";
     this->NgayDen.Ngay = 0;
     this->NgayDen.Thang = 0;
     this->NgayDen.Nam = 0;
@@ -37,25 +38,38 @@ void HoaDon::NhapThongTin(string cccd, string tp, vector<int> dv, const Date& nd
     this->TongTien = tt;
 }
 
+void HoaDon::NhapThongTin(string MaHD, string cccd, string tp, vector<int> dv, const Date& nden, const Date& ndi, const Date& nditt, long long tt)
+{
+    this->MaHD = MaHD;
+    this->CCCD = cccd;
+    this->TenPhong = tp;
+    this->DichVu = dv;
+    this->NgayDen = nden;
+    this->NgayDi = ndi;
+    this->NgayDiThucTe = nditt;
+    this->TongTien = tt;
+}
+
+void HoaDon::NhapThongTin(const Date& nden, const Date& ndi)
+{
+    this->NgayDen = nden;
+    this->NgayDi = ndi;
+}
+
+void HoaDon::NhapTenPhong(string tp)
+{
+    this->TenPhong = tp;
+}
+
+void HoaDon::NhapCCCD(string cccd)
+{
+    this->CCCD = cccd;
+}
+
 bool HoaDon::operator == (const HoaDon& hd)
 {
     bool check = true;
-    if(this->CCCD != hd.CCCD) check = false;
-    if(this->TenPhong != hd.TenPhong) check = false;
-    if(this->DichVu != hd.DichVu) check = false;
-    if(this->NgayDen.Ngay != hd.NgayDen.Ngay) check = false;
-    if(this->NgayDen.Thang != hd.NgayDen.Thang) check = false;
-    if(this->NgayDen.Nam != hd.NgayDen.Nam) check = false;
-    if(this->NgayDen.Gio != hd.NgayDen.Gio) check = false;
-    if(this->NgayDi.Ngay != hd.NgayDi.Ngay) check = false;
-    if(this->NgayDi.Thang != hd.NgayDi.Thang) check = false;
-    if(this->NgayDi.Nam != hd.NgayDi.Nam) check = false;
-    if(this->NgayDi.Gio != hd.NgayDi.Gio) check = false;
-    if(this->NgayDiThucTe.Ngay != hd.NgayDiThucTe.Ngay) check = false;
-    if(this->NgayDiThucTe.Thang != hd.NgayDiThucTe.Thang) check = false;
-    if(this->NgayDiThucTe.Nam != hd.NgayDiThucTe.Nam) check = false;
-    if(this->NgayDiThucTe.Gio != hd.NgayDiThucTe.Gio) check = false;
-    if(this->TongTien != hd.TongTien) check = false;
+    if(this->MaHD != hd.MaHD) check = false;
     return check;
 }
 
@@ -63,6 +77,7 @@ const HoaDon& HoaDon::operator = (const HoaDon& temp)
 {
     if(this != &temp)
     {
+        this->MaHD = temp.MaHD;
         this->CCCD = temp.CCCD;
         this->TenPhong = temp.TenPhong;
         this->DichVu = temp.DichVu;
@@ -138,4 +153,93 @@ string HoaDon::LayBirth()
 int HoaDon::LaySoLuong()
 {
     return 0;
+}
+
+void HoaDon::TaoMaHD()
+{
+    this->MaHD = to_string(this->NgayDen.Gio) + to_string(this->NgayDen.Ngay) + to_string(this->NgayDen.Thang) + to_string(this->NgayDen.Nam) + this->TenPhong;
+}
+
+string HoaDon::LayMaHD()
+{
+    return this->MaHD;
+}
+
+void HoaDon::TinhTienPhong(long long gt)
+{
+    this->TongTien = 0;
+    long long tiendv = 30000*DichVu[0] + 35000*DichVu[1] + 50000*DichVu[2] + 40000*DichVu[3];
+    int gioden = this->NgayDen.Gio;
+    int ngayden = this->NgayDen.Ngay;
+    int thangden = this->NgayDen.Thang;
+    int namden = this->NgayDen.Nam;
+    int giodi = this->NgayDi.Gio;
+    int ngaydi = this->NgayDi.Ngay;
+    int thangdi = this->NgayDi.Thang;
+    int namdi = this->NgayDi.Nam;
+
+    // từ 6h sáng -> 18h tối  : giá * 85%
+    // từ 18h tối -> 24h -> 0 -> 6h sáng : giá gốc
+    // 1 ngày 00:00 -> 24:00
+    // khách hàng đặt phòng tính tiền tối thiểu 6h, tiền tính thêm*45%
+    // từ 36 tiếng trở đi : giá mới * 90%
+
+    int dem = 0;
+    while(!(ngaydi == ngayden && thangdi == thangden && namdi == namden && giodi == gioden))
+    {
+        gioden++;
+        dem++;
+        if(gioden == 24)
+        {
+            gioden = 0;
+            ngayden++;
+        }
+        if(ngayden == 32 && (thangden == 1 || thangden == 3 || thangden == 5 || thangden == 7 || thangden == 8 || thangden == 10 || thangden == 12))
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 31 && (thangden == 4 || thangden == 6 || thangden == 9 || thangden == 11))
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 30 && thangden == 2 && namden%4 == 0)
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 29 && thangden == 2 && namden%4 != 0)
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(thangden == 13)
+        {
+            thangden = 1;
+            namden++;
+        }
+        long long money = 0;
+        if((gioden >= 0 && gioden < 6) || (gioden >= 18 && gioden < 24))
+        {
+            money = money + gt*(100.0/100);
+        }
+        if(gioden >= 6 && gioden < 18)
+        {
+            money = money + gt*(85.0/100);
+        }
+        if(dem < 36)
+        {
+            this->TongTien = this->TongTien + money;
+        }
+        else
+        {
+            this->TongTien = this->TongTien + money*(90.0/100);
+        }
+    }
+    if(dem < 6)
+    {
+        this->TongTien = this->TongTien + (6 - (giodi - gioden))*gt*(45.0/100);
+    }
+    this->TongTien = this->TongTien + tiendv;
 }

@@ -6,6 +6,7 @@ using namespace std;
 class HoaDon
 {
 private:
+    string MaHD;
     string CCCD;
     string TenPhong;
     long long TongTien;
@@ -17,6 +18,10 @@ public:
     HoaDon();
     ~HoaDon();
     void NhapThongTin(string, string, vector<int>, const Date&, const Date&, const Date&, long long);
+    void NhapThongTin(string, string, string, vector<int>, const Date&, const Date&, const Date&, long long);
+    void NhapThongTin(const Date&, const Date&);
+    void NhapTenPhong(string);
+    void NhapCCCD(string);
     bool operator == (const HoaDon&);
     const HoaDon& operator = (const HoaDon&);
     string LayCCCD();
@@ -31,6 +36,9 @@ public:
     string LayTen();
     string LayBirth();
     int LaySoLuong();
+    void TaoMaHD();
+    string LayMaHD();
+    void TinhTienPhong(long long);
 };
 
 #endif // HOADON_H

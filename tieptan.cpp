@@ -54,28 +54,6 @@ bool TiepTan::KiemTraPhongDuocDatChua(string str, int gioden, int ngayden, int t
     return this->qlkh.KiemTraPhongDuocDatChua(str,gioden,ngayden,thangden,namden,giodi,ngaydi,thangdi,namdi);
 }
 
-bool TiepTan::KiemTraQuaGioKhachHang(string str)
-{
-    int size = this->qlkh.LaySoLuong();
-    for(int i = 0; i < size; ++i)
-    {
-        KhachHang *k = &((this->qlkh)[i]);
-        if(k->LayCCCD() == "0" || k->LayCCCD() != str) continue;
-        if(k->KiemTraQuaGioKhachHang())
-        {
-            long long giaphong = 0;
-            int lp = this->qlp.XacDinhLoaiPhong(str);
-            if(lp == 1) giaphong = this->qlp.LayThongTinPhongCoBan(str).LayGiaTien();
-            if(lp == 2) giaphong = this->qlp.LayThongTinPhongThuong(str).LayGiaTien();
-            if(lp == 3) giaphong = this->qlp.LayThongTinPhongThuongGia(str).LayGiaTien();
-            k->TinhTienPhong(giaphong);
-            this->qlkh.NhapKhachHangVaoHashTable(k->LayCCCD());
-            return false;
-        }
-    }
-    return true;
-}
-
 bool TiepTan::KiemTraKhachHangCu(KhachHang& k)
 {
     return this->qlkh.KiemTraKhachHangCu(k);
@@ -94,11 +72,6 @@ void TiepTan::KhachHangDatPhong(KhachHang &k)
 void TiepTan::HienThiPhong()
 {
     qlp.HienThiPhong();
-}
-
-void TiepTan::LuuThongTinKhachHang(KhachHang &k, string tp)
-{
-    k.NhapPhongKhachHangDat(tp);
 }
 
 void TiepTan::NhapKhachHangVaoHashTable(string CCCD)
@@ -169,9 +142,19 @@ KhachHang& TiepTan::KhachHangTheoPhong(string str)
     return qlkh.KhachHangTheoPhong(str);
 }
 
+KhachHang& TiepTan::KhachHangTheoPhongTime(string str)
+{
+    return qlkh.KhachHangTheoPhongTime(str);
+}
+
 KhachHang& TiepTan::KhachHangCuTheoCCCD(string str)
 {
     return qlkh.KhachHangCuTheoCCCD(str);
+}
+
+HoaDon& TiepTan::HoaDonTheoCCCDMaHD(string cccd, string mahd)
+{
+    return qlkh.HoaDonTheoCCCDMaHD(cccd,mahd);
 }
 
 void TiepTan::ChuyenTrangThaiPhong(string str)
@@ -314,6 +297,7 @@ void TiepTan::CapNhatDuLieuKhachHang()
 
                     HoaDon hd;
                     hd.NhapThongTin(t->LayCCCD(),t->LayTenPhong(),t->LayDichVu(),t->LayNgayDatPhong(),t->LayNgayTraPhong(),t->LayNgayTraPhong(),t->LayTienPhong());
+                    hd.TaoMaHD();
                     this->qlkh.NhapHoaDonVaoHashTable(hd);
                     this->qlkh.NhapKhachHangVaoHashTable((this->qlkh)[tt[j]].LayCCCD());
                 }

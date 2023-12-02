@@ -116,7 +116,7 @@
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -786,7 +786,7 @@
 }</string>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>2</number>
              </property>
              <widget class="QWidget" name="page_5">
               <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2606,78 +2606,6 @@
                   <property name="spacing">
                    <number>2</number>
                   </property>
-                  <item row="0" column="0">
-                   <widget class="QFrame" name="frame_64">
-                    <property name="frameShape">
-                     <enum>QFrame::StyledPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Raised</enum>
-                    </property>
-                    <layout class="QGridLayout" name="gridLayout_8">
-                     <item row="1" column="0" colspan="2">
-                      <widget class="QLabel" name="label_71">
-                       <property name="font">
-                        <font>
-                         <family>Arial Helvetica</family>
-                         <italic>false</italic>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string>Nếu quý khách mệt mỏi hay muốn yên tĩnh thì khách sạn có thể</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="0">
-                      <widget class="QLabel" name="label_13">
-                       <property name="text">
-                        <string>Số lượng đã sử dụng:</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="1">
-                      <widget class="QLabel" name="labelSoluongDichVu1">
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="0" colspan="2">
-                      <widget class="QPushButton" name="buttonDichVu1">
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>50</height>
-                        </size>
-                       </property>
-                       <property name="text">
-                        <string>Dịch vụ phục vụ bữa tối tại phòng</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="0" colspan="2">
-                      <widget class="QLabel" name="label_75">
-                       <property name="font">
-                        <font>
-                         <family>Arial Helvetica</family>
-                         <italic>false</italic>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string>bố trí nhân viên phục vụ bữa tối tại phòng cho quý khách</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="0" colspan="2">
-                      <widget class="QLabel" name="label_27">
-                       <property name="text">
-                        <string>Mô tả dịch vu:</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
                   <item row="0" column="1">
                    <widget class="QFrame" name="frame_65">
                     <property name="frameShape">
@@ -2687,21 +2615,20 @@
                      <enum>QFrame::Raised</enum>
                     </property>
                     <layout class="QGridLayout" name="gridLayout_9">
-                     <item row="3" column="0">
-                      <widget class="QLabel" name="label_28">
+                     <item row="1" column="0" colspan="3">
+                      <widget class="QLabel" name="label_70">
+                       <property name="font">
+                        <font>
+                         <family>Arial Helvetica</family>
+                         <italic>false</italic>
+                        </font>
+                       </property>
                        <property name="text">
-                        <string>Số lượng đã sử dụng:</string>
+                        <string>Khách sạn sẽ bố trí nhân viên tới phòng của quý khách để thu xếp</string>
                        </property>
                       </widget>
                      </item>
-                     <item row="3" column="1">
-                      <widget class="QLabel" name="labelSoluongDichVu2">
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="0" colspan="2">
+                     <item row="4" column="0" colspan="3">
                       <widget class="QPushButton" name="buttonDichVu2">
                        <property name="minimumSize">
                         <size>
@@ -2720,27 +2647,7 @@
                        </property>
                       </widget>
                      </item>
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="label_32">
-                       <property name="text">
-                        <string>Mô tả dịch vụ:</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="0" colspan="2">
-                      <widget class="QLabel" name="label_70">
-                       <property name="font">
-                        <font>
-                         <family>Arial Helvetica</family>
-                         <italic>false</italic>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string>Khách sạn sẽ bố trí nhân viên tới phòng của quý khách để thu xếp</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="0">
+                     <item row="2" column="0" colspan="3">
                       <widget class="QLabel" name="label_72">
                        <property name="font">
                         <font>
@@ -2750,6 +2657,33 @@
                        </property>
                        <property name="text">
                         <string> và đem áo quần đi giặt ủi một cách thơm tho và sạch sẽ nhất</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0" colspan="3">
+                      <widget class="QLabel" name="label_32">
+                       <property name="text">
+                        <string>Mô tả dịch vụ:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="2">
+                      <widget class="QLabel" name="labelSoluongDichVu2">
+                       <property name="minimumSize">
+                        <size>
+                         <width>170</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0" colspan="2">
+                      <widget class="QLabel" name="label_28">
+                       <property name="text">
+                        <string>Số lượng đã sử dụng:</string>
                        </property>
                       </widget>
                      </item>
@@ -2822,6 +2756,78 @@
                        </property>
                        <property name="text">
                         <string>dẹp và sắp xếp đồ đạt để quý khách có những trải nghiệm tốt hơn</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QFrame" name="frame_64">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_8">
+                     <item row="1" column="0" colspan="2">
+                      <widget class="QLabel" name="label_71">
+                       <property name="font">
+                        <font>
+                         <family>Arial Helvetica</family>
+                         <italic>false</italic>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Nếu quý khách mệt mỏi hay muốn yên tĩnh thì khách sạn có thể</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QLabel" name="label_13">
+                       <property name="text">
+                        <string>Số lượng đã sử dụng:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="1">
+                      <widget class="QLabel" name="labelSoluongDichVu1">
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="0" colspan="2">
+                      <widget class="QPushButton" name="buttonDichVu1">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>50</height>
+                        </size>
+                       </property>
+                       <property name="text">
+                        <string>Dịch vụ phục vụ bữa tối tại phòng</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0" colspan="2">
+                      <widget class="QLabel" name="label_75">
+                       <property name="font">
+                        <font>
+                         <family>Arial Helvetica</family>
+                         <italic>false</italic>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>bố trí nhân viên phục vụ bữa tối tại phòng cho quý khách</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0" colspan="2">
+                      <widget class="QLabel" name="label_27">
+                       <property name="text">
+                        <string>Mô tả dịch vu:</string>
                        </property>
                       </widget>
                      </item>
