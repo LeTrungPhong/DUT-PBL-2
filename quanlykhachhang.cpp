@@ -323,20 +323,48 @@ vector<KhachHang> QuanLyKhachHang::LayDanhSachKhachHangCu()
     return this->htb.LayDanhSachKhachHangCu();
 }
 
-vector<KhachHang> QuanLyKhachHang::LayDSKHTheoTTDSM(string cccd, string tenphong, string tenkh)
+vector<HoaDon> QuanLyKhachHang::LayDSHDTheoTTDSM(string cccd, string tenphong, string mahd)
 {
-    vector<KhachHang> temp;
+    vector<HoaDon> hd;
     for(int i = 0; i < this->size; ++i)
     {
+        HoaDon temp = this->htb1.LayThongTinTheoID((this->kh + i)->LayCCCD(),(this->kh + i)->LayMaHD());
         if(!(((this->kh + i)->LayCCCD() == cccd || cccd == "") && (this->kh + i)->LayCCCD() != "0")) continue;
-        if(!(((this->kh + i)->LayTenPhong() == tenphong || tenphong == "") && (this->kh + i)->LayTenPhong() != "0")) continue;
-        if(!(((this->kh + i)->LayTen() == tenkh || tenkh == "") && (this->kh + i)->LayTen() != "0")) continue;
-        temp.push_back(*(this->kh + i));
+        if(!((temp.LayTenPhong() == tenphong || tenphong == "") && temp.LayTenPhong() != "0")) continue;
+        if(!((temp.LayMaHD() == mahd || mahd == "") && temp.LayMaHD() != "0")) continue;
+        hd.push_back(temp);
     }
-    return temp;
+    return hd;
 }
 
-vector<KhachHang> QuanLyKhachHang::LayDSKHTheoTTDSC(string cccd, string tenphong, string tenkh)
+vector<HoaDon> QuanLyKhachHang::LayDSHDTheoTTDSC(string cccd, string tenphong, string mahd)
 {
-    return this->htb.LayDSKHTheoTTDSC(cccd,tenphong,tenkh);
+    vector<HoaDon> temp = this->htb1.LayDanhSachKhachHangCu();
+    vector<HoaDon> hd;
+    for(int i = 0; i < temp.size(); ++i)
+    {
+        if(!((temp[i].LayCCCD() == cccd || cccd == "") && temp[i].LayCCCD() != "0")) continue;
+        if(!((temp[i].LayTenPhong() == tenphong || tenphong == "") && temp[i].LayTenPhong() != "0")) continue;
+        if(!((temp[i].LayMaHD() == mahd || mahd == "") && temp[i].LayMaHD() != "0")) continue;
+        hd.push_back(temp[i]);
+    }
+    return hd;
+}
+
+vector<HoaDon> QuanLyKhachHang::LayDSHD()
+{
+    return this->htb1.LayDanhSachKhachHangCu();
+}
+
+vector<HoaDon> QuanLyKhachHang::LayDSHDM()
+{
+    vector<HoaDon> hd;
+    for(int i = 0; i < this->size; ++i)
+    {
+        if((this->kh + i)->LayCCCD() != "0")
+        {
+            hd.push_back(this->htb1.LayThongTinTheoID((this->kh + i)->LayCCCD(),(this->kh + i)->LayMaHD()));
+        }
+    }
+    return hd;
 }

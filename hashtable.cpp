@@ -434,8 +434,6 @@ void HashTable<T>::LuuKhachHangCuVaoFile()
     outfile.close();
 }
 
-
-
 template<class T>
 T& HashTable<T>::LayThongTinTheoID(string cccd)
 {

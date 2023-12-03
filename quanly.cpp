@@ -45,14 +45,29 @@ vector<KhachHang> QuanLy::LayDanhSachKhachHangCu()
     return this->k.LayDanhSachKhachHangCu();
 }
 
-vector<KhachHang> QuanLy::LayDSKHTheoTTDSC(string cccd, string tenphong, string tenkh)
+vector<HoaDon> QuanLy::LayDSHDTheoTTDSC(string cccd, string tenphong, string mahd)
 {
-    return this->k.LayDSKHTheoTTDSC(cccd,tenphong,tenkh);
+    return this->k.LayDSHDTheoTTDSC(cccd,tenphong,mahd);
 }
 
-vector<KhachHang> QuanLy::LayDSKHTheoTTDSM(string cccd, string tenphong, string tenkh)
+vector<HoaDon> QuanLy::LayDSHDTheoTTDSM(string cccd, string tenphong, string mahd)
 {
-    return this->k.LayDSKHTheoTTDSM(cccd,tenphong,tenkh);
+    return this->k.LayDSHDTheoTTDSM(cccd,tenphong,mahd);
+}
+
+vector<HoaDon> QuanLy::LayDSHD()
+{
+    return this->k.LayDSHD();
+}
+
+vector<HoaDon> QuanLy::LayDSHDM()
+{
+    return this->k.LayDSHDM();
+}
+
+KhachHang& QuanLy::KhachHangCuTheoCCCD(string str)
+{
+    return this->k.KhachHangCuTheoCCCD(str);
 }
 
 int QuanLy::XacDinhLoaiPhong(string str)

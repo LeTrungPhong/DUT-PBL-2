@@ -1,7 +1,9 @@
 #include "nguoi.h"
 
 Nguoi::Nguoi()
-{ }
+{
+    this->Ten = "0";
+}
 
 Nguoi::~Nguoi()
 { }

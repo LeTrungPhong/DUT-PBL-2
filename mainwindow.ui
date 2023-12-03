@@ -54,7 +54,9 @@
 #buttonContinue2,
 #buttonBack2,
 #buttonXacNhan,
-#buttonXacNhan2
+#buttonXacNhan2,
+#buttonHD,
+#buttonHDM
 {
 	background-color: rgb(232, 232, 232);
 	font-weight: 600;
@@ -753,11 +755,12 @@
 #labelDV41,#labelDV44,#labelDV45,#labelDV48,#labelDV49,#labelDV410,
 #labelDV42,#labelDV43,#labelDV46,#labelDV47,#labelDichVu42,
 #labelTT1,#labelTT2,#labelTT3,#labelTT7,#labelTT8,#labelTT9,#labelTT10,
-#labelTT5,#labelTT6,#labelTT4,#labelTongTien2
-
+#labelTT5,#labelTT6,#labelTT4,#labelTongTien2,
+#labelNgayTraThucTe2,#labelNTTT1,#labelNTTT2,#labelNTTT3,
+#labelNTTT4,#labelNTTT5,#labelNTTT6,#labelNTTT7,#labelNTTT8,
+#labelNTTT9,#labelNTTT10
 {
-	border-top: 1.5px solid rgb(208, 208, 208);
-	border-bottom: 1.5px solid rgb(208, 208, 208);
+	border: 1.5px solid rgb(208, 208, 208);
 }
 
 #buttonPhong1,#buttonPhong2,#buttonPhong3,#buttonPhong4,
@@ -786,7 +789,7 @@
 }</string>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>4</number>
              </property>
              <widget class="QWidget" name="page_5">
               <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -3689,204 +3692,36 @@
                   <property name="spacing">
                    <number>0</number>
                   </property>
-                  <item row="10" column="5">
-                   <widget class="QLabel" name="labelND10">
+                  <item row="5" column="12">
+                   <widget class="QLabel" name="labelDV45">
                     <property name="text">
                      <string/>
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="5">
+                  <item row="9" column="9">
+                   <widget class="QLabel" name="labelDV19">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="4">
+                   <widget class="QLabel" name="labelTP8">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="6">
                    <widget class="QLabel" name="labelND2">
                     <property name="text">
                      <string/>
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="3">
-                   <widget class="QLabel" name="labelTP2">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="11">
-                   <widget class="QLabel" name="labelTT2">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="6">
-                   <widget class="QLabel" name="labelNT6">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="8">
-                   <widget class="QLabel" name="labelDV21">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="8">
-                   <widget class="QLabel" name="labelDV22">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="10" column="3">
-                   <widget class="QLabel" name="labelTP10">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="4">
-                   <widget class="QLabel" name="labelSDT1">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="8" column="2">
-                   <widget class="QLabel" name="labelNS8">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="11">
-                   <widget class="QLabel" name="labelTT6">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="1">
-                   <widget class="QLabel" name="labelCCCD6">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="10">
-                   <widget class="QLabel" name="labelDV44">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="labelTenKhachHang2">
-                    <property name="text">
-                     <string>Tên khách hàng</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="9">
-                   <widget class="QLabel" name="labelDV39">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="9">
-                   <widget class="QLabel" name="labelDV33">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="3" column="4">
-                   <widget class="QLabel" name="labelSDT3">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="6">
-                   <widget class="QLabel" name="labelNT9">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="5">
-                   <widget class="QLabel" name="labelND6">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="10" column="6">
-                   <widget class="QLabel" name="labelNT10">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="10" column="0">
-                   <widget class="QLabel" name="labelTKH10">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="10" column="2">
-                   <widget class="QLabel" name="labelNS10">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="4">
-                   <widget class="QLabel" name="labelSDT9">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="3">
-                   <widget class="QLabel" name="labelTP4">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="8">
-                   <widget class="QLabel" name="labelDV27">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="4">
-                   <widget class="QLabel" name="labelSDT5">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="6">
-                   <widget class="QLabel" name="labelNT4">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="7">
-                   <widget class="QLabel" name="labelDV17">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="10" column="4">
-                   <widget class="QLabel" name="labelSDT10">
+                   <widget class="QLabel" name="labelTP3">
                     <property name="text">
                      <string/>
                     </property>
@@ -3899,669 +3734,29 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="7">
-                   <widget class="QLabel" name="labelDV14">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="11">
-                   <widget class="QLabel" name="labelTT3">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="7">
-                   <widget class="QLabel" name="labelDV16">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="8" column="10">
-                   <widget class="QLabel" name="labelDV48">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="10">
-                   <widget class="QLabel" name="labelDV43">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="6">
-                   <widget class="QLabel" name="labelNT1">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="7">
-                   <widget class="QLabel" name="labelDV13">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="7">
-                   <widget class="QLabel" name="labelDV15">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="5">
-                   <widget class="QLabel" name="labelNgayDat22">
-                    <property name="text">
-                     <string>Ngày đặt</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="11">
-                   <widget class="QLabel" name="labelTT4">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="7">
-                   <widget class="QLabel" name="labelDV11">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="8">
-                   <widget class="QLabel" name="labelDV29">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="labelTKH2">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="2">
-                   <widget class="QLabel" name="labelNS5">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="8" column="8">
-                   <widget class="QLabel" name="labelDV28">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="5">
-                   <widget class="QLabel" name="labelND3">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="QLabel" name="labelNgaySinh2">
-                    <property name="text">
-                     <string>Ngày sinh</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="1">
-                   <widget class="QLabel" name="labelCCCD7">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="3">
-                   <widget class="QLabel" name="labelTP5">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="0">
-                   <widget class="QLabel" name="labelTKH7">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="10">
-                   <widget class="QLabel" name="labelDichVu42">
-                    <property name="maximumSize">
-                     <size>
-                      <width>22</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>DV4</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="11">
-                   <widget class="QLabel" name="labelTT5">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="8" column="7">
-                   <widget class="QLabel" name="labelDV18">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="1">
-                   <widget class="QLabel" name="labelCCCD5">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="8" column="3">
-                   <widget class="QLabel" name="labelTP8">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="8">
-                   <widget class="QLabel" name="labelDV25">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="9">
-                   <widget class="QLabel" name="labelDV34">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="3">
-                   <widget class="QLabel" name="labelTP3">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="8" column="4">
-                   <widget class="QLabel" name="labelSDT8">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="10">
-                   <widget class="QLabel" name="labelDV41">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="labelTKH4">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="2">
-                   <widget class="QLabel" name="labelNS9">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="10" column="11">
-                   <widget class="QLabel" name="labelTT10">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="3">
-                   <widget class="QLabel" name="labelTP6">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="10">
-                   <widget class="QLabel" name="labelDV46">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="10">
-                   <widget class="QLabel" name="labelDV47">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="11">
-                   <widget class="QLabel" name="labelTT7">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="3">
-                   <widget class="QLabel" name="labelTP1">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="6">
-                   <widget class="QLabel" name="labelNgayTra2">
-                    <property name="text">
-                     <string>Ngày trả</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="3">
-                   <widget class="QLabel" name="labelTenPhong22">
-                    <property name="text">
-                     <string>Tên phòng</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="10" column="7">
-                   <widget class="QLabel" name="labelDV110">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="5">
-                   <widget class="QLabel" name="labelND7">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="8">
-                   <widget class="QLabel" name="labelDichVu22">
-                    <property name="maximumSize">
-                     <size>
-                      <width>22</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>DV2</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="5">
-                   <widget class="QLabel" name="labelND9">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="labelTKH1">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="2">
-                   <widget class="QLabel" name="labelNS3">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="1">
-                   <widget class="QLabel" name="labelCCCD4">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="1">
-                   <widget class="QLabel" name="labelCCCD9">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="9">
+                  <item row="2" column="11">
                    <widget class="QLabel" name="labelDV32">
                     <property name="text">
                      <string/>
                     </property>
                    </widget>
                   </item>
-                  <item row="7" column="3">
-                   <widget class="QLabel" name="labelTP7">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="11">
-                   <widget class="QLabel" name="labelTT1">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="7">
-                   <widget class="QLabel" name="labelDV19">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="10" column="8">
-                   <widget class="QLabel" name="labelDV210">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="10">
+                  <item row="2" column="12">
                    <widget class="QLabel" name="labelDV42">
                     <property name="text">
                      <string/>
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="9">
-                   <widget class="QLabel" name="labelDV35">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLabel" name="labelCCCD1">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QLabel" name="labelCCCD2">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="8">
-                   <widget class="QLabel" name="labelDV24">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="8" column="9">
-                   <widget class="QLabel" name="labelDV38">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="0">
-                   <widget class="QLabel" name="labelTKH9">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="4">
-                   <widget class="QLabel" name="labelSDT6">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="2">
-                   <widget class="QLabel" name="labelNS1">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="8" column="11">
-                   <widget class="QLabel" name="labelTT8">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="4">
-                   <widget class="QLabel" name="labelSDT22">
-                    <property name="text">
-                     <string>Số điện thoại</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="2">
-                   <widget class="QLabel" name="labelNS7">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="9">
-                   <widget class="QLabel" name="labelDV31">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="4">
-                   <widget class="QLabel" name="labelSDT2">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="10" column="10">
-                   <widget class="QLabel" name="labelDV410">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="4">
-                   <widget class="QLabel" name="labelSDT7">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="5">
-                   <widget class="QLabel" name="labelND1">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="6">
-                   <widget class="QLabel" name="labelNT2">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="8" column="1">
-                   <widget class="QLabel" name="labelCCCD8">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="0">
-                   <widget class="QLabel" name="labelTKH5">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="11">
-                   <widget class="QLabel" name="labelTT9">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="7">
-                   <widget class="QLabel" name="labelDV12">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="2">
-                   <widget class="QLabel" name="labelNS2">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="0">
-                   <widget class="QLabel" name="labelTKH6">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="5">
-                   <widget class="QLabel" name="labelND4">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="8" column="6">
-                   <widget class="QLabel" name="labelNT8">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="11">
-                   <widget class="QLabel" name="labelTongTien2">
-                    <property name="text">
-                     <string>Tổng tiền</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="6">
-                   <widget class="QLabel" name="labelNT3">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="9">
-                   <widget class="QLabel" name="labelDichVu32">
-                    <property name="maximumSize">
-                     <size>
-                      <width>22</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>DV3</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="3">
-                   <widget class="QLabel" name="labelTP9">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="6">
-                   <widget class="QLabel" name="labelNT5">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="8">
-                   <widget class="QLabel" name="labelDV26">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="10">
-                   <widget class="QLabel" name="labelDV49">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="6">
-                   <widget class="QLabel" name="labelNT7">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="7">
-                   <widget class="QLabel" name="labelDichVu12">
-                    <property name="maximumSize">
-                     <size>
-                      <width>22</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>DV1</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="9">
+                  <item row="7" column="11">
                    <widget class="QLabel" name="labelDV37">
                     <property name="text">
                      <string/>
                     </property>
                    </widget>
                   </item>
-                  <item row="8" column="5">
-                   <widget class="QLabel" name="labelND8">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QLabel" name="labelSoCCCD2">
-                    <property name="text">
-                     <string>Số CCCD</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="9">
-                   <widget class="QLabel" name="labelDV36">
+                  <item row="10" column="6">
+                   <widget class="QLabel" name="labelND10">
                     <property name="text">
                      <string/>
                     </property>
@@ -4574,8 +3769,169 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="4">
-                   <widget class="QLabel" name="labelSDT4">
+                  <item row="2" column="7">
+                   <widget class="QLabel" name="labelNT2">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="QLabel" name="labelCCCD5">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="7">
+                   <widget class="QLabel" name="labelNT5">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="9">
+                   <widget class="QLabel" name="labelDV13">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="7">
+                   <widget class="QLabel" name="labelNT3">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="10">
+                   <widget class="QLabel" name="labelDV26">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="2">
+                   <widget class="QLabel" name="labelNS5">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="labelTKH1">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="11">
+                   <widget class="QLabel" name="labelDV310">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="6">
+                   <widget class="QLabel" name="labelND5">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="10">
+                   <widget class="QLabel" name="labelDV23">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="6">
+                   <widget class="QLabel" name="labelND7">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="7">
+                   <widget class="QLabel" name="labelNT7">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="9">
+                   <widget class="QLabel" name="labelDV17">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="7">
+                   <widget class="QLabel" name="labelNT10">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="8">
+                   <widget class="QLabel" name="labelNgayTraThucTe2">
+                    <property name="text">
+                     <string>Ngày trả  thực tế</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="13">
+                   <widget class="QLabel" name="labelTT2">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="4">
+                   <widget class="QLabel" name="labelTP1">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="8">
+                   <widget class="QLabel" name="labelNTTT7">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="7">
+                   <widget class="QLabel" name="labelNT6">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="9">
+                   <widget class="QLabel" name="labelDV18">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="6">
+                   <widget class="QLabel" name="labelND8">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLabel" name="labelCCCD1">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="4">
+                   <widget class="QLabel" name="labelTP2">
                     <property name="text">
                      <string/>
                     </property>
@@ -4588,8 +3944,600 @@
                     </property>
                    </widget>
                   </item>
+                  <item row="10" column="8">
+                   <widget class="QLabel" name="labelNTTT10">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="1">
+                   <widget class="QLabel" name="labelCCCD7">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="8">
+                   <widget class="QLabel" name="labelNTTT5">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="labelTenKhachHang2">
+                    <property name="text">
+                     <string>Tên khách hàng</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="9">
+                   <widget class="QLabel" name="labelDichVu12">
+                    <property name="maximumSize">
+                     <size>
+                      <width>22</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>DV1</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="12">
+                   <widget class="QLabel" name="labelDV410">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="11">
+                   <widget class="QLabel" name="labelDV39">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="9">
+                   <widget class="QLabel" name="labelDV16">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="7">
+                   <widget class="QLabel" name="labelNT9">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="4">
+                   <widget class="QLabel" name="labelTP10">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLabel" name="labelSoCCCD2">
+                    <property name="text">
+                     <string>Số CCCD</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="4">
+                   <widget class="QLabel" name="labelTP7">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="1">
+                   <widget class="QLabel" name="labelCCCD9">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="10">
+                   <widget class="QLabel" name="labelDV22">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="12">
+                   <widget class="QLabel" name="labelDV47">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="9">
+                   <widget class="QLabel" name="labelDV11">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="1">
+                   <widget class="QLabel" name="labelCCCD8">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="6">
+                   <widget class="QLabel" name="labelND3">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="10">
+                   <widget class="QLabel" name="labelDV27">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QLabel" name="labelTKH6">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="6">
+                   <widget class="QLabel" name="labelNgayDat22">
+                    <property name="text">
+                     <string>Ngày đặt</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="4">
+                   <widget class="QLabel" name="labelTenPhong22">
+                    <property name="text">
+                     <string>Tên phòng</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QLabel" name="labelCCCD4">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="2">
+                   <widget class="QLabel" name="labelNS3">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="6">
+                   <widget class="QLabel" name="labelND1">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="11">
+                   <widget class="QLabel" name="labelDV31">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="13">
+                   <widget class="QLabel" name="labelTT4">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="2">
+                   <widget class="QLabel" name="labelNS10">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="7">
+                   <widget class="QLabel" name="labelNT8">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLabel" name="labelNgaySinh2">
+                    <property name="text">
+                     <string>Ngày sinh</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="4">
+                   <widget class="QLabel" name="labelTP9">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="12">
+                   <widget class="QLabel" name="labelDV44">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="11">
+                   <widget class="QLabel" name="labelDichVu32">
+                    <property name="maximumSize">
+                     <size>
+                      <width>22</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>DV3</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0">
+                   <widget class="QLabel" name="labelTKH7">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="10">
+                   <widget class="QLabel" name="labelDV210">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="9">
+                   <widget class="QLabel" name="labelDV110">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="2">
+                   <widget class="QLabel" name="labelNS9">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="10">
+                   <widget class="QLabel" name="labelDV24">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="12">
+                   <widget class="QLabel" name="labelDV48">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="4" column="2">
                    <widget class="QLabel" name="labelNS4">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="12">
+                   <widget class="QLabel" name="labelDV49">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="labelTKH3">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="8">
+                   <widget class="QLabel" name="labelNTTT3">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="0">
+                   <widget class="QLabel" name="labelTKH9">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="12">
+                   <widget class="QLabel" name="labelDV41">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="10">
+                   <widget class="QLabel" name="labelDV28">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="9">
+                   <widget class="QLabel" name="labelDV12">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="13">
+                   <widget class="QLabel" name="labelTongTien2">
+                    <property name="text">
+                     <string>Tổng tiền</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="8">
+                   <widget class="QLabel" name="labelNTTT6">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="11">
+                   <widget class="QLabel" name="labelDV38">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="13">
+                   <widget class="QLabel" name="labelTT3">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="11">
+                   <widget class="QLabel" name="labelDV36">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="9">
+                   <widget class="QLabel" name="labelDV14">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="labelTKH4">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QLabel" name="labelNS2">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="8">
+                   <widget class="QLabel" name="labelNTTT8">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="6">
+                   <widget class="QLabel" name="labelND9">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="labelTKH2">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="10">
+                   <widget class="QLabel" name="labelDichVu22">
+                    <property name="maximumSize">
+                     <size>
+                      <width>22</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>DV2</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="7">
+                   <widget class="QLabel" name="labelNT1">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="9">
+                   <widget class="QLabel" name="labelDV15">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="8">
+                   <widget class="QLabel" name="labelNTTT2">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="6">
+                   <widget class="QLabel" name="labelND6">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="7">
+                   <widget class="QLabel" name="labelNgayTra2">
+                    <property name="text">
+                     <string>Ngày trả</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QLabel" name="labelNS1">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="13">
+                   <widget class="QLabel" name="labelTT8">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="10">
+                   <widget class="QLabel" name="labelDV21">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="4">
+                   <widget class="QLabel" name="labelTP4">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="10">
+                   <widget class="QLabel" name="labelDV29">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="8">
+                   <widget class="QLabel" name="labelNTTT9">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="13">
+                   <widget class="QLabel" name="labelTT1">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="13">
+                   <widget class="QLabel" name="labelTT10">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="8">
+                   <widget class="QLabel" name="labelNTTT1">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="1">
+                   <widget class="QLabel" name="labelCCCD6">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="4">
+                   <widget class="QLabel" name="labelTP5">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="13">
+                   <widget class="QLabel" name="labelTT5">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="13">
+                   <widget class="QLabel" name="labelTT9">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="11">
+                   <widget class="QLabel" name="labelDV35">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="8">
+                   <widget class="QLabel" name="labelNTTT4">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="11">
+                   <widget class="QLabel" name="labelDV34">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="4">
+                   <widget class="QLabel" name="labelTP6">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="13">
+                   <widget class="QLabel" name="labelTT6">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="11">
+                   <widget class="QLabel" name="labelDV33">
                     <property name="text">
                      <string/>
                     </property>
@@ -4602,36 +4550,168 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="8">
-                   <widget class="QLabel" name="labelDV23">
+                  <item row="7" column="2">
+                   <widget class="QLabel" name="labelNS7">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="6">
+                   <widget class="QLabel" name="labelND4">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="7">
+                   <widget class="QLabel" name="labelNT4">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="12">
+                   <widget class="QLabel" name="labelDV43">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="13">
+                   <widget class="QLabel" name="labelTT7">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="12">
+                   <widget class="QLabel" name="labelDV46">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="12">
+                   <widget class="QLabel" name="labelDichVu42">
+                    <property name="maximumSize">
+                     <size>
+                      <width>22</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>DV4</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="2">
+                   <widget class="QLabel" name="labelNS8">
                     <property name="text">
                      <string/>
                     </property>
                    </widget>
                   </item>
                   <item row="5" column="10">
-                   <widget class="QLabel" name="labelDV45">
+                   <widget class="QLabel" name="labelDV25">
                     <property name="text">
                      <string/>
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="5">
-                   <widget class="QLabel" name="labelND5">
+                  <item row="10" column="0">
+                   <widget class="QLabel" name="labelTKH10">
                     <property name="text">
                      <string/>
                     </property>
                    </widget>
                   </item>
-                  <item row="10" column="9">
-                   <widget class="QLabel" name="labelDV310">
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="labelTKH5">
                     <property name="text">
                      <string/>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="labelTKH3">
+                  <item row="2" column="1">
+                   <widget class="QLabel" name="labelCCCD2">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="3">
+                   <widget class="QLabel" name="labelSDT22">
+                    <property name="text">
+                     <string>Số điện thoại</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="3">
+                   <widget class="QLabel" name="labelSDT1">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="3">
+                   <widget class="QLabel" name="labelSDT2">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="3">
+                   <widget class="QLabel" name="labelSDT3">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="3">
+                   <widget class="QLabel" name="labelSDT4">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="3">
+                   <widget class="QLabel" name="labelSDT5">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="3">
+                   <widget class="QLabel" name="labelSDT6">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="3">
+                   <widget class="QLabel" name="labelSDT7">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="3">
+                   <widget class="QLabel" name="labelSDT8">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="3">
+                   <widget class="QLabel" name="labelSDT9">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="3">
+                   <widget class="QLabel" name="labelSDT10">
                     <property name="text">
                      <string/>
                     </property>
@@ -4650,6 +4730,13 @@
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_10">
                   <item>
+                   <widget class="QPushButton" name="buttonHDM">
+                    <property name="text">
+                     <string>Danh sách thông tin khách hàng đang đặt phòng</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QPushButton" name="buttonDSKHM">
                     <property name="text">
                      <string>Danh sách khách hàng đang đặt phòng khách sạn</string>
@@ -4660,6 +4747,13 @@
                    <widget class="QPushButton" name="buttonDSKHC">
                     <property name="text">
                      <string>Danh sách thông tin lưu trữ khách hàng trả phòng khách sạn</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="buttonHD">
+                    <property name="text">
+                     <string>Danh sách hóa đơn trả phòng khách sạn</string>
                     </property>
                    </widget>
                   </item>
@@ -4683,7 +4777,7 @@
                <item row="3" column="2">
                 <widget class="QRadioButton" name="radioButtonDSM">
                  <property name="text">
-                  <string>Đang đặt phòng</string>
+                  <string>Danh sách thông tin mới</string>
                  </property>
                 </widget>
                </item>
@@ -4714,17 +4808,17 @@
                <item row="3" column="1">
                 <widget class="QRadioButton" name="radioButtonDSC">
                  <property name="text">
-                  <string>Đã trả phòng</string>
+                  <string>Danh sách thông tin lưu trữ</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QLineEdit" name="lineEditNhapTenKhachHang">
+                <widget class="QLineEdit" name="lineEditNhapMaHD">
                  <property name="text">
                   <string/>
                  </property>
                  <property name="placeholderText">
-                  <string>Nhập Tên Khách Hàng</string>
+                  <string>Nhập Mã Hóa Đơn</string>
                  </property>
                 </widget>
                </item>

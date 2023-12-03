@@ -48,8 +48,10 @@ public:
 
     vector<KhachHang> LayDanhSachKhachHangMoi();
     vector<KhachHang> LayDanhSachKhachHangCu();
-    vector<KhachHang> LayDSKHTheoTTDSM(string, string, string);
-    vector<KhachHang> LayDSKHTheoTTDSC(string, string, string);
+    vector<HoaDon> LayDSHDTheoTTDSM(string, string, string);
+    vector<HoaDon> LayDSHDTheoTTDSC(string, string, string);
+    vector<HoaDon> LayDSHD();
+    vector<HoaDon> LayDSHDM();
 };
 
 #endif // QUANLYKHACHHANG_H

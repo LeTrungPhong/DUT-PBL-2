@@ -15,14 +15,12 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void closeEvent(QCloseEvent *event);
     void NhapThongTin(const QuanLyKhachHang&, const QuanLyPhong&);
     vector<string> LayTenCacPhong(int,int,int,int,long long, long long);
-
     void HienThiPhongCoBan(string);
     void HienThiPhongThuong(string);
     void HienThiPhongThuongGia(string);
@@ -31,12 +29,10 @@ public:
     void HienThiPhongRaManHinh2(QString,QString,QString,QString,bool, QString);
     void HienThiPhongRaManHinh3(QString,QString,QString,QString, QString);
     void XuatPhong();
-    void HienThiDanhSach();
-
+    void HienThiDanhSach(bool);
     void LuuPhongvaoFile();
     void LuuKhachHangCuVaoFile();
     void LuuKhachHangMoiVaoFile();
-
 private slots:
     void on_TiepTanButton_clicked();
     void on_QuanLyButton_clicked();
@@ -83,6 +79,9 @@ private slots:
     void on_buttonXacNhan2_clicked();
     void on_buttonOutTT_clicked();
     void on_buttonOutQL_clicked();
+    void on_buttonHD_clicked();
+
+    void on_buttonHDM_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -90,6 +89,8 @@ private:
     TiepTan tt;
     vector<QString> v;
     vector<KhachHang> k;
+    vector<HoaDon> hd;
     int thutu;
+    bool check;
 };
 #endif // MAINWINDOW_H
