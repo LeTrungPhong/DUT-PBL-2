@@ -18,18 +18,18 @@ private:
 public:
     HashTable();
     HashTable(long long, long long);
-    HashTable(long long, long long, T*, long long);
+    HashTable(long long, long long, T*, long long, int);
     HashTable(HashTable&);
     ~HashTable();
-    void NhapDuLieu(long long, long long, T*, long long);
+    void NhapDuLieu(long long, long long, T*, long long, int);
     bool KiemTraCoPhaiSoNguyenTo();
     void TimSoNguyenTo();
     void LaySoNguyenTo();
     long long hashing(long long);
-    void KiemTraHeSoTai();
-    void ReHashing();
+    void KiemTraHeSoTai(int);
+    void ReHashing(int);
     bool KiemTraViTri(int);
-    void NhapDuLieuVaoHashTable(T&);
+    void NhapDuLieuVaoHashTable(T&, int);
     void XoaKhachHang(string);
     bool KiemTraDuLieuCu(T&);
     bool KiemTraThongTin(T&);

@@ -35,7 +35,9 @@ bool QuanLyKhachHang::KiemTraPhongBaoTri(string str)
 {
     for(int i = 0; i < this->size; ++i)
     {
-        if(str == (this->kh + i)->LayTenPhong())
+        KhachHang *k = &(*(this->kh + i));
+        HoaDon *hd = &(this->htb1.LayThongTinTheoID(k->LayCCCD(),k->LayMaHD()));
+        if(str == hd->LayTenPhong())
         {
             return true;
         }
@@ -59,9 +61,11 @@ bool QuanLyKhachHang::KiemTraPhongDuocDatChua(string str, int gioden, int ngayde
 {
     for(int i = 0; i < this->size; ++i)
     {
-        if((this->kh + i)->LayTenPhong() == str)
+        KhachHang *k = &(*(this->kh + i));
+        HoaDon *hd = &(this->htb1.LayThongTinTheoID(k->LayCCCD(),k->LayMaHD()));
+        if(hd->LayTenPhong() == str)
         {
-            if(!((this->kh + i)->KiemTraPhongDuocDatChua(gioden,ngayden,thangden,namden,giodi,ngaydi,thangdi,namdi))) return false;
+            if(!(hd->KiemTraPhongDuocDatChua(gioden,ngayden,thangden,namden,giodi,ngaydi,thangdi,namdi))) return false;
         }
     }
     return true;
@@ -109,7 +113,7 @@ void QuanLyKhachHang::NhapKhachHangMoi(const KhachHang &k)
 {
     for(int i = 0; i < this->size; i++)
     {
-        if(((this->kh + i)->LayTenPhong() == "0"))
+        if(((this->kh + i)->LayCCCD() == "0"))
         {
             *(this->kh + i) = k;
             return;
@@ -117,7 +121,7 @@ void QuanLyKhachHang::NhapKhachHangMoi(const KhachHang &k)
     }
 }
 
-void QuanLyKhachHang::NhapKhachHangVaoHashTable(string CCCD)
+void QuanLyKhachHang::NhapKhachHangVaoHashTable(string CCCD, int check)
 {
     int k = -1;
     for(int i = 0; i < this->size; i++)
@@ -130,13 +134,13 @@ void QuanLyKhachHang::NhapKhachHangVaoHashTable(string CCCD)
     }
     if(k < 0) return;
     KhachHang temp;
-    this->htb.NhapDuLieuVaoHashTable(*(this->kh + k));
+    this->htb.NhapDuLieuVaoHashTable(*(this->kh + k),check);
     *(this->kh + k) = temp;
 }
 
-void QuanLyKhachHang::NhapHoaDonVaoHashTable(HoaDon hd)
+void QuanLyKhachHang::NhapHoaDonVaoHashTable(HoaDon hd, int check)
 {
-    this->htb1.NhapDuLieuVaoHashTable(hd);
+    this->htb1.NhapDuLieuVaoHashTable(hd,check);
 }
 
 void QuanLyKhachHang::HienThiThongTinKhachHang()
@@ -158,7 +162,9 @@ KhachHang& QuanLyKhachHang::KhachHangTheoPhongTime(string tp)
         int currentMonth = currentDate->tm_mon + 1;
         int currentDay = currentDate->tm_mday;
         int currentHour = currentDate->tm_hour;
-        Date nden = (this->kh + i)->LayNgayDatPhong();
+        KhachHang *k = &(*(this->kh + i));
+        HoaDon *hd = &(this->htb1.LayThongTinTheoID(k->LayCCCD(),k->LayMaHD()));
+        Date nden = hd->LayNgayDatPhong();
         int gioden = nden.Gio;
         int ngayden = nden.Ngay;
         int thangden = nden.Thang;
@@ -172,7 +178,7 @@ KhachHang& QuanLyKhachHang::KhachHangTheoPhongTime(string tp)
         {
             continue;
         }
-        if((this->kh + i)->LayTenPhong() == tp)
+        if(hd->LayTenPhong() == tp)
         {
             return *(this->kh + i);
         }
@@ -236,7 +242,9 @@ void QuanLyKhachHang::TangDichVu(int k, string str)
         int currentMonth = currentDate->tm_mon + 1;
         int currentDay = currentDate->tm_mday;
         int currentHour = currentDate->tm_hour;
-        Date nden = (this->kh + i)->LayNgayDatPhong();
+        KhachHang *ktemp = &(*(this->kh + i));
+        HoaDon *hd = &(this->htb1.LayThongTinTheoID(ktemp->LayCCCD(),ktemp->LayMaHD()));
+        Date nden = hd->LayNgayDatPhong();
         int gioden = nden.Gio;
         int ngayden = nden.Ngay;
         int thangden = nden.Thang;
@@ -250,9 +258,9 @@ void QuanLyKhachHang::TangDichVu(int k, string str)
         {
             continue;
         }
-        if(str == (this->kh + i)->LayTenPhong())
+        if(str == hd->LayTenPhong())
         {
-            (this->kh + i)->TangDichVu(k);
+            hd->TangDichVu(k);
             return;
         }
     }
@@ -271,7 +279,7 @@ void QuanLyKhachHang::LuuKhachHangMoiVaoFile()
     for(int i = 0; i < this->size; ++i)
     {
         vector<int> v = (this->kh + i)->LayDichVu();
-        outfile << (this->kh + i)->LayMaHD() << "|" << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LaySDT() << "|" << (this->kh + i)->LayTenPhong() << "|" << (this->kh + i)->LayBirth() << "|" << (this->kh + i)->LayNgayDen() << "|" << (this->kh + i)->LayNgayDi() << "|" << (this->kh + i)->LaySoLuong() << "|" << v[0] << "|" << v[1] << "|" << v[2] << "|" << v[3] << "|" << (this->kh + i)->LayTen() << endl;
+        outfile << (this->kh + i)->LayMaHD() << "|" << (this->kh + i)->LayCCCD() << "|" << (this->kh + i)->LaySDT() << "|" << (this->kh + i)->LayBirth() << "|" << (this->kh + i)->LaySoLuong() << "|" << (this->kh + i)->LayTen() << endl;
     }
     outfile.close();
 }

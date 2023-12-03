@@ -41,12 +41,12 @@ bool TiepTan::KiemTraPhongTrong(string str)
 
 bool TiepTan::KiemTraPhongBaoTri(string str)
 {
-    return qlkh.KiemTraPhongBaoTri(str);
+    return this->qlkh.KiemTraPhongBaoTri(str);
 }
 
 bool TiepTan::KiemTraKhachHangDatPhong(string str)
 {
-    return qlkh.KiemTraKhachHangDatPhong(str);
+    return this->qlkh.KiemTraKhachHangDatPhong(str);
 }
 
 bool TiepTan::KiemTraPhongDuocDatChua(string str, int gioden, int ngayden, int thangden, int namden, int giodi, int ngaydi, int thangdi, int namdi)
@@ -66,7 +66,7 @@ bool TiepTan::KiemTraThongTin(KhachHang &k)
 
 void TiepTan::KhachHangDatPhong(KhachHang &k)
 {
-    qlkh.NhapKhachHangMoi(k);
+    this->qlkh.NhapKhachHangMoi(k);
 }
 
 void TiepTan::HienThiPhong()
@@ -74,14 +74,14 @@ void TiepTan::HienThiPhong()
     qlp.HienThiPhong();
 }
 
-void TiepTan::NhapKhachHangVaoHashTable(string CCCD)
+void TiepTan::NhapKhachHangVaoHashTable(string CCCD, int check)
 {
-    qlkh.NhapKhachHangVaoHashTable(CCCD);
+    qlkh.NhapKhachHangVaoHashTable(CCCD,check);
 }
 
-void TiepTan::NhapHoaDonVaoHashTable(HoaDon hd)
+void TiepTan::NhapHoaDonVaoHashTable(HoaDon hd,int check)
 {
-    qlkh.NhapHoaDonVaoHashTable(hd);
+    qlkh.NhapHoaDonVaoHashTable(hd,check);
 }
 
 void TiepTan::HienThiThongTinKhachHang()
@@ -300,7 +300,7 @@ void TiepTan::CapNhatDuLieuKhachHang()
                     if(lp == 3) giatien = this->qlp.LayThongTinPhongThuongGia(str).LayGiaTien();
                     hdtt->TinhTienPhong(giatien);
                     t->TangSoLuong();
-                    this->qlkh.NhapKhachHangVaoHashTable(t->LayCCCD());
+                    this->qlkh.NhapKhachHangVaoHashTable(t->LayCCCD(),0);
                 }
                 break;
             }

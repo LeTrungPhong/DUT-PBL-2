@@ -19,7 +19,7 @@ HashTable<T>::HashTable(long long s, long long sl)
 }
 
 template<class T>
-HashTable<T>::HashTable(long long s, long long sl, T *k, long long ksl)
+HashTable<T>::HashTable(long long s, long long sl, T *k, long long ksl, int check)
     :size(s),SoLuong(sl),SoNguyenTo(1)
 {
     HashTable::TimSoNguyenTo();
@@ -31,13 +31,13 @@ HashTable<T>::HashTable(long long s, long long sl, T *k, long long ksl)
     this->kh = new T[this->size];
     for(int i = 0; i < ksl; i++)
     {
-        HashTable::NhapDuLieuVaoHashTable(*(k + i));
+        HashTable::NhapDuLieuVaoHashTable(*(k + i),check);
     }
     delete[] k;
 }
 
 template<class T>
-void HashTable<T>::NhapDuLieu(long long s, long long sl, T *k, long long ksl)
+void HashTable<T>::NhapDuLieu(long long s, long long sl, T *k, long long ksl, int check)
 {
     this->size = s;
     this->SoLuong = sl;
@@ -51,7 +51,7 @@ void HashTable<T>::NhapDuLieu(long long s, long long sl, T *k, long long ksl)
     this->kh = new T[this->size];
     for(int i = 0; i < ksl; i++)
     {
-        HashTable::NhapDuLieuVaoHashTable(*(k + i));
+        HashTable::NhapDuLieuVaoHashTable(*(k + i), check);
     }
     delete[] k;
 }
@@ -121,17 +121,17 @@ long long HashTable<T>::hashing(long long value)
 }
 
 template<class T>
-void HashTable<T>::KiemTraHeSoTai()
+void HashTable<T>::KiemTraHeSoTai(int check)
 {
     if(((float)this->SoLuong / this->size) >= (float)3/4)
     {
         this->size = this->size * 2;
-        HashTable::ReHashing();
+        HashTable::ReHashing(check);
     }
 }
 
 template<class T>
-void HashTable<T>::ReHashing()
+void HashTable<T>::ReHashing(int check)
 {
     HashTable::TimSoNguyenTo();
     T *temp = new T[this->size / 2];
@@ -150,7 +150,7 @@ void HashTable<T>::ReHashing()
     this->SoLuong = 0;
     for(int i = 0; i < (this->size / 2); i++)
     {
-        HashTable::NhapDuLieuVaoHashTable(temp[i]);
+        HashTable::NhapDuLieuVaoHashTable(temp[i],check);
     }
     delete[] temp;
 }
@@ -169,17 +169,20 @@ bool HashTable<T>::KiemTraViTri(int index)
 }
 
 template<class T>
-void HashTable<T>::NhapDuLieuVaoHashTable(T &k)
+void HashTable<T>::NhapDuLieuVaoHashTable(T &k, int check)
 {
     if(k.LayCCCD(1) == 0) return;
     int kc = 0;
     int index = HashTable::hashing(k.LayCCCD(1));
     while (1)
     {
-        if((this->kh + index)->LayCCCD() == k.LayCCCD())
+        if(!check)
         {
-            *(this->kh + index) = k;
-            return;
+            if((this->kh + index)->LayCCCD() == k.LayCCCD())
+            {
+                *(this->kh + index) = k;
+                return;
+            }
         }
         if(HashTable::KiemTraViTri(index))
         {
@@ -208,7 +211,7 @@ void HashTable<T>::NhapDuLieuVaoHashTable(T &k)
     }
 
     this->SoLuong++;
-    HashTable::KiemTraHeSoTai();
+    HashTable::KiemTraHeSoTai(check);
 }
 
 template<class T>

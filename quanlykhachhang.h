@@ -28,8 +28,8 @@ public:
     void NhapDuLieu(KhachHang*, HashTable<KhachHang>&, int, HashTable<HoaDon>&);
 
     void NhapKhachHangMoi(const KhachHang&);
-    void NhapKhachHangVaoHashTable(string);
-    void NhapHoaDonVaoHashTable(HoaDon);
+    void NhapKhachHangVaoHashTable(string,int);
+    void NhapHoaDonVaoHashTable(HoaDon,int);
     void HienThiThongTinKhachHang();
     KhachHang& KhachHangTheoPhong(string);
     KhachHang& KhachHangTheoPhongTime(string);

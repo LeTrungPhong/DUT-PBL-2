@@ -637,8 +637,8 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
             return;
         }
 
-        temp.NhapNgayDatPhong(ngayden,thangden,namden,gioden);
-        temp.NhapNgayTraPhong(ngaydi,thangdi,namdi,giodi);
+//        temp.NhapNgayDatPhong(ngayden,thangden,namden,gioden);
+//        temp.NhapNgayTraPhong(ngaydi,thangdi,namdi,giodi);
 
         if(!(this->tt.KiemTraPhongDuocDatChua(str,gioden,ngayden,thangden,namden,giodi,ngaydi,thangdi,namdi)))
         {
@@ -667,9 +667,9 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
         if(lp == 2) giatien = tt.LayThongTinPhongThuong(str).LayGiaTien();
         if(lp == 3) giatien = tt.LayThongTinPhongThuongGia(str).LayGiaTien();
         hd.TinhTienPhong(giatien);
-        temp.TinhTienPhong(giatien);
+//        temp.TinhTienPhong(giatien);
 
-        if(!(QMessageBox::question(this,"Thong bao", "Tong tien phong: " + QLocale().toString(temp.LayTienPhong()),QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Ok))
+        if(!(QMessageBox::question(this,"Thong bao", "Tong tien phong: " + QLocale().toString(hd.LayTienPhong()),QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Ok))
         {
             return;
         }
@@ -708,8 +708,9 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
                         if(this->tt.KiemTraThongTin(temp))
                         {
                             temp.NhapSoLuong((this->tt.KhachHangCuTheoCCCD(CCCDNhap)).LaySoLuong());
-                            temp.NhapPhongKhachHangDat(str);
+//                            temp.NhapPhongKhachHangDat(str);
                             this->tt.KhachHangDatPhong(temp);
+                            this->tt.ChuyenTrangThaiPhong(str);
                         }
                         else
                         {
@@ -719,10 +720,11 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
                     }
                     else
                     {
-                        temp.NhapPhongKhachHangDat(str);
+//                        temp.NhapPhongKhachHangDat(str);
                         this->tt.KhachHangDatPhong(temp);
+                        this->tt.ChuyenTrangThaiPhong(str);
                     }
-                    this->tt.NhapHoaDonVaoHashTable(hd);
+                    this->tt.NhapHoaDonVaoHashTable(hd,1);
                     return;
                 }
             }
@@ -904,7 +906,7 @@ void MainWindow::on_buttonThanhToan_clicked()
         hd->NhapNgayThucTe(nditt);
         kh->TangSoLuong();
         this->tt.ChuyenTrangThaiPhong(str);
-        this->tt.NhapKhachHangVaoHashTable(kh->LayCCCD());
+        this->tt.NhapKhachHangVaoHashTable(kh->LayCCCD(),0);
     }
     else
     {
@@ -964,7 +966,6 @@ void MainWindow::on_buttonDichVu1_clicked()
         KhachHang *kh = &(this->tt.KhachHangTheoPhongTime(str));
         HoaDon *hd = &(this->tt.HoaDonTheoCCCDMaHD(kh->LayCCCD(),kh->LayMaHD()));
         hd->TangDichVu(0);
-        this->tt.TangDichVu(0,str);
         QMessageBox::information(this,"Thong bao","Thanh cong");
         int k = ui->labelSoluongDichVu1->text().toInt();
         k++;
@@ -990,7 +991,6 @@ void MainWindow::on_buttonDichVu2_clicked()
         KhachHang *kh = &(this->tt.KhachHangTheoPhongTime(str));
         HoaDon *hd = &(this->tt.HoaDonTheoCCCDMaHD(kh->LayCCCD(),kh->LayMaHD()));
         hd->TangDichVu(1);
-        tt.TangDichVu(1,str);
         QMessageBox::information(this,"Thong bao","Thanh cong");
         int k = ui->labelSoluongDichVu2->text().toInt();
         k++;
@@ -1016,7 +1016,6 @@ void MainWindow::on_buttonDichVu3_clicked()
         KhachHang *kh = &(this->tt.KhachHangTheoPhongTime(str));
         HoaDon *hd = &(this->tt.HoaDonTheoCCCDMaHD(kh->LayCCCD(),kh->LayMaHD()));
         hd->TangDichVu(2);
-        tt.TangDichVu(2,str);
         QMessageBox::information(this,"Thong bao","Thanh cong");
         int k = ui->labelSoluongDichVu3->text().toInt();
         k++;
@@ -1042,7 +1041,6 @@ void MainWindow::on_buttonDichVu4_clicked()
         KhachHang *kh = &(this->tt.KhachHangTheoPhongTime(str));
         HoaDon *hd = &(this->tt.HoaDonTheoCCCDMaHD(kh->LayCCCD(),kh->LayMaHD()));
         hd->TangDichVu(3);
-        tt.TangDichVu(3,str);
         QMessageBox::information(this,"Thong bao","Thanh cong");
         int k = ui->labelSoluongDichVu4->text().toInt();
         k++;

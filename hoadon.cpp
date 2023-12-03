@@ -292,3 +292,18 @@ bool HoaDon::KiemTraCapNhatThoiGian()
 
     return check;
 }
+
+bool HoaDon::KiemTraPhongDuocDatChua(int gioden, int ngayden, int thangden, int namden, int giodi, int ngaydi, int thangdi, int namdi)
+{
+    if(this->NgayDi.Nam < namden) return true;
+    if(this->NgayDi.Nam == namden && this->NgayDi.Thang < thangden) return true;
+    if(this->NgayDi.Nam == namden && this->NgayDi.Thang == thangden && this->NgayDi.Ngay < ngayden) return true;
+    if(this->NgayDi.Nam == namden && this->NgayDi.Thang == thangden && this->NgayDi.Ngay == ngayden && this->NgayDi.Gio < gioden) return true;
+
+    if(namdi < this->NgayDen.Nam) return true;
+    if(namdi == this->NgayDen.Nam && thangdi < this->NgayDen.Thang) return true;
+    if(namdi == this->NgayDen.Nam && thangdi == this->NgayDen.Thang && ngaydi < this->NgayDen.Ngay) return true;
+    if(namdi == this->NgayDen.Nam && thangdi == this->NgayDen.Thang && ngaydi == this->NgayDen.Ngay && giodi < this->NgayDen.Gio) return true;
+
+    return false;
+}

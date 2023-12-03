@@ -31,8 +31,8 @@ public:
     void HienThiPhong();
 
     void LuuThongTinKhachHang(KhachHang&, string);
-    void NhapKhachHangVaoHashTable(string);
-    void NhapHoaDonVaoHashTable(HoaDon);
+    void NhapKhachHangVaoHashTable(string,int);
+    void NhapHoaDonVaoHashTable(HoaDon,int);
     void HienThiThongTinKhachHang();
     void HienThiTable();
     void LayKhachHanghtb(string);

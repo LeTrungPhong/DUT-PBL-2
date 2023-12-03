@@ -24,7 +24,9 @@ public:
     void NhapCCCD(string);
     void NhapNgayThucTe(const Date&);
     void NhapNgayTraPhong(const Date&);
+
     bool operator == (const HoaDon&);
+
     const HoaDon& operator = (const HoaDon&);
     string LayCCCD();
     long long LayCCCD(int);
@@ -46,6 +48,7 @@ public:
     Date& LayNgayTraPhong();
 
     bool KiemTraCapNhatThoiGian();
+    bool KiemTraPhongDuocDatChua(int, int, int, int, int, int, int, int);
 };
 
 #endif // HOADON_H
