@@ -27,7 +27,7 @@ HoaDon::HoaDon()
 HoaDon::~HoaDon()
 { }
 
-void HoaDon::NhapThongTin(string cccd, string tp, vector<int> dv, const Date& nden, const Date& ndi, const Date& nditt, long long tt)
+void HoaDon::NhapThongTinHD(string cccd, string tp, vector<int> dv, const Date& nden, const Date& ndi, const Date& nditt, long long tt)
 {
     this->CCCD = cccd;
     this->TenPhong = tp;
@@ -38,7 +38,7 @@ void HoaDon::NhapThongTin(string cccd, string tp, vector<int> dv, const Date& nd
     this->TongTien = tt;
 }
 
-void HoaDon::NhapThongTin(string MaHD, string cccd, string tp, vector<int> dv, const Date& nden, const Date& ndi, const Date& nditt, long long tt)
+void HoaDon::NhapThongTinHD(string MaHD, string cccd, string tp, vector<int> dv, const Date& nden, const Date& ndi, const Date& nditt, long long tt)
 {
     this->MaHD = MaHD;
     this->CCCD = cccd;
@@ -50,11 +50,17 @@ void HoaDon::NhapThongTin(string MaHD, string cccd, string tp, vector<int> dv, c
     this->TongTien = tt;
 }
 
-void HoaDon::NhapThongTin(const Date& nden, const Date& ndi)
+void HoaDon::NhapThongTinHD(const Date& nden, const Date& ndi)
 {
     this->NgayDen = nden;
     this->NgayDi = ndi;
 }
+
+void HoaDon::NhapThongTin(string, string, string, int, int, int)
+{ }
+
+void HoaDon::NhapSoLuong(int)
+{ }
 
 void HoaDon::NhapTenPhong(string tp)
 {

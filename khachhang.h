@@ -16,6 +16,7 @@ public:
     const KhachHang& operator = (const KhachHang&);
     friend ostream& operator << (ostream&, const KhachHang&);
     bool operator == (const KhachHang&);
+    void NhapThongTinHD(string, string, string, vector<int>, const Date&, const Date&, const Date&, long long);
     bool KiemTraCCCD(string);
     bool KiemTraThongTinNhapVao();
     string LayTenPhong();

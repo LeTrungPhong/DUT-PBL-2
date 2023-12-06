@@ -435,6 +435,115 @@ void HashTable<T>::LuuKhachHangCuVaoFile()
 }
 
 template<class T>
+void HashTable<T>::LayDuLieuTuFileKhachHangCu()
+{
+    ifstream file;
+    file.open("D:\\HK3\\PBL-Project-3\\Khach_Hang_Cu.txt");
+    if (!file.is_open()) {
+        cout << "Error opening data file !!!" << endl;
+        return;
+    }
+    string line;
+    getline(file, line);
+    this->size = stoi(line);
+    getline(file, line);
+    int sl = stoi(line);
+    this->kh = new T[this->size];
+    this->kcg = new int[this->size];
+    for(int i = 0; i < this->size; ++i)
+    {
+        *(this->kcg + i) = 0;
+    }
+    this->SoLuong = 0;
+    this->SoNguyenTo = 1;
+    HashTable::TimSoNguyenTo();
+    // 0 : CCCD
+    // 1 : SDT
+    // 2 : ngay thang nam sinh
+    // 3 : So luong
+    // 4 : Ten
+    for(int i = 0; i < sl; i++)
+    {
+        T temp;
+        getline(file, line);
+        vector<string> token = HashTable::split(line,"|");
+        vector<string> ns = split(token[2],"/");
+        temp.NhapThongTin(token[0],token[4],token[1],stoi(ns[0]),stoi(ns[1]),stoi(ns[2]));
+        temp.NhapSoLuong(stoi(token[3]));
+        HashTable::NhapDuLieuVaoHashTable(temp,0);
+    }
+    file.close();
+}
+
+template<class T>
+void HashTable<T>::LayDuLieuTuFileHoaDon()
+{
+    ifstream file;
+    file.open("D:\\HK3\\PBL-Project-3\\FileLichSu.txt");
+    if (!file.is_open()) {
+        cout << "Error opening data file !!!" << endl;
+        return;
+    }
+    string line;
+    getline(file, line);
+    this->size = stoi(line);
+    getline(file, line);
+    int sl = stoi(line);
+    this->kh = new T[this->size];
+    this->kcg = new int[this->size];
+    for(int i = 0; i < this->size; ++i)
+    {
+        *(this->kcg + i) = 0;
+    }
+    this->SoLuong = 0;
+    this->SoNguyenTo = 1;
+    HashTable::TimSoNguyenTo();
+    // 0 : MaHD
+    // 1 : CCCD
+    // 2 : Ten Phong
+    // 3 : Ngay den
+    // 4 : Ngay di
+    // 5 : Ngay di thuc te
+    // 6 : Dich Vu 1
+    // 7 : Dich Vu 2
+    // 8 : Dich Vu 3
+    // 9 : Dich Vu 4
+    // 10 : Tong Tien
+    for(int i = 0; i < sl; i++)
+    {
+        T temp;
+        getline(file, line);
+        vector<string> token = HashTable::split(line,"|");
+        vector<int> dv;
+        dv.push_back(stoi(token[6]));
+        dv.push_back(stoi(token[7]));
+        dv.push_back(stoi(token[8]));
+        dv.push_back(stoi(token[9]));
+        vector<string> nden = split(token[3],"/");
+        vector<string> ndi = split(token[4],"/");
+        vector<string> nditt = split(token[5],"/");
+        Date Ngayden;
+        Ngayden.Gio = stoi(nden[0]);
+        Ngayden.Ngay = stoi(nden[1]);
+        Ngayden.Thang = stoi(nden[2]);
+        Ngayden.Nam = stoi(nden[3]);
+        Date Ngaydi;
+        Ngaydi.Gio = stoi(ndi[0]);
+        Ngaydi.Ngay = stoi(ndi[1]);
+        Ngaydi.Thang = stoi(ndi[2]);
+        Ngaydi.Nam = stoi(ndi[3]);
+        Date Ngayditt;
+        Ngayditt.Gio = stoi(nditt[0]);
+        Ngayditt.Ngay = stoi(nditt[1]);
+        Ngayditt.Thang = stoi(nditt[2]);
+        Ngayditt.Nam = stoi(nditt[3]);
+        temp.NhapThongTinHD(token[0],token[1],token[2],dv,Ngayden,Ngaydi,Ngayditt,stoi(token[10]));
+        HashTable::NhapDuLieuVaoHashTable(temp,1);
+    }
+    file.close();
+}
+
+template<class T>
 T& HashTable<T>::LayThongTinTheoID(string cccd)
 {
     int index = HashTable::hashing(stoll(cccd));
@@ -506,6 +615,21 @@ vector<T> HashTable<T>::LayDSKHTheoTTDSC(string cccd, string tenphong, string te
         temp.push_back(*(this->kh + i));
     }
     return temp;
+}
+
+template<class T>
+vector<string> HashTable<T>::split(string str, string delimiter)
+{
+    size_t pos = 0;
+    vector<string> tokens;
+    while ((pos = str.find(delimiter)) != string::npos)
+    {
+        string temp_token = str.substr(0, pos);
+        tokens.push_back(temp_token);
+        str.erase(0, pos + delimiter.length());
+    }
+    tokens.push_back(str);
+    return tokens;
 }
 
 template class HashTable<KhachHang>;

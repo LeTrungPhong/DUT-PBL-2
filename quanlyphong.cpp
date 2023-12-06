@@ -432,6 +432,93 @@ PhongThuongGia& QuanLyPhong::LayThongTinPhongThuongGia(string str)
     }
 }
 
+vector<string> split1(string str, string delimiter)
+{
+    size_t pos = 0;
+    vector<string> tokens;
+    while ((pos = str.find(delimiter)) != string::npos)
+    {
+        string temp_token = str.substr(0, pos);
+        tokens.push_back(temp_token);
+        str.erase(0, pos + delimiter.length());
+    }
+    tokens.push_back(str);
+    return tokens;
+}
+
+void QuanLyPhong::LayDuLieuTuFilePhong()
+{
+    ifstream file;
+    file.open("D:\\HK3\\PBL-Project-3\\FilePhong.txt");
+    if (!file.is_open())
+    {
+        cout << "Error opening data file 0" << endl;
+        return;
+    }
+    string line;
+    getline(file, line);
+    if (line != "PCB")
+    {
+        cout << "Error: File data is not in the correct format 1" << endl;
+        return;
+    }
+    line = "";
+    getline(file, line);
+    this->size.push_back(stoi(line));
+    this->pcb = new PhongCoBan[this->size[0]];
+    for (int i = 0; i < this->size[0]; i++)
+    {
+        getline(file, line);
+        if (line.empty())
+        {
+            continue;
+        }
+        vector<string> tokens = split1(line, " ");
+        (this->pcb + i)->NhapThongTinPhong(tokens[0],stoi(tokens[1]));
+    }
+    getline(file, line);
+    if (line != "PT")
+    {
+        cout << "Error: File data is not in the correct format 2" << endl;
+        return;
+    }
+    line = "";
+    getline(file, line);
+    this->size.push_back(stoi(line));
+    this->pt = new PhongThuong[this->size[1]];
+    for (int i = 0; i < this->size[1]; i++)
+    {
+        getline(file, line);
+        if (line.empty())
+        {
+            continue;
+        }
+        vector<string> tokens = split1(line, " ");
+        (this->pt + i)->NhapThongTinPhong(tokens[0],stoi(tokens[1]),stoi(tokens[2]),stoi(tokens[3]));
+    }
+    getline(file, line);
+    if (line != "PTG")
+    {
+        cout << "Error: File data is not in the correct format 3" << endl;
+        return;
+    }
+    line = "";
+    getline(file, line);
+    this->size.push_back(stoi(line));
+    this->ptg = new PhongThuongGia[this->size[2]];
+    for (int i = 0; i < this->size[2]; i++)
+    {
+        getline(file, line);
+        if (line.empty())
+        {
+            continue;
+        }
+        vector<string> tokens = split1(line, " ");
+        (this->ptg + i)->NhapThongTinPhong(tokens[0],stoi(tokens[1]),stoi(tokens[2]),stoi(tokens[3]));
+    }
+    file.close();
+}
+
 void QuanLyPhong::LuuPhongVaoFile()
 {
     ofstream outfile("D:\\HK3\\PBL-Project-3\\FilePhong.txt");

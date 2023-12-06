@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "quanly.h"
+#include "tieptan.h"
 #include "dialognhapkhachhang.h"
 #include "dialogthanhtoan.h"
 #include <string>
@@ -19,7 +20,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void closeEvent(QCloseEvent *event);
-    void NhapThongTin(const QuanLyKhachHang&, const QuanLyPhong&);
+    void NhapThongTin();
     vector<string> LayTenCacPhong(int,int,int,int,long long, long long);
     void HienThiPhongCoBan(string);
     void HienThiPhongThuong(string);
@@ -80,9 +81,7 @@ private slots:
     void on_buttonOutTT_clicked();
     void on_buttonOutQL_clicked();
     void on_buttonHD_clicked();
-
     void on_buttonHDM_clicked();
-
 private:
     Ui::MainWindow *ui;
     QuanLy ql;

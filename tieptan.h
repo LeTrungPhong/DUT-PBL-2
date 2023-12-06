@@ -58,6 +58,11 @@ public:
 
     void TangDichVu(int,string);
 
+    void LayDuLieuTuFilePhong();
+    void LayDuLieuTuFileKhachHangCu();
+    void LayDuLieuTuFileHoaDon();
+    void LayDuLieuTuFileKhachHangMoi();
+
     void LuuPhongVaoFile();
     void LuuKhachHangCuVaoFile();
     void LuuKhachHangMoiVaoFile();

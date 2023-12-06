@@ -8,8 +8,8 @@ QuanLy::~QuanLy()
 
 void QuanLy::NhapThongTinChucNang(const QuanLyKhachHang &k, const QuanLyPhong &p)
 {
-    this->k = k;
     this->p = p;
+    this->k = k;
 }
 
 const QuanLy& QuanLy::operator = (const QuanLy& q)
@@ -123,4 +123,24 @@ void QuanLy::LuuKhachHangCuVaoFile()
 void QuanLy::LuuKhachHangMoiVaoFile()
 {
     (this->k).LuuKhachHangMoiVaoFile();
+}
+
+void QuanLy::LayDuLieuTuFilePhong()
+{
+    this->p.LayDuLieuTuFilePhong();
+}
+
+void QuanLy::LayDuLieuTuFileKhachHangCu()
+{
+    this->k.LayDuLieuTuFileKhachHangCu();
+}
+
+void QuanLy::LayDuLieuTuFileHoaDon()
+{
+    this->k.LayDuLieuTuFileHoaDon();
+}
+
+void QuanLy::LayDuLieuTuFileKhachHangMoi()
+{
+    this->k.LayDuLieuTuFileKhachHangMoi();
 }

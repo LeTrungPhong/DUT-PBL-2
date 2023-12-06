@@ -4,13 +4,13 @@
 #include <QCloseEvent>
 #include <QString>
 #include <ctime>
-#include <QApplication>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    MainWindow::NhapThongTin();
     this->tt.CapNhatDuLieuKhachHang();
     this->tt.CapNhatTrangThaiPhong();
     QIntValidator *validator1 = new QIntValidator(this);
@@ -70,10 +70,16 @@ void MainWindow::closeEvent(QCloseEvent *event)
     }
 }
 
-void MainWindow::NhapThongTin(const QuanLyKhachHang &k, const QuanLyPhong &p)
+void MainWindow::NhapThongTin()
 {
-    this->ql.NhapThongTinChucNang(k,p);
-    this->tt.NhapThongTinChucNang(k,p);
+    this->tt.LayDuLieuTuFilePhong();
+    this->tt.LayDuLieuTuFileHoaDon();
+    this->tt.LayDuLieuTuFileKhachHangMoi();
+    this->tt.LayDuLieuTuFileKhachHangCu();
+    this->ql.LayDuLieuTuFilePhong();
+    this->ql.LayDuLieuTuFileKhachHangCu();
+    this->ql.LayDuLieuTuFileKhachHangMoi();
+    this->ql.LayDuLieuTuFileHoaDon();
 }
 
 void MainWindow::on_TiepTanButton_clicked()
@@ -653,7 +659,7 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
         ndi.Thang = thangdi;
         ndi.Nam = namdi;
         HoaDon hd;
-        hd.NhapThongTin(nden,ndi);
+        hd.NhapThongTinHD(nden,ndi);
         hd.NhapTenPhong(str);
         hd.TaoMaHD();
 
@@ -1110,6 +1116,7 @@ void MainWindow::HienThiDanhSach(bool check)
     ui->labelNS1->setText(QString::fromStdString(kh.LayBirth()));
     if(!check)
     {
+        ui->labelMaHD1->setText(QString::fromStdString(this->hd[dem].LayMaHD()));
         ui->labelND1->setText(QString::fromStdString(this->hd[dem].LayNgayDen()));
         ui->labelNT1->setText(QString::fromStdString(this->hd[dem].LayNgayDi()));
         ui->labelNTTT1->setText(QString::fromStdString(this->hd[dem].LayNgayDiThucTe()));
@@ -1122,6 +1129,7 @@ void MainWindow::HienThiDanhSach(bool check)
     }
     else
     {
+        ui->labelMaHD1->setText("");
         ui->labelND1->setText("");
         ui->labelNT1->setText("");
         ui->labelNTTT1->setText("");
@@ -1144,6 +1152,7 @@ void MainWindow::HienThiDanhSach(bool check)
     ui->labelNS2->setText(QString::fromStdString(kh.LayBirth()));
     if(!check)
     {
+        ui->labelMaHD2->setText(QString::fromStdString(this->hd[dem].LayMaHD()));
         ui->labelND2->setText(QString::fromStdString(this->hd[dem].LayNgayDen()));
         ui->labelNT2->setText(QString::fromStdString(this->hd[dem].LayNgayDi()));
         ui->labelNTTT2->setText(QString::fromStdString(this->hd[dem].LayNgayDiThucTe()));
@@ -1156,6 +1165,7 @@ void MainWindow::HienThiDanhSach(bool check)
     }
     else
     {
+        ui->labelMaHD2->setText("");
         ui->labelND2->setText("");
         ui->labelNT2->setText("");
         ui->labelNTTT2->setText("");
@@ -1178,6 +1188,7 @@ void MainWindow::HienThiDanhSach(bool check)
     ui->labelNS3->setText(QString::fromStdString(kh.LayBirth()));
     if(!check)
     {
+        ui->labelMaHD3->setText(QString::fromStdString(this->hd[dem].LayMaHD()));
         ui->labelND3->setText(QString::fromStdString(this->hd[dem].LayNgayDen()));
         ui->labelNT3->setText(QString::fromStdString(this->hd[dem].LayNgayDi()));
         ui->labelNTTT3->setText(QString::fromStdString(this->hd[dem].LayNgayDiThucTe()));
@@ -1190,6 +1201,7 @@ void MainWindow::HienThiDanhSach(bool check)
     }
     else
     {
+        ui->labelMaHD3->setText("");
         ui->labelND3->setText("");
         ui->labelNT3->setText("");
         ui->labelNTTT3->setText("");
@@ -1212,6 +1224,7 @@ void MainWindow::HienThiDanhSach(bool check)
     ui->labelNS4->setText(QString::fromStdString(kh.LayBirth()));
     if(!check)
     {
+        ui->labelMaHD4->setText(QString::fromStdString(this->hd[dem].LayMaHD()));
         ui->labelND4->setText(QString::fromStdString(this->hd[dem].LayNgayDen()));
         ui->labelNT4->setText(QString::fromStdString(this->hd[dem].LayNgayDi()));
         ui->labelNTTT4->setText(QString::fromStdString(this->hd[dem].LayNgayDiThucTe()));
@@ -1224,6 +1237,7 @@ void MainWindow::HienThiDanhSach(bool check)
     }
     else
     {
+        ui->labelMaHD4->setText("");
         ui->labelND4->setText("");
         ui->labelNT4->setText("");
         ui->labelNTTT4->setText("");
@@ -1246,6 +1260,7 @@ void MainWindow::HienThiDanhSach(bool check)
     ui->labelNS5->setText(QString::fromStdString(kh.LayBirth()));
     if(!check)
     {
+        ui->labelMaHD5->setText(QString::fromStdString(this->hd[dem].LayMaHD()));
         ui->labelND5->setText(QString::fromStdString(this->hd[dem].LayNgayDen()));
         ui->labelNT5->setText(QString::fromStdString(this->hd[dem].LayNgayDi()));
         ui->labelNTTT5->setText(QString::fromStdString(this->hd[dem].LayNgayDiThucTe()));
@@ -1258,6 +1273,7 @@ void MainWindow::HienThiDanhSach(bool check)
     }
     else
     {
+        ui->labelMaHD5->setText("");
         ui->labelND5->setText("");
         ui->labelNT5->setText("");
         ui->labelNTTT5->setText("");
@@ -1280,6 +1296,7 @@ void MainWindow::HienThiDanhSach(bool check)
     ui->labelNS6->setText(QString::fromStdString(kh.LayBirth()));
     if(!check)
     {
+        ui->labelMaHD6->setText(QString::fromStdString(this->hd[dem].LayMaHD()));
         ui->labelND6->setText(QString::fromStdString(this->hd[dem].LayNgayDen()));
         ui->labelNT6->setText(QString::fromStdString(this->hd[dem].LayNgayDi()));
         ui->labelNTTT6->setText(QString::fromStdString(this->hd[dem].LayNgayDiThucTe()));
@@ -1292,6 +1309,7 @@ void MainWindow::HienThiDanhSach(bool check)
     }
     else
     {
+        ui->labelMaHD6->setText("");
         ui->labelND6->setText("");
         ui->labelNT6->setText("");
         ui->labelNTTT6->setText("");
@@ -1314,6 +1332,7 @@ void MainWindow::HienThiDanhSach(bool check)
     ui->labelNS7->setText(QString::fromStdString(kh.LayBirth()));
     if(!check)
     {
+        ui->labelMaHD7->setText(QString::fromStdString(this->hd[dem].LayMaHD()));
         ui->labelND7->setText(QString::fromStdString(this->hd[dem].LayNgayDen()));
         ui->labelNT7->setText(QString::fromStdString(this->hd[dem].LayNgayDi()));
         ui->labelNTTT7->setText(QString::fromStdString(this->hd[dem].LayNgayDiThucTe()));
@@ -1326,6 +1345,7 @@ void MainWindow::HienThiDanhSach(bool check)
     }
     else
     {
+        ui->labelMaHD7->setText("");
         ui->labelND7->setText("");
         ui->labelNT7->setText("");
         ui->labelNTTT7->setText("");
@@ -1348,6 +1368,7 @@ void MainWindow::HienThiDanhSach(bool check)
     ui->labelNS8->setText(QString::fromStdString(kh.LayBirth()));
     if(!check)
     {
+        ui->labelMaHD8->setText(QString::fromStdString(this->hd[dem].LayMaHD()));
         ui->labelND8->setText(QString::fromStdString(this->hd[dem].LayNgayDen()));
         ui->labelNT8->setText(QString::fromStdString(this->hd[dem].LayNgayDi()));
         ui->labelNTTT8->setText(QString::fromStdString(this->hd[dem].LayNgayDiThucTe()));
@@ -1360,6 +1381,7 @@ void MainWindow::HienThiDanhSach(bool check)
     }
     else
     {
+        ui->labelMaHD8->setText("");
         ui->labelND8->setText("");
         ui->labelNT8->setText("");
         ui->labelNTTT8->setText("");
@@ -1382,6 +1404,7 @@ void MainWindow::HienThiDanhSach(bool check)
     ui->labelNS9->setText(QString::fromStdString(kh.LayBirth()));
     if(!check)
     {
+        ui->labelMaHD9->setText(QString::fromStdString(this->hd[dem].LayMaHD()));
         ui->labelND9->setText(QString::fromStdString(this->hd[dem].LayNgayDen()));
         ui->labelNT9->setText(QString::fromStdString(this->hd[dem].LayNgayDi()));
         ui->labelNTTT9->setText(QString::fromStdString(this->hd[dem].LayNgayDiThucTe()));
@@ -1394,6 +1417,7 @@ void MainWindow::HienThiDanhSach(bool check)
     }
     else
     {
+        ui->labelMaHD9->setText("");
         ui->labelND9->setText("");
         ui->labelNT9->setText("");
         ui->labelNTTT9->setText("");
@@ -1416,6 +1440,7 @@ void MainWindow::HienThiDanhSach(bool check)
     ui->labelNS10->setText(QString::fromStdString(kh.LayBirth()));
     if(!check)
     {
+        ui->labelMaHD10->setText(QString::fromStdString(this->hd[dem].LayMaHD()));
         ui->labelND10->setText(QString::fromStdString(this->hd[dem].LayNgayDen()));
         ui->labelNT10->setText(QString::fromStdString(this->hd[dem].LayNgayDi()));
         ui->labelNTTT10->setText(QString::fromStdString(this->hd[dem].LayNgayDiThucTe()));
@@ -1428,6 +1453,7 @@ void MainWindow::HienThiDanhSach(bool check)
     }
     else
     {
+        ui->labelMaHD10->setText("");
         ui->labelND10->setText("");
         ui->labelNT10->setText("");
         ui->labelNTTT10->setText("");

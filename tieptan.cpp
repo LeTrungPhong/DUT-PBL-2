@@ -25,8 +25,8 @@ TiepTan::~TiepTan()
 
 void TiepTan::NhapThongTinChucNang(const QuanLyKhachHang &k, const QuanLyPhong &p)
 {
-    this->qlkh = k;
     this->qlp = p;
+    this->qlkh = k;
 }
 
 bool TiepTan::KiemTraTenPhong(string str)
@@ -165,6 +165,26 @@ void TiepTan::ChuyenTrangThaiPhong(string str)
 void TiepTan::TangDichVu(int k, string str)
 {
     this->qlkh.TangDichVu(k,str);
+}
+
+void TiepTan::LayDuLieuTuFilePhong()
+{
+    this->qlp.LayDuLieuTuFilePhong();
+}
+
+void TiepTan::LayDuLieuTuFileKhachHangCu()
+{
+    this->qlkh.LayDuLieuTuFileKhachHangCu();
+}
+
+void TiepTan::LayDuLieuTuFileHoaDon()
+{
+    this->qlkh.LayDuLieuTuFileHoaDon();
+}
+
+void TiepTan::LayDuLieuTuFileKhachHangMoi()
+{
+    this->qlkh.LayDuLieuTuFileKhachHangMoi();
 }
 
 void TiepTan::LuuPhongVaoFile()

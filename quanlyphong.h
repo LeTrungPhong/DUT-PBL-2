@@ -40,6 +40,7 @@ public:
     PhongThuong& LayThongTinPhongThuong(string);
     PhongThuongGia& LayThongTinPhongThuongGia(string);
 
+    void LayDuLieuTuFilePhong();
     void LuuPhongVaoFile();
 };
 

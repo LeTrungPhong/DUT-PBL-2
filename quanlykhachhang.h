@@ -39,6 +39,10 @@ public:
     const QuanLyKhachHang& operator = (const QuanLyKhachHang&);
     void TangDichVu(int,string);
 
+    void LayDuLieuTuFileKhachHangCu();
+    void LayDuLieuTuFileHoaDon();
+    void LayDuLieuTuFileKhachHangMoi();
+
     void LuuKhachHangCuVaoFile();
     void LuuKhachHangMoiVaoFile();
     void LuuHoaDonVaoFile();
@@ -52,6 +56,8 @@ public:
     vector<HoaDon> LayDSHDTheoTTDSC(string, string, string);
     vector<HoaDon> LayDSHD();
     vector<HoaDon> LayDSHDM();
+
+    vector<string> split(string,string);
 };
 
 #endif // QUANLYKHACHHANG_H

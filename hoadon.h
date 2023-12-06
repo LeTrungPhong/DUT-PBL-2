@@ -17,14 +17,15 @@ private:
 public:
     HoaDon();
     ~HoaDon();
-    void NhapThongTin(string, string, vector<int>, const Date&, const Date&, const Date&, long long);
-    void NhapThongTin(string, string, string, vector<int>, const Date&, const Date&, const Date&, long long);
-    void NhapThongTin(const Date&, const Date&);
+    void NhapThongTinHD(string, string, vector<int>, const Date&, const Date&, const Date&, long long);
+    void NhapThongTinHD(string, string, string, vector<int>, const Date&, const Date&, const Date&, long long);
+    void NhapThongTinHD(const Date&, const Date&);
     void NhapTenPhong(string);
     void NhapCCCD(string);
     void NhapNgayThucTe(const Date&);
     void NhapNgayTraPhong(const Date&);
-
+    void NhapSoLuong(int);
+    void NhapThongTin(string, string, string, int, int, int);
     bool operator == (const HoaDon&);
 
     const HoaDon& operator = (const HoaDon&);

@@ -267,6 +267,45 @@ void QuanLyKhachHang::TangDichVu(int k, string str)
     return;
 }
 
+void QuanLyKhachHang::LayDuLieuTuFileKhachHangMoi()
+{
+    ifstream file;
+    file.open("D:\\HK3\\PBL-Project-3\\Khach_Hang_Moi.txt");
+    if (!file.is_open()) {
+        cout << "Error opening data file !!!" << endl;
+        return;
+    }
+    string line;
+    getline(file, line);
+    this->size = stoi(line);
+    this->kh = new KhachHang[this->size];
+    for(int i = 0; i < this->size; i++)
+    {
+        // 0 : MaHD
+        // 1 : CCCD
+        // 2 : SDT
+        // 3 : ngay thang nam sinh
+        // 4 : so luong
+        // 5 : Ten
+        getline(file, line);
+        vector<string> token = QuanLyKhachHang::split(line,"|");
+        vector<string> ns = split(token[3],"/");
+        (this->kh + i)->NhapThongTin(token[1],token[5],token[2],stoi(ns[0]),stoi(ns[1]),stoi(ns[2]));
+        (this->kh + i)->NhapThongTinKhac(token[0],stoi(token[4]));
+    }
+    file.close();
+}
+
+void QuanLyKhachHang::LayDuLieuTuFileKhachHangCu()
+{
+    this->htb.LayDuLieuTuFileKhachHangCu();
+}
+
+void QuanLyKhachHang::LayDuLieuTuFileHoaDon()
+{
+    this->htb1.LayDuLieuTuFileHoaDon();
+}
+
 void QuanLyKhachHang::LuuKhachHangCuVaoFile()
 {
     (this->htb).LuuKhachHangCuVaoFile();
@@ -367,4 +406,18 @@ vector<HoaDon> QuanLyKhachHang::LayDSHDM()
         }
     }
     return hd;
+}
+
+vector<string> QuanLyKhachHang::split(string str, string delimiter)
+{
+    size_t pos = 0;
+    vector<string> tokens;
+    while ((pos = str.find(delimiter)) != string::npos)
+    {
+        string temp_token = str.substr(0, pos);
+        tokens.push_back(temp_token);
+        str.erase(0, pos + delimiter.length());
+    }
+    tokens.push_back(str);
+    return tokens;
 }

@@ -42,6 +42,9 @@ void KhachHang::NhapMaHD(string mahd)
     this->MaHD = mahd;
 }
 
+void KhachHang::NhapThongTinHD(string, string, string, vector<int>, const Date&, const Date&, const Date&, long long)
+{ }
+
 ostream& operator << (ostream& o, const KhachHang& k)
 {
     o << k.CCCD << " " << k.SDT << " " << k.Birth.Ngay << " " << k.Birth.Thang << " " << k.Birth.Nam << endl;

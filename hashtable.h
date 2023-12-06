@@ -37,12 +37,18 @@ public:
     T& operator [] (const int&);
     const HashTable& operator = (const HashTable&);
     void HienThiTable();
+
+    void LayDuLieuTuFileKhachHangCu();
+    void LayDuLieuTuFileHoaDon();
+
     void LuuHoaDonVaoFile();
     void LuuKhachHangCuVaoFile();
+
     T& LayThongTinTheoID(string);
     T& LayThongTinTheoID(string, string);
     vector<T> LayDanhSachKhachHangCu();
     vector<T> LayDSKHTheoTTDSC(string, string, string);
+    vector<string> split(string,string);
 };
 
 #endif // HASHTABLE_H

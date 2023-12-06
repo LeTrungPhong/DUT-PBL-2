@@ -1,6 +1,8 @@
 #ifndef QUANLY_H
 #define QUANLY_H
-#include "tieptan.h"
+#include "nguoi.h"
+#include "quanlykhachhang.h"
+#include "quanlyphong.h"
 
 class QuanLy : public Nguoi
 {
@@ -34,6 +36,11 @@ public:
     void ThemPhong(const PhongThuongGia&);
 
     void XoaPhong(string,int);
+
+    void LayDuLieuTuFilePhong();
+    void LayDuLieuTuFileKhachHangCu();
+    void LayDuLieuTuFileHoaDon();
+    void LayDuLieuTuFileKhachHangMoi();
 
     void LuuPhongVaoFile();
     void LuuKhachHangCuVaoFile();
