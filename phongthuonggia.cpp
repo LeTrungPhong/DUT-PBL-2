@@ -1,5 +1,8 @@
 #include "phongthuonggia.h"
 
+long long PhongThuongGia::DichVuThuongGia = 0;
+long long PhongThuongGia::GiaPhongThuongGia = 0;
+
 PhongThuongGia::PhongThuongGia()
 {
     this->TenPhong = "";
@@ -9,12 +12,28 @@ PhongThuongGia::PhongThuongGia()
     this->GiaPhong = 0;
 }
 
+PhongThuongGia::PhongThuongGia(long long gtdvtg, long long gtptg)
+{
+    this->GiaPhongThuongGia = gtptg;
+    this->DichVuThuongGia = gtdvtg;
+}
+
 PhongThuongGia::PhongThuongGia(string Tenp, bool Trongp, int GDon, int GDoi)
     : PhongThuong(Tenp,Trongp,GDon,GDoi)
 { }
 
 PhongThuongGia::~PhongThuongGia()
 { }
+
+long long PhongThuongGia::LayDVTG()
+{
+    return DichVuThuongGia;
+}
+
+long long PhongThuongGia::LayGTPTG()
+{
+    return GiaPhongThuongGia;
+}
 
 void PhongThuongGia::NhapThongTinPhong(string Tenp, bool Trongp, int GDon, int GDoi)
 {
@@ -27,7 +46,7 @@ void PhongThuongGia::NhapThongTinPhong(string Tenp, bool Trongp, int GDon, int G
 
 void PhongThuongGia::TinhTienPhong()
 {
-    this->GiaPhong = (this->GiuongDon)*10000 + (this->GiuongDoi)*15000 + 50000 + 10000 + 5000;
+    this->GiaPhong = (this->GiuongDon)*GiaTienGDon + (this->GiuongDoi)*GiaTienGDoi + GiaPhongThuongGia + DichVuThuongGia;
 }
 
 const PhongThuongGia& PhongThuongGia::operator = (const PhongThuongGia& p)

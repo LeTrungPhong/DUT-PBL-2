@@ -464,6 +464,27 @@ void QuanLyPhong::LayDuLieuTuFilePhong()
     }
     line = "";
     getline(file, line);
+    if (line != "GiaTienPhongCoBan")
+    {
+        cout << "Error: File data is not in the correct format 1" << endl;
+        return;
+    }
+    line = "";
+    getline(file, line);
+    long long gtpcb = stoi(line);
+    line = "";
+    getline(file, line);
+    if (line != "GiaTienGiuongDon")
+    {
+        cout << "Error: File data is not in the correct format 1" << endl;
+        return;
+    }
+    line = "";
+    getline(file, line);
+    long long gtgdon = stoi(line);
+    PhongCoBan tempcb(gtgdon,gtpcb);
+    line = "";
+    getline(file, line);
     this->size.push_back(stoi(line));
     this->pcb = new PhongCoBan[this->size[0]];
     for (int i = 0; i < this->size[0]; i++)
@@ -482,6 +503,27 @@ void QuanLyPhong::LayDuLieuTuFilePhong()
         cout << "Error: File data is not in the correct format 2" << endl;
         return;
     }
+    line = "";
+    getline(file, line);
+    if (line != "GiaTienPhongThuong")
+    {
+        cout << "Error: File data is not in the correct format 1" << endl;
+        return;
+    }
+    line = "";
+    getline(file, line);
+    long long gtpt = stoi(line);
+    line = "";
+    getline(file, line);
+    if (line != "GiaTienGiuongDoi")
+    {
+        cout << "Error: File data is not in the correct format 1" << endl;
+        return;
+    }
+    line = "";
+    getline(file, line);
+    long long gtgdoi = stoi(line);
+    PhongThuong tempt(gtgdoi,gtpt);
     line = "";
     getline(file, line);
     this->size.push_back(stoi(line));
@@ -504,6 +546,27 @@ void QuanLyPhong::LayDuLieuTuFilePhong()
     }
     line = "";
     getline(file, line);
+    if (line != "GiaTienPhongThuongGia")
+    {
+        cout << "Error: File data is not in the correct format 1" << endl;
+        return;
+    }
+    line = "";
+    getline(file, line);
+    long long gtptg = stoi(line);
+    line = "";
+    getline(file, line);
+    if (line != "DichVuThuongGia")
+    {
+        cout << "Error: File data is not in the correct format 1" << endl;
+        return;
+    }
+    line = "";
+    getline(file, line);
+    long long dvtg = stoi(line);
+    PhongThuongGia temptg(dvtg,gtptg);
+    line = "";
+    getline(file, line);
     this->size.push_back(stoi(line));
     this->ptg = new PhongThuongGia[this->size[2]];
     for (int i = 0; i < this->size[2]; i++)
@@ -523,18 +586,30 @@ void QuanLyPhong::LuuPhongVaoFile()
 {
     ofstream outfile("D:\\HK3\\PBL-Project-3\\FilePhong.txt");
     outfile << "PCB" << endl;
+    outfile << "GiaTienPhongCoBan" << endl;
+    outfile << PhongCoBan::LayGTPCB() << endl;
+    outfile << "GiaTienGiuongDon" << endl;
+    outfile << PhongCoBan::LayGTGDon() << endl;
     outfile << this->size[0] << endl;
     for(int i = 0; i < this->size[0]; ++i)
     {
         outfile << (this->pcb + i)->LayTenPhong() << " " << (this->pcb + i)->KiemTraPhongTrong() << endl;
     }
     outfile << "PT" << endl;
+    outfile << "GiaTienPhongThuong" << endl;
+    outfile << PhongThuong::LayGTPT() << endl;
+    outfile << "GiaTienGiuongDoi" << endl;
+    outfile << PhongThuong::LayGTGDoi() << endl;
     outfile << this->size[1] << endl;
     for(int i = 0; i < this->size[1]; ++i)
     {
         outfile << (this->pt + i)->LayTenPhong() << " " << (this->pt + i)->KiemTraPhongTrong() << " " << (this->pt + i)->LaySoLuongGiuongDon() << " " << (this->pt + i)->LaySoLuongGiuongDoi() << endl;
     }
     outfile << "PTG" << endl;
+    outfile << "GiaTienPhongThuongGia" << endl;
+    outfile << PhongThuongGia::LayGTPTG() << endl;
+    outfile << "DichVuThuongGia" << endl;
+    outfile << PhongThuongGia::LayDVTG() << endl;
     outfile << this->size[2] << endl;
     for(int i = 0; i < this->size[2]; ++i)
     {

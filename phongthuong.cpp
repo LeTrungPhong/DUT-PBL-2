@@ -1,5 +1,8 @@
 #include "phongthuong.h"
 
+long long PhongThuong::GiaTienGDoi = 0;
+long long PhongThuong::GiaPhongThuong = 0;
+
 PhongThuong::PhongThuong()
 {
     this->TenPhong = "";
@@ -9,12 +12,28 @@ PhongThuong::PhongThuong()
     this->GiaPhong = 0;
 }
 
+PhongThuong::PhongThuong(long long gtgdoi, long long gtpt)
+{
+    this->GiaTienGDoi = gtgdoi;
+    this->GiaPhongThuong = gtpt;
+}
+
 PhongThuong::PhongThuong(string Tenp, bool Trongp, int GDon, int GDoi)
     : PhongCoBan(Tenp,Trongp,GDon),GiuongDoi(GDoi)
 { }
 
 PhongThuong::~PhongThuong()
 { }
+
+long long PhongThuong::LayGTGDoi()
+{
+    return GiaTienGDoi;
+}
+
+long long PhongThuong::LayGTPT()
+{
+    return GiaPhongThuong;
+}
 
 void PhongThuong::NhapThongTinPhong(string Tenp, bool Trongp, int GDon, int GDoi)
 {
@@ -27,7 +46,7 @@ void PhongThuong::NhapThongTinPhong(string Tenp, bool Trongp, int GDon, int GDoi
 
 void PhongThuong::TinhTienPhong()
 {
-    this->GiaPhong = (this->GiuongDon)*10000 + (this->GiuongDoi)*15000 + 40000;
+    this->GiaPhong = (this->GiuongDon)*GiaTienGDon + (this->GiuongDoi)*GiaTienGDoi + GiaPhongThuong;
 }
 
 const PhongThuong& PhongThuong::operator = (const PhongThuong& p)

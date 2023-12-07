@@ -13,14 +13,19 @@ protected:
     bool TrongPhong;
     int GiuongDon;
     long long GiaPhong;
+    static long long GiaTienGDon;
+    static long long GiaPhongCoBan;
 public:
     PhongCoBan();
+    PhongCoBan(long long, long long);
     PhongCoBan(string, bool);
     PhongCoBan(string, bool, int);
     ~PhongCoBan();
+    static long long LayGTGDon();
+    static long long LayGTPCB();
     virtual void NhapThongTinPhong(string, bool);
     virtual void TinhTienPhong();
-    virtual const PhongCoBan& operator = (const PhongCoBan&);
+    const PhongCoBan& operator = (const PhongCoBan&);
     int KiemTraPhongTrong();
     void ChuyenTrangThaiPhong();
     void ChuyenTrangThaiPhongTrong();

@@ -6,10 +6,15 @@ class PhongThuong : public PhongCoBan
 {
 protected:
     int GiuongDoi;
+    static long long GiaTienGDoi;
+    static long long GiaPhongThuong;
 public:
     PhongThuong();
+    PhongThuong(long long, long long);
     PhongThuong(string, bool, int, int);
     ~PhongThuong();
+    static long long LayGTGDoi();
+    static long long LayGTPT();
     void NhapThongTinPhong(string, bool, int, int);
     void TinhTienPhong();
     const PhongThuong& operator = (const PhongThuong&);

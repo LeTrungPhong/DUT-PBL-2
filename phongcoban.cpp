@@ -1,11 +1,20 @@
 #include "phongcoban.h"
 
+long long PhongCoBan::GiaTienGDon = 0;
+long long PhongCoBan::GiaPhongCoBan = 0;
+
 PhongCoBan::PhongCoBan()
 {
     this->TenPhong = "";
     this->TrongPhong = 0;
     this->GiuongDon = -1;
     this->GiaPhong = 0;
+}
+
+PhongCoBan::PhongCoBan(long long gtgdon, long long gtpcb)
+{
+    this->GiaTienGDon = gtgdon;
+    this->GiaPhongCoBan = gtpcb;
 }
 
 PhongCoBan::PhongCoBan(string Tenp, bool Trongp)
@@ -19,6 +28,16 @@ PhongCoBan::PhongCoBan(string Tenp, bool Trongp, int GDon)
 PhongCoBan::~PhongCoBan()
 { }
 
+long long PhongCoBan::LayGTGDon()
+{
+    return GiaTienGDon;
+}
+
+long long PhongCoBan::LayGTPCB()
+{
+    return GiaPhongCoBan;
+}
+
 void PhongCoBan::NhapThongTinPhong(string Tenp, bool Trongp)
 {
     this->TenPhong = Tenp;
@@ -29,7 +48,7 @@ void PhongCoBan::NhapThongTinPhong(string Tenp, bool Trongp)
 
 void PhongCoBan::TinhTienPhong()
 {
-    this->GiaPhong = (this->GiuongDon)*10000 + 30000;
+    this->GiaPhong = (this->GiuongDon)*GiaTienGDon + GiaPhongCoBan;
 }
 
 const PhongCoBan& PhongCoBan::operator = (const PhongCoBan& p)

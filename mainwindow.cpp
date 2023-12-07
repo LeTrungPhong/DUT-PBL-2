@@ -1552,14 +1552,29 @@ void MainWindow::on_buttonDSKHC_clicked()
 
 void MainWindow::on_buttonContinue2_clicked()
 {
-    if((this->thutu + 10) >= this->k.size())
+    if(this->check == true)
     {
-        return;
+        if((this->thutu + 10) >= this->k.size())
+        {
+            return;
+        }
+        else
+        {
+            this->thutu = this->thutu + 10;
+            MainWindow::HienThiDanhSach(this->check);
+        }
     }
     else
     {
-        this->thutu = this->thutu + 10;
-        MainWindow::HienThiDanhSach(check);
+        if((this->thutu + 10) >= this->hd.size())
+        {
+            return;
+        }
+        else
+        {
+            this->thutu = this->thutu + 10;
+            MainWindow::HienThiDanhSach(check);
+        }
     }
 }
 
@@ -1572,7 +1587,7 @@ void MainWindow::on_buttonBack2_clicked()
     else
     {
         this->thutu = this->thutu - 10;
-        MainWindow::HienThiDanhSach(check);
+        MainWindow::HienThiDanhSach(this->check);
     }
 }
 
