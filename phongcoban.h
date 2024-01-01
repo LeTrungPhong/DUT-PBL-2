@@ -8,7 +8,6 @@ using namespace std;
 class PhongCoBan
 {
 protected:
-    // Ma Phong = Ten Phong //
     string TenPhong;
     bool TrongPhong;
     int GiuongDon;

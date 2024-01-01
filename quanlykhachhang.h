@@ -24,6 +24,7 @@ public:
     bool KiemTraPhongDuocDatChua(string, int, int, int, int, int, int, int, int);
     bool KiemTraKhachHangCu(KhachHang&);
     bool KiemTraThongTin(KhachHang&);
+    bool KiemTraSDT(string, string);
 
     void NhapDuLieu(KhachHang*, HashTable<KhachHang>&, int, HashTable<HoaDon>&);
 

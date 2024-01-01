@@ -93,6 +93,11 @@ void QuanLyKhachHang::NhapDuLieu(KhachHang *temp, HashTable<KhachHang> &t, int s
     }
 }
 
+bool QuanLyKhachHang::KiemTraSDT(string cccd, string sdt)
+{
+
+}
+
 QuanLyKhachHang::QuanLyKhachHang(QuanLyKhachHang &k)
 {
     this->size = k.size;

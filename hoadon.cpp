@@ -183,7 +183,293 @@ string HoaDon::LayMaHD()
 
 void HoaDon::TinhTienPhong(long long gt)
 {
+    time_t now = time(0);
+    tm* currentDate = localtime(&now);
+    int currentYear = currentDate->tm_year + 1900;
+    int currentMonth = currentDate->tm_mon + 1;
+    int currentDay = currentDate->tm_mday;
+    int currentHour = currentDate->tm_hour;
+
     this->TongTien = 0;
+    long long tiendv = 30000*DichVu[0] + 35000*DichVu[1] + 50000*DichVu[2] + 40000*DichVu[3];
+    int gioden = this->NgayDen.Gio;
+    int ngayden = this->NgayDen.Ngay;
+    int thangden = this->NgayDen.Thang;
+    int namden = this->NgayDen.Nam;
+    int giodi = this->NgayDi.Gio;
+    int ngaydi = this->NgayDi.Ngay;
+    int thangdi = this->NgayDi.Thang;
+    int namdi = this->NgayDi.Nam;
+
+    // từ 6h sáng -> 18h tối  : giá * 85%
+    // từ 18h tối -> 24h -> 0 -> 6h sáng : giá gốc
+    // 1 ngày 00:00 -> 24:00
+    // khách hàng đặt phòng tính tiền tối thiểu 6h, tiền tính thêm*45%
+    // từ 36 tiếng trở đi : giá mới * 90%
+    // khách hàng trả phòng trước kì hạn thì khách hàng phải trả số tiền * 55% ứng với khoảng thời gian khách hàng không ở
+
+    int dem = 0;
+    while(!(currentDay == ngayden && currentMonth == thangden && currentYear == namden && currentHour == gioden))
+    {
+        gioden++;
+        dem++;
+        if(gioden == 24)
+        {
+            gioden = 0;
+            ngayden++;
+        }
+        if(ngayden == 32 && (thangden == 1 || thangden == 3 || thangden == 5 || thangden == 7 || thangden == 8 || thangden == 10 || thangden == 12))
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 31 && (thangden == 4 || thangden == 6 || thangden == 9 || thangden == 11))
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 30 && thangden == 2 && namden%4 == 0)
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 29 && thangden == 2 && namden%4 != 0)
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(thangden == 13)
+        {
+            thangden = 1;
+            namden++;
+        }
+        long long money = 0;
+        if((gioden >= 0 && gioden < 6) || (gioden >= 18 && gioden < 24))
+        {
+            money = money + gt*(100.0/100);
+        }
+        if(gioden >= 6 && gioden < 18)
+        {
+            money = money + gt*(85.0/100);
+        }
+
+        if(dem < 36)
+        {
+            this->TongTien = this->TongTien + money;
+        }
+        else
+        {
+            this->TongTien = this->TongTien + money*(90.0/100);
+        }
+    }
+
+    while(!(ngaydi == ngayden && thangdi == thangden && namdi == namden && giodi == gioden))
+    {
+        gioden++;
+        dem++;
+        if(gioden == 24)
+        {
+            gioden = 0;
+            ngayden++;
+        }
+        if(ngayden == 32 && (thangden == 1 || thangden == 3 || thangden == 5 || thangden == 7 || thangden == 8 || thangden == 10 || thangden == 12))
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 31 && (thangden == 4 || thangden == 6 || thangden == 9 || thangden == 11))
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 30 && thangden == 2 && namden%4 == 0)
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 29 && thangden == 2 && namden%4 != 0)
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(thangden == 13)
+        {
+            thangden = 1;
+            namden++;
+        }
+        long long money = 0;
+        if((gioden >= 0 && gioden < 6) || (gioden >= 18 && gioden < 24))
+        {
+            money = money + gt*(100.0/100)*(55.0/100);
+        }
+        if(gioden >= 6 && gioden < 18)
+        {
+            money = money + gt*(85.0/100)*(55.0/100);
+        }
+
+        if(dem < 36)
+        {
+            this->TongTien = this->TongTien + money;
+        }
+        else
+        {
+            this->TongTien = this->TongTien + money*(90.0/100);
+        }
+    }
+
+    if(dem < 6)
+    {
+        this->TongTien = this->TongTien + (6 - (giodi - gioden))*gt*(45.0/100);
+    }
+
+    this->TongTien = this->TongTien + tiendv;
+}
+
+void HoaDon::TinhTienPhongDungThoiGianThucTe(long long gt)
+{
+    int namditt = this->NgayDiThucTe.Nam;
+    int thangditt = this->NgayDiThucTe.Thang;
+    int ngayditt = this->NgayDiThucTe.Ngay;
+    int gioditt = this->NgayDiThucTe.Gio;
+
+    this->TongTien = 0;
+    long long tiendv = 30000*DichVu[0] + 35000*DichVu[1] + 50000*DichVu[2] + 40000*DichVu[3];
+    int gioden = this->NgayDen.Gio;
+    int ngayden = this->NgayDen.Ngay;
+    int thangden = this->NgayDen.Thang;
+    int namden = this->NgayDen.Nam;
+    int giodi = this->NgayDi.Gio;
+    int ngaydi = this->NgayDi.Ngay;
+    int thangdi = this->NgayDi.Thang;
+    int namdi = this->NgayDi.Nam;
+
+    // từ 6h sáng -> 18h tối  : giá * 85%
+    // từ 18h tối -> 24h -> 0 -> 6h sáng : giá gốc
+    // 1 ngày 00:00 -> 24:00
+    // khách hàng đặt phòng tính tiền tối thiểu 6h, tiền tính thêm*45%
+    // từ 36 tiếng trở đi : giá mới * 90%
+    // khách hàng trả phòng trước kì hạn thì khách hàng phải trả số tiền * 55% ứng với khoảng thời gian khách hàng không ở
+
+    int dem = 0;
+    while(!(ngayditt == ngayden && thangditt == thangden && namditt == namden && gioditt == gioden))
+    {
+        gioden++;
+        dem++;
+        if(gioden == 24)
+        {
+            gioden = 0;
+            ngayden++;
+        }
+        if(ngayden == 32 && (thangden == 1 || thangden == 3 || thangden == 5 || thangden == 7 || thangden == 8 || thangden == 10 || thangden == 12))
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 31 && (thangden == 4 || thangden == 6 || thangden == 9 || thangden == 11))
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 30 && thangden == 2 && namden%4 == 0)
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 29 && thangden == 2 && namden%4 != 0)
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(thangden == 13)
+        {
+            thangden = 1;
+            namden++;
+        }
+        long long money = 0;
+        if((gioden >= 0 && gioden < 6) || (gioden >= 18 && gioden < 24))
+        {
+            money = money + gt*(100.0/100);
+        }
+        if(gioden >= 6 && gioden < 18)
+        {
+            money = money + gt*(85.0/100);
+        }
+
+        if(dem < 36)
+        {
+            this->TongTien = this->TongTien + money;
+        }
+        else
+        {
+            this->TongTien = this->TongTien + money*(90.0/100);
+        }
+    }
+
+    while(!(ngaydi == ngayden && thangdi == thangden && namdi == namden && giodi == gioden))
+    {
+        gioden++;
+        dem++;
+        if(gioden == 24)
+        {
+            gioden = 0;
+            ngayden++;
+        }
+        if(ngayden == 32 && (thangden == 1 || thangden == 3 || thangden == 5 || thangden == 7 || thangden == 8 || thangden == 10 || thangden == 12))
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 31 && (thangden == 4 || thangden == 6 || thangden == 9 || thangden == 11))
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 30 && thangden == 2 && namden%4 == 0)
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(ngayden == 29 && thangden == 2 && namden%4 != 0)
+        {
+            ngayden = 1;
+            thangden++;
+        }
+        if(thangden == 13)
+        {
+            thangden = 1;
+            namden++;
+        }
+        long long money = 0;
+        if((gioden >= 0 && gioden < 6) || (gioden >= 18 && gioden < 24))
+        {
+            money = money + gt*(100.0/100)*(55.0/100);
+        }
+        if(gioden >= 6 && gioden < 18)
+        {
+            money = money + gt*(85.0/100)*(55.0/100);
+        }
+
+        if(dem < 36)
+        {
+            this->TongTien = this->TongTien + money;
+        }
+        else
+        {
+            this->TongTien = this->TongTien + money*(90.0/100);
+        }
+    }
+
+    if(dem < 6)
+    {
+        this->TongTien = this->TongTien + (6 - (giodi - gioden))*gt*(45.0/100);
+    }
+
+    this->TongTien = this->TongTien + tiendv;
+}
+
+long long HoaDon::TinhTienPhongDungThoiGian(long long gt)
+{
+    long long Tien = 0;
     long long tiendv = 30000*DichVu[0] + 35000*DichVu[1] + 50000*DichVu[2] + 40000*DichVu[3];
     int gioden = this->NgayDen.Gio;
     int ngayden = this->NgayDen.Ngay;
@@ -246,18 +532,19 @@ void HoaDon::TinhTienPhong(long long gt)
         }
         if(dem < 36)
         {
-            this->TongTien = this->TongTien + money;
+            Tien = Tien + money;
         }
         else
         {
-            this->TongTien = this->TongTien + money*(90.0/100);
+            Tien = Tien + money*(90.0/100);
         }
     }
     if(dem < 6)
     {
-        this->TongTien = this->TongTien + (6 - (giodi - gioden))*gt*(45.0/100);
+        Tien = Tien + (6 - (giodi - gioden))*gt*(45.0/100);
     }
-    this->TongTien = this->TongTien + tiendv;
+    Tien = Tien + tiendv;
+    return Tien;
 }
 
 void HoaDon::TangDichVu(int k)

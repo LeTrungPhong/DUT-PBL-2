@@ -168,7 +168,7 @@
             <widget class="QFrame" name="frame_5">
              <property name="maximumSize">
               <size>
-               <width>300</width>
+               <width>330</width>
                <height>16777215</height>
               </size>
              </property>
@@ -194,7 +194,7 @@
               <item>
                <widget class="QStackedWidget" name="stackedWidget4">
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="page_12">
                  <layout class="QHBoxLayout" name="horizontalLayout_13">
@@ -461,6 +461,7 @@
 #buttonDatPhong,
 #buttonTraPhong,
 #buttonDichVu,
+#buttonQuanLyKhachHang,
 #buttonOutTT,
 #buttonQLKH,
 #buttonQLP,
@@ -472,7 +473,7 @@
 }</string>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="page_8">
               <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -580,6 +581,19 @@
                    </widget>
                   </item>
                   <item>
+                   <widget class="QPushButton" name="buttonQuanLyKhachHang">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>50</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Quản Lý Khách Hàng</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QPushButton" name="buttonOutTT">
                     <property name="minimumSize">
                      <size>
@@ -652,32 +666,6 @@
                     </property>
                     <property name="text">
                      <string>Quản Lý Phòng</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="pushButton">
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>50</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>PushButton</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="pushButton_2">
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>50</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>PushButton</string>
                     </property>
                    </widget>
                   </item>
@@ -818,7 +806,7 @@
 }</string>
              </property>
              <property name="currentIndex">
-              <number>4</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="page_5">
               <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1417,25 +1405,6 @@
                          <number>9</number>
                         </property>
                         <item>
-                         <widget class="QPushButton" name="buttonBack">
-                          <property name="minimumSize">
-                           <size>
-                            <width>40</width>
-                            <height>50</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>100</width>
-                            <height>100</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>Trở lại</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
                          <widget class="QPushButton" name="buttonContinue">
                           <property name="minimumSize">
                            <size>
@@ -1451,6 +1420,25 @@
                           </property>
                           <property name="text">
                            <string>Tiếp</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="buttonBack">
+                          <property name="minimumSize">
+                           <size>
+                            <width>40</width>
+                            <height>50</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>100</width>
+                            <height>100</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Trở lại</string>
                           </property>
                          </widget>
                         </item>
@@ -3485,14 +3473,28 @@
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_22">
                      <item>
-                      <widget class="QLabel" name="label_46">
+                      <widget class="QLabel" name="label_81">
                        <property name="text">
-                        <string>Tổng Tiền:</string>
+                        <string>Tổng Tiền Phải Trả:</string>
                        </property>
                       </widget>
                      </item>
                      <item>
                       <widget class="QLabel" name="labelTongTien">
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="labelTitleTongTienDuKien">
+                       <property name="text">
+                        <string>(Tổng Tiền Dự Kiến)</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="labelTongTienDuKien">
                        <property name="text">
                         <string/>
                        </property>
@@ -4826,6 +4828,68 @@
                  </layout>
                 </widget>
                </item>
+               <item row="3" column="1">
+                <widget class="QRadioButton" name="radioButtonDSC">
+                 <property name="text">
+                  <string>Danh sách thông tin lưu trữ</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="lineEditNhapTenPhong">
+                 <property name="placeholderText">
+                  <string>Nhập Tên Phòng</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QRadioButton" name="radioButtonDSM">
+                 <property name="text">
+                  <string>Danh sách thông tin mới</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1" colspan="3">
+                <widget class="QPushButton" name="buttonTimKiem">
+                 <property name="text">
+                  <string>Tìm Kiếm</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="4">
+                <widget class="QPushButton" name="buttonBack2">
+                 <property name="text">
+                  <string>Trờ lại</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="lineEditNhapMaHD">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Nhập Mã Hóa Đơn</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="lineEditNhapCCCD">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Nhập CCCD</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="4">
+                <widget class="QPushButton" name="buttonContinue2">
+                 <property name="text">
+                  <string>Tiếp tục</string>
+                 </property>
+                </widget>
+               </item>
                <item row="0" column="0" rowspan="5">
                 <widget class="QFrame" name="frame_24">
                  <property name="frameShape">
@@ -4864,68 +4928,6 @@
                    </widget>
                   </item>
                  </layout>
-                </widget>
-               </item>
-               <item row="3" column="4">
-                <widget class="QPushButton" name="buttonContinue2">
-                 <property name="text">
-                  <string>Tiếp tục</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="4">
-                <widget class="QPushButton" name="buttonBack2">
-                 <property name="text">
-                  <string>Trờ lại</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="2">
-                <widget class="QRadioButton" name="radioButtonDSM">
-                 <property name="text">
-                  <string>Danh sách thông tin mới</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QLineEdit" name="lineEditNhapCCCD">
-                 <property name="text">
-                  <string/>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Nhập CCCD</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QLineEdit" name="lineEditNhapTenPhong">
-                 <property name="placeholderText">
-                  <string>Nhập Tên Phòng</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="1" colspan="3">
-                <widget class="QPushButton" name="buttonTimKiem">
-                 <property name="text">
-                  <string>Tìm Kiếm</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="1">
-                <widget class="QRadioButton" name="radioButtonDSC">
-                 <property name="text">
-                  <string>Danh sách thông tin lưu trữ</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLineEdit" name="lineEditNhapMaHD">
-                 <property name="text">
-                  <string/>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Nhập Mã Hóa Đơn</string>
-                 </property>
                 </widget>
                </item>
               </layout>

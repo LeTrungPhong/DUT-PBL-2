@@ -36,6 +36,9 @@ MainWindow::MainWindow(QWidget *parent)
     QIntValidator *validatorNam2 = new QIntValidator(this);
     ui->lineEditNam2->setValidator(validatorNam2);
 
+    ui->labelTongTienDuKien->setVisible(false);
+    ui->labelTitleTongTienDuKien->setVisible(false);
+
     ui->stackedWidget->setCurrentIndex(1);
     ui->labelImgQL->setPixmap(QPixmap("D:\\HK3\\PBL-Project-3\\nguyenminhphuc.jpg"));
     ui->labelImgTT->setPixmap(QPixmap("D:\\HK3\\PBL-Project-3\\letrungphong.jpg"));
@@ -671,7 +674,7 @@ void MainWindow::on_buttonXacNhanDatPhong_clicked()
         if(lp == 3) giatien = tt.LayThongTinPhongThuongGia(str).LayGiaTien();
         hd.TinhTienPhong(giatien);
 
-        if(!(QMessageBox::question(this,"Thong bao", "Tong tien phong: " + QLocale().toString(hd.LayTienPhong()),QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Ok))
+        if(!(QMessageBox::question(this,"Thong bao", "Tong tien phong: " + QLocale().toString(hd.TinhTienPhongDungThoiGian(giatien)),QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Ok))
         {
             return;
         }
@@ -865,7 +868,9 @@ void MainWindow::on_buttonTimKiem3_clicked()
     hd->TinhTienPhong(giatien);
 
     QString tien = QLocale().toString(hd->LayTienPhong());
+    QString tiendukien = QLocale().toString(hd->TinhTienPhongDungThoiGian(giatien));
     ui->labelTongTien->setText(tien);
+    ui->labelTongTienDuKien->setText(tiendukien);
 }
 
 void MainWindow::on_buttonThanhToan_clicked()
@@ -1099,6 +1104,11 @@ void MainWindow::on_buttonRealTime_clicked()
     ui->lineEditNam2->setText(QLocale().toString(currentYear).remove(','));
 }
 
+void MainWindow::on_buttonQuanLyKhachHang_clicked()
+{
+    ui->stackedWidget2->setCurrentIndex(4);
+}
+
 // Quan Ly
 
 void MainWindow::HienThiDanhSach(bool check)
@@ -1107,7 +1117,12 @@ void MainWindow::HienThiDanhSach(bool check)
     KhachHang kh;
 
     if(!check)
-        kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    {
+        if((this->hd)[dem].LayCCCD() == "0")
+            kh.XoaThongTin();
+        else
+            kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    }
     else
         kh = this->k[dem];
     ui->labelTKH1->setText(QString::fromStdString(kh.LayTen()));
@@ -1143,7 +1158,12 @@ void MainWindow::HienThiDanhSach(bool check)
 
     dem++;
     if(!check)
-        kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    {
+        if((this->hd)[dem].LayCCCD() == "0")
+            kh.XoaThongTin();
+        else
+            kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    }
     else
         kh = this->k[dem];
     ui->labelTKH2->setText(QString::fromStdString(kh.LayTen()));
@@ -1179,7 +1199,12 @@ void MainWindow::HienThiDanhSach(bool check)
 
     dem++;
     if(!check)
-        kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    {
+        if((this->hd)[dem].LayCCCD() == "0")
+            kh.XoaThongTin();
+        else
+            kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    }
     else
         kh = this->k[dem];
     ui->labelTKH3->setText(QString::fromStdString(kh.LayTen()));
@@ -1215,7 +1240,12 @@ void MainWindow::HienThiDanhSach(bool check)
 
     dem++;
     if(!check)
-        kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    {
+        if((this->hd)[dem].LayCCCD() == "0")
+            kh.XoaThongTin();
+        else
+            kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    }
     else
         kh = this->k[dem];
     ui->labelTKH4->setText(QString::fromStdString(kh.LayTen()));
@@ -1251,7 +1281,12 @@ void MainWindow::HienThiDanhSach(bool check)
 
     dem++;
     if(!check)
-        kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    {
+        if((this->hd)[dem].LayCCCD() == "0")
+            kh.XoaThongTin();
+        else
+            kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    }
     else
         kh = this->k[dem];
     ui->labelTKH5->setText(QString::fromStdString(kh.LayTen()));
@@ -1287,7 +1322,12 @@ void MainWindow::HienThiDanhSach(bool check)
 
     dem++;
     if(!check)
-        kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    {
+        if((this->hd)[dem].LayCCCD() == "0")
+            kh.XoaThongTin();
+        else
+            kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    }
     else
         kh = this->k[dem];
     ui->labelTKH6->setText(QString::fromStdString(kh.LayTen()));
@@ -1323,7 +1363,12 @@ void MainWindow::HienThiDanhSach(bool check)
 
     dem++;
     if(!check)
-        kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    {
+        if((this->hd)[dem].LayCCCD() == "0")
+            kh.XoaThongTin();
+        else
+            kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    }
     else
         kh = this->k[dem];
     ui->labelTKH7->setText(QString::fromStdString(kh.LayTen()));
@@ -1359,7 +1404,12 @@ void MainWindow::HienThiDanhSach(bool check)
 
     dem++;
     if(!check)
-        kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    {
+        if((this->hd)[dem].LayCCCD() == "0")
+            kh.XoaThongTin();
+        else
+            kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    }
     else
         kh = this->k[dem];
     ui->labelTKH8->setText(QString::fromStdString(kh.LayTen()));
@@ -1395,7 +1445,12 @@ void MainWindow::HienThiDanhSach(bool check)
 
     dem++;
     if(!check)
-        kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    {
+        if((this->hd)[dem].LayCCCD() == "0")
+            kh.XoaThongTin();
+        else
+            kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    }
     else
         kh = this->k[dem];
     ui->labelTKH9->setText(QString::fromStdString(kh.LayTen()));
@@ -1431,7 +1486,12 @@ void MainWindow::HienThiDanhSach(bool check)
 
     dem++;
     if(!check)
-        kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    {
+        if((this->hd)[dem].LayCCCD() == "0")
+            kh.XoaThongTin();
+        else
+            kh = this->ql.KhachHangCuTheoCCCD((this->hd)[dem].LayCCCD());
+    }
     else
         kh = this->k[dem];
     ui->labelTKH10->setText(QString::fromStdString(kh.LayTen()));
@@ -1470,7 +1530,7 @@ void MainWindow::on_buttonHDM_clicked()
 {
     this->check = false;
     this->hd.clear();
-    this->hd = this->ql.LayDSHDM();
+    this->hd = this->tt.LayDSHDM();
     this->thutu = 0;
 
     int x = this->hd.size();
@@ -1491,7 +1551,7 @@ void MainWindow::on_buttonHD_clicked()
 {
     this->check = false;
     this->hd.clear();
-    this->hd = this->ql.LayDSHD();
+    this->hd = this->tt.LayDSHD();
     this->thutu = 0;
 
     int x = this->hd.size();
@@ -1512,7 +1572,7 @@ void MainWindow::on_buttonDSKHM_clicked()
 {
     this->check = true;
     this->k.clear();
-    this->k = this->ql.LayDanhSachKhachHangMoi();
+    this->k = this->tt.LayDanhSachKhachHangMoi();
     this->thutu = 0;
 
     int x = this->k.size();
@@ -1533,7 +1593,7 @@ void MainWindow::on_buttonDSKHC_clicked()
 {
     this->check = true;
     this->k.clear();
-    this->k = this->ql.LayDanhSachKhachHangCu();
+    this->k = this->tt.LayDanhSachKhachHangCu();
     this->thutu = 0;
 
     int x = this->k.size();
@@ -1611,14 +1671,14 @@ void MainWindow::on_buttonTimKiem_clicked()
     this->thutu = 0;
     if(ui->radioButtonDSM->isChecked())
     {
-        this->hd = this->ql.LayDSHDTheoTTDSM(CCCD,TenPhong,MaHD);
+        this->hd = this->tt.LayDSHDTheoTTDSM(CCCD,TenPhong,MaHD);
     }
     if(ui->radioButtonDSC->isChecked())
     {
-        this->hd = this->ql.LayDSHDTheoTTDSC(CCCD,TenPhong,MaHD);
+        this->hd = this->tt.LayDSHDTheoTTDSC(CCCD,TenPhong,MaHD);
     }
 
-    int x = this->k.size();
+    int x = this->hd.size();
     while((x - 10) >= 0)
     {
         x = x - 10;

@@ -44,6 +44,8 @@ public:
     void TaoMaHD();
     string LayMaHD();
     void TinhTienPhong(long long);
+    void TinhTienPhongDungThoiGianThucTe(long long);
+    long long TinhTienPhongDungThoiGian(long long);
     void TangDichVu(int);
     Date& LayNgayDatPhong();
     Date& LayNgayTraPhong();

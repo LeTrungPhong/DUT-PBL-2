@@ -12,6 +12,7 @@ public:
     KhachHang();
     ~KhachHang();
     void NhapThongTinKhac(string, int);
+    void XoaThongTin();
     void NhapMaHD(string);
     const KhachHang& operator = (const KhachHang&);
     friend ostream& operator << (ostream&, const KhachHang&);

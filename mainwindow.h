@@ -82,6 +82,8 @@ private slots:
     void on_buttonOutQL_clicked();
     void on_buttonHD_clicked();
     void on_buttonHDM_clicked();
+    void on_buttonQuanLyKhachHang_clicked();
+
 private:
     Ui::MainWindow *ui;
     QuanLy ql;

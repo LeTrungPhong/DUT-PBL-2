@@ -21,6 +21,7 @@ public:
     bool KiemTraPhongBaoTri(string);
     bool KiemTraKhachHangDatPhong(string);
     bool KiemTraPhongDuocDatChua(string, int, int, int, int, int, int, int, int);
+    bool KiemTraSDT(string, string);
     bool KiemTraKhachHangCu(KhachHang&);
     bool KiemTraThongTin(KhachHang&);
 
@@ -46,6 +47,12 @@ public:
     const TiepTan& operator = (const TiepTan&); // khong = qlkh, qlp
 
     vector<string> LayTenCacPhong(int,int,int,int, long long, long long);
+    vector<KhachHang> LayDanhSachKhachHangMoi();
+    vector<KhachHang> LayDanhSachKhachHangCu();
+    vector<HoaDon> LayDSHDTheoTTDSC(string, string, string);
+    vector<HoaDon> LayDSHDTheoTTDSM(string, string, string);
+    vector<HoaDon> LayDSHD();
+    vector<HoaDon> LayDSHDM();
 
     int XacDinhLoaiPhong(string);
     PhongCoBan& LayThongTinPhongCoBan(string);

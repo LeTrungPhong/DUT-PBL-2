@@ -64,6 +64,11 @@ bool TiepTan::KiemTraThongTin(KhachHang &k)
     return this->qlkh.KiemTraThongTin(k);
 }
 
+bool TiepTan::KiemTraSDT(string cccd, string sdt)
+{
+    return this->qlkh.KiemTraSDT(cccd,sdt);
+}
+
 void TiepTan::KhachHangDatPhong(KhachHang &k)
 {
     this->qlkh.NhapKhachHangMoi(k);
@@ -318,7 +323,7 @@ void TiepTan::CapNhatDuLieuKhachHang()
                     if(lp == 1) giatien = this->qlp.LayThongTinPhongCoBan(str).LayGiaTien();
                     if(lp == 2) giatien = this->qlp.LayThongTinPhongThuong(str).LayGiaTien();
                     if(lp == 3) giatien = this->qlp.LayThongTinPhongThuongGia(str).LayGiaTien();
-                    hdtt->TinhTienPhong(giatien);
+                    hdtt->TinhTienPhongDungThoiGianThucTe(giatien);
                     t->TangSoLuong();
                     this->qlkh.NhapKhachHangVaoHashTable(t->LayCCCD(),0);
                 }
@@ -326,4 +331,34 @@ void TiepTan::CapNhatDuLieuKhachHang()
             }
         }
     }
+}
+
+vector<KhachHang> TiepTan::LayDanhSachKhachHangMoi()
+{
+    return this->qlkh.LayDanhSachKhachHangMoi();
+}
+
+vector<KhachHang> TiepTan::LayDanhSachKhachHangCu()
+{
+    return this->qlkh.LayDanhSachKhachHangCu();
+}
+
+vector<HoaDon> TiepTan::LayDSHDTheoTTDSC(string cccd, string tenphong, string mahd)
+{
+    return this->qlkh.LayDSHDTheoTTDSC(cccd,tenphong,mahd);
+}
+
+vector<HoaDon> TiepTan::LayDSHDTheoTTDSM(string cccd, string tenphong, string mahd)
+{
+    return this->qlkh.LayDSHDTheoTTDSM(cccd,tenphong,mahd);
+}
+
+vector<HoaDon> TiepTan::LayDSHD()
+{
+    return this->qlkh.LayDSHD();
+}
+
+vector<HoaDon> TiepTan::LayDSHDM()
+{
+    return this->qlkh.LayDSHDM();
 }

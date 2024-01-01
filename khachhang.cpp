@@ -37,6 +37,19 @@ void KhachHang::NhapThongTinKhac(string mahd, int soluong)
     this->SoLuong = soluong;
 }
 
+void KhachHang::XoaThongTin()
+{
+    this->MaHD = "0";
+    this->CCCD = "0";
+    this->Ten = "0";
+    this->SDT = "0";
+    this->Birth.Ngay = 0;
+    this->Birth.Thang = 0;
+    this->Birth.Nam = 0;
+    this->Birth.Gio = 0;
+    this->SoLuong = 0;
+}
+
 void KhachHang::NhapMaHD(string mahd)
 {
     this->MaHD = mahd;
@@ -117,7 +130,7 @@ bool KhachHang::KiemTraThongTinNhapVao()
     int currentMonth = currentDate->tm_mon + 1;
     int currentDay = currentDate->tm_mday;
 
-    if (this->Birth.Nam < currentYear - 122 || this->Birth.Nam > currentYear)
+    if(this->Birth.Nam < currentYear - 122 || this->Birth.Nam > currentYear)
     {
         return false;
     }
