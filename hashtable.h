@@ -33,17 +33,13 @@ public:
     void XoaKhachHang(string);
     bool KiemTraDuLieuCu(T&);
     bool KiemTraThongTin(T&);
-    void Table();
     T& operator [] (const int&);
     const HashTable& operator = (const HashTable&);
     void HienThiTable();
-
     void LayDuLieuTuFileKhachHangCu();
     void LayDuLieuTuFileHoaDon();
-
     void LuuHoaDonVaoFile();
     void LuuKhachHangCuVaoFile();
-
     T& LayThongTinTheoID(string);
     T& LayThongTinTheoID(string, string);
     vector<T> LayDanhSachKhachHangCu();

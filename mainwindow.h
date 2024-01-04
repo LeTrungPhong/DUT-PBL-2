@@ -92,6 +92,7 @@ private:
     vector<KhachHang> k;
     vector<HoaDon> hd;
     int thutu;
+    int thutu1;
     bool check;
 };
 #endif // MAINWINDOW_H

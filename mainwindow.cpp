@@ -892,10 +892,7 @@ void MainWindow::on_buttonThanhToan_clicked()
 
     if (QMessageBox::question(this,"Thong bao","Xac nhan thanh toan",QMessageBox::Ok,QMessageBox::Cancel) == QMessageBox::Ok)
     {
-        DialogThanhToan dialog(this);
-        dialog.setModal(true);
-        dialog.exec();
-
+        QMessageBox::information(this,"Thong bao","Thanh toan thanh cong");
         time_t now = time(0);
         tm* currentDate = localtime(&now);
         int currentYear = currentDate->tm_year + 1900;
@@ -1113,7 +1110,7 @@ void MainWindow::on_buttonQuanLyKhachHang_clicked()
 
 void MainWindow::HienThiDanhSach(bool check)
 {
-    int dem = this->thutu;
+    int dem = this->thutu1;
     KhachHang kh;
 
     if(!check)
@@ -1531,7 +1528,7 @@ void MainWindow::on_buttonHDM_clicked()
     this->check = false;
     this->hd.clear();
     this->hd = this->tt.LayDSHDM();
-    this->thutu = 0;
+    this->thutu1 = 0;
 
     int x = this->hd.size();
     while((x - 10) >= 0)
@@ -1552,7 +1549,7 @@ void MainWindow::on_buttonHD_clicked()
     this->check = false;
     this->hd.clear();
     this->hd = this->tt.LayDSHD();
-    this->thutu = 0;
+    this->thutu1 = 0;
 
     int x = this->hd.size();
     while((x - 10) >= 0)
@@ -1573,7 +1570,7 @@ void MainWindow::on_buttonDSKHM_clicked()
     this->check = true;
     this->k.clear();
     this->k = this->tt.LayDanhSachKhachHangMoi();
-    this->thutu = 0;
+    this->thutu1 = 0;
 
     int x = this->k.size();
     while((x - 10) >= 0)
@@ -1594,7 +1591,7 @@ void MainWindow::on_buttonDSKHC_clicked()
     this->check = true;
     this->k.clear();
     this->k = this->tt.LayDanhSachKhachHangCu();
-    this->thutu = 0;
+    this->thutu1 = 0;
 
     int x = this->k.size();
     while((x - 10) >= 0)
@@ -1614,25 +1611,25 @@ void MainWindow::on_buttonContinue2_clicked()
 {
     if(this->check == true)
     {
-        if((this->thutu + 10) >= this->k.size())
+        if((this->thutu1 + 10) >= this->k.size())
         {
             return;
         }
         else
         {
-            this->thutu = this->thutu + 10;
+            this->thutu1 = this->thutu1 + 10;
             MainWindow::HienThiDanhSach(this->check);
         }
     }
     else
     {
-        if((this->thutu + 10) >= this->hd.size())
+        if((this->thutu1 + 10) >= this->hd.size())
         {
             return;
         }
         else
         {
-            this->thutu = this->thutu + 10;
+            this->thutu1 = this->thutu1 + 10;
             MainWindow::HienThiDanhSach(check);
         }
     }
@@ -1640,13 +1637,13 @@ void MainWindow::on_buttonContinue2_clicked()
 
 void MainWindow::on_buttonBack2_clicked()
 {
-    if(this->thutu == 0)
+    if(this->thutu1 == 0)
     {
         return;
     }
     else
     {
-        this->thutu = this->thutu - 10;
+        this->thutu1 = this->thutu1 - 10;
         MainWindow::HienThiDanhSach(this->check);
     }
 }
@@ -1668,7 +1665,7 @@ void MainWindow::on_buttonTimKiem_clicked()
     string MaHD = ui->lineEditNhapMaHD->text().toStdString();
     this->check = false;
     this->hd.clear();
-    this->thutu = 0;
+    this->thutu1 = 0;
     if(ui->radioButtonDSM->isChecked())
     {
         this->hd = this->tt.LayDSHDTheoTTDSM(CCCD,TenPhong,MaHD);

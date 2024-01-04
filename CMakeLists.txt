@@ -38,7 +38,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Khach_Hang_Cu.txt
         FilePhong.txt
 
-        dialogthanhtoan.h dialogthanhtoan.cpp dialogthanhtoan.ui
+
         Khach_Hang_Moi.txt
         hoadon.h hoadon.cpp
         FileLichSu.txt

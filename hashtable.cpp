@@ -312,36 +312,6 @@ bool HashTable<T>::KiemTraThongTin(T &t)
 }
 
 template<class T>
-void HashTable<T>::Table()
-{
-    int count = 0;
-    int tmp = this->size;
-    while(tmp)
-    {
-        count++;
-        tmp /= 10;
-    }
-    for(int i = 0; i < this->size; i++)
-    {
-        int tmp = i;
-        int dem = 0;
-        while(tmp)
-        {
-            dem++;
-            tmp /= 10;
-        }
-        if(i == 0) dem = 1;
-        while (count - dem)
-        {
-            cout << " ";
-            dem++;
-        }
-        cout << "[" << i << "] " ;
-        cout << (this->kh + i)->LayCCCD() << " " << *(this->kcg + i) << endl;
-    }
-}
-
-template<class T>
 T &HashTable<T>::operator [](const int& index)
 {
     static T p;
